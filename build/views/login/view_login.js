@@ -71,6 +71,9 @@ function getView(){
 function addListeners(){
   
 
+        TOKEN = '';
+        data_empresas = [];
+        cmbEmpresa.innerHTML = `<option value=''>No hay empresas disponibles...</option>`;
 
         let btnIniciar = document.getElementById('btnIniciar');
         btnIniciar.addEventListener('click',()=>{
@@ -78,22 +81,35 @@ function addListeners(){
             let u = document.getElementById('txtUser').value || '';
             let p = document.getElementById('txtPass').value || '';
 
+            btnIniciar.innerHTML = `<i class="fal fa-unlock fa-spin"></i>`;
+            btnIniciar.disabled = true;
 
             login(u,p)
             .then((data)=>{
                 
-                btnMenu.style = "visibility:visible";
-                GlobalEmpnit = '';
-                data.map((r)=>{
-                    GlobalEmpnit = r.EMPNIT;
-                    TOKEN = r.TOKEN;
-                });
+                btnIniciar.innerHTML = `<i class="fal fa-lock"></i>`;
+                btnIniciar.disabled = false;
 
+                data_empresas = data.recordset;
+
+                //btnMenu.style = "visibility:visible";
+                //GlobalEmpnit = '';
+                
                 GlobalUsuario = u;
+                let str = '';
+                data_empresas.map((r)=>{
+                    TOKEN = r.TOKEN;
+                    str += `<option value='${r.EMPNIT}'>${r.EMPNOMBRE}</option>`
+                });
+                cmbEmpresa.innerHTML = str;
 
                 Navegar.mantenimientos_productos();
             })
             .catch(()=>{
+                
+                btnIniciar.innerHTML = `<i class="fal fa-lock"></i>`;
+                btnIniciar.disabled = false;
+
                 GlobalEmpnit='';
                 funciones.AvisoError('No se pudo iniciar sesión');
             })
@@ -117,10 +133,10 @@ function login(u,p){
     
     return new Promise((resolve,reject)=>{
 
-        let data = [{EMPNIT:'ME-IZABAL',TOKEN:'ME-IZABAL'}]
+        let data = [{EMPNIT:'ZPRUEBAS',TOKEN:'ONNE'}]
 
-        resolve(data);
-        return;
+        //resolve(data);
+        //return;
 
         axios.post(GlobalUrlCalls + '/general/login',
             {

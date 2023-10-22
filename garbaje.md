@@ -1,5 +1,12 @@
 //PLANTILLA
 
+<div class="card card-rounded col-12 border-primary">
+    <div class="card-body p-4">                    
+    </div>
+</div>
+
+<br>
+
 
 function getView(){
     let view = {

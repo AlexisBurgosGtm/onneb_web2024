@@ -5,6 +5,7 @@ let versionapp = "OnneBusiness - modif:21/10/2023"
 //<h5 class="text-white" id="lbVersion"></h5>
 
 
+/*
 document.getElementById('btnLogout').addEventListener('click',()=>{
     funciones.Confirmacion('¿Está seguro que desea Salir?')
     .then((value)=>{
@@ -18,7 +19,7 @@ document.getElementById('btnLogout').addEventListener('click',()=>{
     })
     
 });
-
+*/
 
 
 //inicializa la instalacion de la app

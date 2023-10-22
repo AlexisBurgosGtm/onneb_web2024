@@ -6,13 +6,17 @@ let TOKEN = '';
 let GlobalUsuario = '';
 let GlobalPass = '';
 
+let data_empresas = [];
+
 
 let root = document.getElementById('root');
 let rootMenu = document.getElementById('rootMenu');
 let rootMenuFooter = document.getElementById('rootMenuFooter');
 let rootErrores = document.getElementById('rootErrores');
-let btnMenu = document.getElementById('btnMenu');
-btnMenu.style = "visibility:hidden";
+let cmbEmpresa = document.getElementById('cmbEmpresa');
+
+//let btnMenu = document.getElementById('btnMenu');
+//btnMenu.style = "visibility:hidden";
 
 
 

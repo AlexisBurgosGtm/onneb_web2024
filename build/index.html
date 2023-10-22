@@ -29,6 +29,7 @@
         <link rel="stylesheet" media="screen, print" href="./css/btn.css">
 
         <link rel="stylesheet" href="./libs/noty/noty.min.css">
+        <link rel="stylesheet" href="./libs/animate.min.css">
 
         
 	<!-- service worker -->
@@ -106,19 +107,19 @@
               
                 <div class="page-content-wrapper">
                    
-                 
-                    <!-- END Page Header -->
-                    <!-- BEGIN Page Content -->
+                                       
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
                     <main id="js-page-content" role="main" class="page-content">
-                      <div id="root">
+                        
+                        <div id="root">
 
-                      </div>
+                        </div>
                     </main>
                         <!-- Internet Connection Status --> 
                         <div class="internet-connection-status" id="internetStatus"></div>
                         
                         <!-- menu principal flotante derecha -->
+                        <!--
                         <nav class="shortcut-menu hidden-sm-down" id="btnMenu">
                             
                             <input type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
@@ -149,7 +150,8 @@
                                 </a>
 
                         </nav>
-
+                        -->
+                        
                     <div id="" class="shortcut-menu align-left">
                          <button class="btn btn-warning btn-xl shadow" id="btnInstalarApp">
                              <i class="fal fa-download"></i>Instalar como Aplicación
@@ -162,7 +164,8 @@
 
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer bg-primary foot" role="contentinfo" id="footContainer">
-                        <h5 class="text-white" id="lbForm"></h5>
+                        <select class="form-control bg-primary text-white border-primary f-med" id="cmbEmpresa"></select>
+                        <!-- <h5 class="text-white" id="lbForm"></h5> -->
                     </footer>
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->

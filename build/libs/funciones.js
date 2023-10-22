@@ -532,8 +532,14 @@ let funciones = {
 
     },
     convertDateNormal(date) {
+      try {
+        date = date.replace('T00:00:00.000Z', '');
         const [yy, mm, dd] = date.split(/-/g);
-        return `${dd}/${mm}/${yy}`.replace('T00:00:00.000Z', '');
+        return `${dd}/${mm}/${yy}`
+      } catch (error) {
+        return date;
+      }
+        
     },
     shareAppWhatsapp: ()=>{
      let url= window.location.origin

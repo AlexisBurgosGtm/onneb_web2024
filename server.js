@@ -11,7 +11,11 @@ var nodemailer = require('nodemailer');
 const execute = require('./connection');
 
 
+var router_general = require('./router/router_general');
+
+var router_productos = require('./router/router_productos');
 var router_pos = require('./router/router_pos');
+
 
 
 var http = require('http').Server(app);
@@ -118,7 +122,10 @@ app.get("/login",function(req,res){
 
 
 //Router 
+app.use('/general', router_general);
+app.use('/productos', router_productos);
 app.use('/pos', router_pos);
+
 
 
 

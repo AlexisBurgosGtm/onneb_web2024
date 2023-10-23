@@ -57,6 +57,60 @@ router.post("/listado", async(req,res)=>{
 
 
 
+router.post("/listado_marcas", async(req,res)=>{
+   
+    const { token, sucursal } = req.body;
+
+    let qry = `
+        SELECT CODMARCA, DESMARCA FROM MARCAS WHERE EMPNIT='${sucursal}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/listado_claseuno", async(req,res)=>{
+   
+    const { token, sucursal } = req.body;
+
+    let qry = `
+        SELECT CODCLAUNO, DESCLAUNO FROM CLASIFICACIONUNO  
+        WHERE EMPNIT='${sucursal}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/listado_proveedores", async(req,res)=>{
+   
+    const { token, sucursal } = req.body;
+
+    let qry = `
+        SELECT CODPROV, EMPRESA FROM PROVEEDORES  
+        WHERE EMPNIT='${sucursal}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/listado_clasedos", async(req,res)=>{
+   
+    const { token, sucursal } = req.body;
+
+    let qry = `
+        SELECT CODCLADOS, DESCLADOS FROM CLASIFICACIONDOS  
+        WHERE EMPNIT='${sucursal}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
 
 
 

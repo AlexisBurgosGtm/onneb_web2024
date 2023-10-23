@@ -116,54 +116,165 @@ function getView(){
         },
         vista_ficha_producto:()=>{
             return `
-            <div class="card card-rounded col-12 border-primary">
-                <div class="card-body p-4" style="font-size:80%"> 
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                            <div class="form-group">
-                                <label class="negrita text-primary">Código</label>
-                                <input type="text" class="form-control" id="txtCodprod">
-                            </div>
-                            <div class="form-group">
-                                <label class="negrita text-primary">Código Alterno (Barras)</label>
-                                <input type="text" class="form-control" id="txtCodprod2">
-                            </div>
-                            <div class="form-group">
-                                <label class="negrita text-primary">Descripción</label>
-                                <input type="text" class="form-control" id="txtDesprod">
-                            </div>
-                            <div class="form-group">
-                                <label class="negrita text-primary">Descripción 2</label>
-                                <input type="text" class="form-control" id="txtDesprod2">
-                            </div>
-                            <div class="form-group">
-                                <label class="negrita text-primary">Descripción 3</label>
-                                <input type="text" class="form-control" id="txtDesprod3">
-                            </div>
-                            <div class="form-group">
-                                <label class="negrita text-primary">Unidades por Caja (UxC)</label>
-                                <input type="text" class="form-control" id="txtUxc">
-                            </div>
-                        </div>
+            <div class="row">
 
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="card card-rounded col-12 border-primary">
+                            <div class="card-body p-4" style="font-size:80%"> 
+                                    
+                                        <label class="negrita text-primary">Código</label>
+                                        <input type="text" class="form-control" id="txtCodprod">
+                                    <br>
+                                        <label class="negrita text-primary">Código Alterno (Barras)</label>
+                                        <input type="text" class="form-control" id="txtCodprod2">
+                                    <br>
+                                        <label class="negrita text-primary">Descripción</label>
+                                        <input type="text" class="form-control" id="txtDesprod">
+                                    <br>
+                                        <label class="negrita text-primary">Descripción 2</label>
+                                        <input type="text" class="form-control" id="txtDesprod2">
+                                    <br>
+                                        <label class="negrita text-primary">Descripción 3</label>
+                                        <input type="text" class="form-control" id="txtDesprod3">
+                                    <br>
+                                     
+                            </div>                   
                         </div>
-                        
-                        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                        </div>
+                </div>
+                
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="card card-rounded col-12 border-primary">
+                            <div class="card-body p-4" style="font-size:80%">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="negrita text-primary">Unidades por Caja (UxC)</label>
+                                        <input type="number" class="form-control" id="txtUxc">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="negrita text-primary">Inventario Mínimo</label>
+                                        <input type="number" class="form-control text-danger" id="txtInvminimo" value=0>
+                                    </div>
+                                </div>
+                                
+                                <br>
 
-                    </div>                   
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="negrita text-primary">Tipo Producto</label>
+                                        <select class="form-control" id="cmbTipoProd">
+                                            <option value="P">BIEN</option>
+                                            <option value="S">SERVICIO</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="negrita text-primary">Color Alerta</label>
+                                        <select class="form-control" id="cmbColor">
+                                            <option value="0">NINGUNO</option>
+                                            <option value="1">AMARILLO</option>
+                                            <option value="2">VERDE</option>
+                                            <option value="3">AZUL</option>
+                                            <option value="4">CAFES</option>
+                                            <option value="5">MORADO</option>
+                                            <option value="6">ROSADO</option>
+                                            <option value="7">NARANJA</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <label class="negrita text-primary">Marca</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="cmbMarca">
+                                    </select>
+                                    <button class="btn btn-primary hand">
+                                        <i class="fal fa-search"></i>
+                                    </button>
+                                </div>
+                                
+                                <br>
+
+                                <label class="negrita text-primary">Fabricante</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="cmbClaseuno">
+                                    </select>
+                                    <button class="btn btn-primary hand">
+                                        <i class="fal fa-search"></i>
+                                    </button>
+                                </div>
+                                
+                                <br>
+
+                                <label class="negrita text-primary">Proveedor</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="cmbProveedor">
+                                    </select>    
+                                    <button class="btn btn-primary hand">
+                                        <i class="fal fa-search"></i>
+                                    </button>
+                                </div>
+                                
+                                <br>
+
+                                <label class="negrita text-primary">Clasificación</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="cmbClasedos">
+                                    </select>
+                                    <button class="btn btn-primary hand">
+                                        <i class="fal fa-search"></i>
+                                    </button>
+                                </div>
+                                
+                                <br>
+
+                            </div>
+                        </div>
                 </div>
-            </div>
-            <br>
-            <div class="card card-rounded col-12 border-primary">
-                <div class="card-body p-2">                    
+
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="card card-rounded col-12 border-primary">
+                            <div class="card-body p-4" style="font-size:80%"> 
+
+                                <label class="negrita text-primary">Costo Unitario</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control text-danger col-9 negrita" id="txtCosto">
+                                    <button class="btn btn-success hand" id="btnNuevoPrecio">
+                                        <i class="fal fa-plus"></i>
+                                    </button>
+                                </div>
+                                <br>
+
+                                <table class="table table-responsive h-full">
+                                    <thead class="bg-secondary text-white">
+                                        <tr>
+                                            <td>CODMEDIDA</td>
+                                            <td>EQ</td>
+                                            <td>COSTO</td>
+                                            <td>PRECIO</td>
+                                            <td>MAYOREOA</td>
+                                            <td>MAYOREOB</td>
+                                            <td>MAYOREOC</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblDataPrecios"></tbody>
+                                </table>
+
+                            </div>
+                        </div>
                 </div>
+
             </div>
+
 
             <button class="btn btn-secondary btn-bottom-l btn-xl btn-circle hand shadow" id="btnAtrasTabDos">
                 <i class="fal fa-arrow-left"></i>
             </button>
+
+            <button class="btn btn-info btn-bottom-r btn-xl btn-circle hand shadow" id="btnGuardarProducto">
+                <i class="fal fa-save"></i>
+            </button>
+
+            
             `
         },
         modal_nuevo_precio:()=>{
@@ -183,6 +294,8 @@ function addListeners(){
 
     listeners_listado();
     
+
+    get_combos_producto();
 
     funciones.slideAnimationTabs();
 
@@ -211,6 +324,125 @@ function listeners_listado(){
 };
 
 
+
+function get_combo_marcas(){
+
+        let container = document.getElementById('cmbMarca');
+        
+        axios.post(GlobalUrlCalls + '/productos/listado_marcas',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    let str = '';
+                    data.recordset.map((r)=>{
+                        str += `<option value='${r.CODMARCA}'>${r.DESMARCA}</option>`
+                    })
+                    container.innerHTML = str;     
+                }else{
+                    container.innerHTML = `<option value='SN'>No se cargó las Marcas</option>`;
+                }            
+            }else{
+                container.innerHTML = `<option value='SN'>No se cargó las Marcas</option>`;
+            }             
+        }, (error) => {
+            container.innerHTML = `<option value='SN'>No se cargó las Marcas</option>`;
+        });
+
+};
+
+function get_combo_fabricantes(){
+
+    let container = document.getElementById('cmbClaseuno');
+        
+    axios.post(GlobalUrlCalls + '/productos/listado_claseuno',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<option value='${r.CODCLAUNO}'>${r.DESCLAUNO}</option>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `<option value='SN'>No se cargó los fabricantes</option>`;
+            }            
+        }else{
+            container.innerHTML = `<option value='SN'>No se cargó los fabricantes</option>`;
+        }             
+    }, (error) => {
+        container.innerHTML = `<option value='SN'>No se cargó los fabricantes</option>`;
+    });
+};
+
+function get_combo_proveedores(){
+
+    let container = document.getElementById('cmbProveedor');
+        
+    axios.post(GlobalUrlCalls + '/productos/listado_proveedores',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<option value='${r.CODPROV}'>${r.EMPRESA}</option>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `<option value='SN'>No se cargó los proveedores</option>`;
+            }            
+        }else{
+            container.innerHTML = `<option value='SN'>No se cargó los proveedores</option>`;
+        }             
+    }, (error) => {
+        container.innerHTML = `<option value='SN'>No se cargó los proveedores</option>`;
+    });
+};
+
+function get_combo_clasedos(){
+    let container = document.getElementById('cmbClasedos');
+        
+    axios.post(GlobalUrlCalls + '/productos/listado_clasedos',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<option value='${r.CODCLADOS}'>${r.DESCLADOS}</option>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `<option value='SN'>No se cargó la clasificación</option>`;
+            }            
+        }else{
+            container.innerHTML = `<option value='SN'>No se cargó la clasificación</option>`;
+        }             
+    }, (error) => {
+        container.innerHTML = `<option value='SN'>No se cargó la clasificación</option>`;
+    });
+
+};
+
+
 function initView(){
 
     getView();
@@ -218,9 +450,16 @@ function initView(){
 
 };
 
+function get_combos_producto(){
+    get_combo_marcas();
+    get_combo_fabricantes();
+    get_combo_proveedores();
+    get_combo_clasedos();
+};
 
 function handle_empresa_change(){
     get_tbl_productos();
+    get_combos_producto();
 };
 
 function data_productos_listado(){

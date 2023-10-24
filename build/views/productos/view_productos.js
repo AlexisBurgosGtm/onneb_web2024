@@ -118,7 +118,7 @@ function getView(){
             return `
             <div class="row">
 
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%"> 
                                     
@@ -142,7 +142,7 @@ function getView(){
                         </div>
                 </div>
                 
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%">
                                 <div class="row">
@@ -231,15 +231,20 @@ function getView(){
                         </div>
                 </div>
 
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%"> 
 
+                                <h5 class="negrita text-danger">Gestión de Precios</h5>
+                                <br>
                                 <label class="negrita text-primary">Costo Unitario</label>
                                 <div class="input-group">
                                     <input type="number" class="form-control text-danger col-9 negrita" id="txtCosto">
-                                    <button class="btn btn-success hand" id="btnNuevoPrecio">
+                                    <button class="btn btn-success hand hidden" id="">
                                         <i class="fal fa-plus"></i>
+                                    </button>
+                                    <button class="btn btn-success hand" id="btnNuevoPrecio">
+                                        <i class="fal fa-plus"></i> Nuevo Precio
                                     </button>
                                 </div>
                                 <br>
@@ -294,8 +299,53 @@ function addListeners(){
 
     listeners_listado();
     
-
     get_combos_producto();
+
+
+    let btnGuardarProducto = document.getElementById('btnGuardarProducto');
+    btnGuardarProducto.addEventListener('click',()=>{
+
+        let txtCodprod = document.getElementById('txtCodprod');
+        if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
+        txtCodprod.focus();
+
+        btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+        btnGuardarProducto.disabled = true;
+
+        GF.verify_codprod(txtCodprod.value)
+        .then(()=>{
+            funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
+            
+            btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+            btnGuardarProducto.disabled = false;
+            return;
+        })
+        .catch(()=>{
+
+            insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
+                uxc,costo,codmarca,codclaseuno,codclasedos,codclasetres,
+                lastupdate,tipoprod,exento,nf)
+                .then(()=>{
+
+
+                    btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarProducto.disabled = false;
+        
+                })
+                .catch(()=>{
+            
+                    btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarProducto.disabled = false;
+
+                })
+
+            
+
+        })
+    
+    });
+
+
 
     funciones.slideAnimationTabs();
 
@@ -549,7 +599,11 @@ function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
 //----------------
 //nuevo producto
 
-function insert_producto(){
+
+
+function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
+        uxc,costo,codmarca,codclaseuno,codclasedos,codclasetres,
+        lastupdate,tipoprod,exento,nf){
     
 
     return new Promise((resolve,reject)=>{
@@ -558,27 +612,27 @@ function insert_producto(){
             {
                 sucursal:cmbEmpresa.value,
                 token:TOKEN,
-                codprod,
-                codprod2,
-                desprod,
-                desprod2,
-                desprod3,
-                uxc,
-                costo,
-                codmarca,
-                codclaseuno,
-                codclasedos,
-                codclasetres,
-                lastupdate,
-                tipoprod,
-                exento,
-                nf
+                codprod:codprod,
+                codprod2:codprod2,
+                desprod:desprod,
+                desprod2:desprod2,
+                desprod3:desprod3,
+                uxc:uxc,
+                costo:costo,
+                codmarca:codmarca,
+                codclaseuno:codclaseuno,
+                codclasedos:codclasedos,
+                codclasetres:codclasetres,
+                lastupdate:lastupdate,
+                tipoprod:tipoprod,
+                exento:exento,
+                nf:nf
             })
         .then((response) => {
             if(response.status.toString()=='200'){
                 let data = response.data;
                 if(Number(data.rowsAffected[0])>0){
-                    resolve(data);             
+                    resolve();             
                 }else{
                     reject();
                 }            
@@ -594,3 +648,5 @@ function insert_producto(){
 
 //nuevo producto
 //----------------
+
+

@@ -3,6 +3,20 @@ const express = require('express');
 const router = express.Router();
 
 
+router.post("/verify_codprod", async(req,res)=>{
+   
+    const { token, sucursal, codprod } = req.body;
+
+    let qry = `
+        SELECT CODPROD, DESPROD 
+            FROM PRODUCTOS 
+            WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
 
 router.post("/insert_producto", async(req,res)=>{
    

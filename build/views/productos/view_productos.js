@@ -372,7 +372,7 @@ function getView(){
                                         <tr>
                                             <td class="negrita">Precio Público</td>
                                             <td>
-                                                <input type="number" class="form-control negrita text-primary" id="txtPrePublico">
+                                                <input type="number" class="form-control negrita text-danger" id="txtPrePublico">
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control negrita text-info" id="txtPreUtilidadPublico" disabled=true>
@@ -384,7 +384,7 @@ function getView(){
                                         <tr>
                                             <td class="negrita">Precio Mayoreo A</td>
                                             <td>
-                                                <input type="number" class="form-control negrita text-primary" id="txtPreMayoreoA">
+                                                <input type="number" class="form-control negrita text-danger" id="txtPreMayoreoA">
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control negrita text-info" id="txtPreUtilidadMayoreoA" disabled=true>
@@ -398,12 +398,21 @@ function getView(){
                             
                             </div>
 
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <button class="btn btn-circle btn-secondary btn-xl hand shadow" data-dismiss="modal" id="">
+                                        <i class="fal fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-6 text-left">
+                                    <button class="btn btn-circle btn-info btn-xl hand shadow" id="btnPreGuardar">
+                                        <i class="fal fa-save"></i>
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="modal-footer">
-                            <button class="text-left btn btn-circle btn-secondary btn-xl hand shadow" data-dismiss="modal" id="">
-                                <i class="fal fa-arrow-left"></i>
-                            </button>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -427,13 +436,33 @@ function addListeners(){
     let btnNuevoPrecio = document.getElementById('btnNuevoPrecio');
     btnNuevoPrecio.addEventListener('click',()=>{
 
-        $("#modal_nuevo_precio").modal('show');
+            let txtCosto = document.getElementById('txtCosto').value || '0';
+            if(txtCosto=='0'){funciones.AvisoError('Indique un costo Unitario válido'); return;};
 
 
+            $("#modal_nuevo_precio").modal('show');
+
+            document.getElementById('txtPreCosto').value = document.getElementById('txtCosto').value
+            document.getElementById('txtPreEquivale').value = 1;
+
+            calcular_costo_medida();
 
 
     });
 
+    document.getElementById('txtPreEquivale').addEventListener('input',()=>{
+        calcular_costo_medida();
+        calcular_utilidad_precios('P');
+        calcular_utilidad_precios('A');      
+    });
+
+    document.getElementById('txtPreMayoreoA').addEventListener('input',()=>{
+        calcular_utilidad_precios('A');  
+    });
+
+    document.getElementById('txtPrePublico').addEventListener('input',()=>{
+        calcular_utilidad_precios('P');  
+    });
 
 
     let btnGuardarProducto = document.getElementById('btnGuardarProducto');
@@ -508,6 +537,45 @@ function listeners_listado(){
 
 };
 
+
+function calcular_costo_medida(){
+
+    let costo = document.getElementById('txtCosto').value;
+    let equivale = document.getElementById('txtPreEquivale').value || 1;
+
+    document.getElementById('txtPreTotalCosto').value = Number(costo) * Number(equivale);
+    
+};
+
+function calcular_utilidad_precios(tipoprecio){
+
+    let costomedida = document.getElementById('txtPreTotalCosto').value;
+    let pre_publico = document.getElementById('txtPrePublico').value || 0;
+    let pre_mayoreoa = document.getElementById('txtPreMayoreoA').value || 0;
+    
+    try {
+        switch (tipoprecio) {
+            case 'P':
+                document.getElementById('txtPreUtilidadPublico').value = Number(pre_publico) - Number(costomedida);
+                document.getElementById('txtPreMargenPublico').value =   (((Number(pre_publico) - Number(costomedida)) / Number(pre_publico)) * 100).toFixed(2);
+                break;
+            case 'A':
+                document.getElementById('txtPreUtilidadMayoreoA').value = Number(pre_mayoreoa) - Number(costomedida);
+                document.getElementById('txtPreMargenMayoreoA').value =   (((Number(pre_mayoreoa) - Number(costomedida)) / Number(pre_mayoreoa)) * 100).toFixed(2);
+                break;
+            case 'B':
+                
+                break;
+            case 'C':
+                
+                break;
+        }
+    } catch (error) {
+        
+    }
+   
+
+};
 
 
 function get_combo_marcas(){
@@ -627,6 +695,35 @@ function get_combo_clasedos(){
 
 };
 
+function get_combo_medidas(){
+    let container = document.getElementById('cmbPreMedida');
+        
+    axios.post(GlobalUrlCalls + '/productos/listado_medidas',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<option value='${r.CODMEDIDA}'>${r.CODMEDIDA}</option>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `<option value='SN'>No se cargó las Medidas de precio</option>`;
+            }            
+        }else{
+            container.innerHTML = `<option value='SN'>No se cargó las Medidas de precio</option>`;
+        }             
+    }, (error) => {
+        container.innerHTML = `<option value='SN'>No se cargó las Medidas de precio</option>`;
+    });
+
+};
+
 
 function initView(){
 
@@ -640,6 +737,7 @@ function get_combos_producto(){
     get_combo_fabricantes();
     get_combo_proveedores();
     get_combo_clasedos();
+    get_combo_medidas();
 };
 
 function handle_empresa_change(){

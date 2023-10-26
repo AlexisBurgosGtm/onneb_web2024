@@ -69,6 +69,19 @@ router.post("/listado", async(req,res)=>{
 
 
 
+router.post("/listado_medidas", async(req,res)=>{
+   
+    const { token, sucursal } = req.body;
+
+    let qry = `
+        SELECT CODMEDIDA, TIPOPRECIO AS DESMEDIDA FROM MEDIDAS  
+        WHERE EMPNIT='${sucursal}';
+    `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
 
 
 router.post("/listado_marcas", async(req,res)=>{

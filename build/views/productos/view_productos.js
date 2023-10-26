@@ -116,9 +116,10 @@ function getView(){
         },
         vista_ficha_producto:()=>{
             return `
+            <h3 class="negrita text-danger">Datos del Producto</h3>
             <div class="row">
 
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%"> 
                                     
@@ -142,96 +143,107 @@ function getView(){
                         </div>
                 </div>
                 
-                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label class="negrita text-primary">Unidades por Caja (UxC)</label>
-                                        <input type="number" class="form-control" id="txtUxc">
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="negrita text-primary">Inventario Mínimo</label>
-                                        <input type="number" class="form-control text-danger" id="txtInvminimo" value=0>
-                                    </div>
-                                </div>
-                                
-                                <br>
 
                                 <div class="row">
-                                    <div class="col-6">
-                                        <label class="negrita text-primary">Tipo Producto</label>
-                                        <select class="form-control" id="cmbTipoProd">
-                                            <option value="P">BIEN</option>
-                                            <option value="S">SERVICIO</option>
-                                        </select>
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="negrita text-primary">Unidades por Caja (UxC)</label>
+                                                <input type="number" class="form-control" id="txtUxc">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="negrita text-primary">Inventario Mínimo</label>
+                                                <input type="number" class="form-control text-danger" id="txtInvminimo" value=0>
+                                            </div>
+                                        </div>
+                                        
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="negrita text-primary">Tipo Producto</label>
+                                                <select class="form-control" id="cmbTipoProd">
+                                                    <option value="P">BIEN</option>
+                                                    <option value="S">SERVICIO</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="negrita text-primary">Color Alerta</label>
+                                                <select class="form-control" id="cmbColor">
+                                                    <option value="0">NINGUNO</option>
+                                                    <option value="1">AMARILLO</option>
+                                                    <option value="2">VERDE</option>
+                                                    <option value="3">AZUL</option>
+                                                    <option value="4">CAFES</option>
+                                                    <option value="5">MORADO</option>
+                                                    <option value="6">ROSADO</option>
+                                                    <option value="7">NARANJA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
                                     </div>
-                                    <div class="col-6">
-                                        <label class="negrita text-primary">Color Alerta</label>
-                                        <select class="form-control" id="cmbColor">
-                                            <option value="0">NINGUNO</option>
-                                            <option value="1">AMARILLO</option>
-                                            <option value="2">VERDE</option>
-                                            <option value="3">AZUL</option>
-                                            <option value="4">CAFES</option>
-                                            <option value="5">MORADO</option>
-                                            <option value="6">ROSADO</option>
-                                            <option value="7">NARANJA</option>
-                                        </select>
+                                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                        
+
+                                        <label class="negrita text-primary">Marca</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="cmbMarca">
+                                            </select>
+                                            <button class="btn btn-primary hand">
+                                                <i class="fal fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <br>
+
+                                        <label class="negrita text-primary">Fabricante</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="cmbClaseuno">
+                                            </select>
+                                            <button class="btn btn-primary hand">
+                                                <i class="fal fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <br>
+
+                                        <label class="negrita text-primary">Proveedor</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="cmbProveedor">
+                                            </select>    
+                                            <button class="btn btn-primary hand">
+                                                <i class="fal fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <br>
+
+                                        <label class="negrita text-primary">Clasificación</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="cmbClasedos">
+                                            </select>
+                                            <button class="btn btn-primary hand">
+                                                <i class="fal fa-search"></i>
+                                            </button>
+                                        </div>
+                                        
+                                        <br>
                                     </div>
                                 </div>
-
-                                <br>
-
-                                <label class="negrita text-primary">Marca</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="cmbMarca">
-                                    </select>
-                                    <button class="btn btn-primary hand">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                                
-                                <br>
-
-                                <label class="negrita text-primary">Fabricante</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="cmbClaseuno">
-                                    </select>
-                                    <button class="btn btn-primary hand">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                                
-                                <br>
-
-                                <label class="negrita text-primary">Proveedor</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="cmbProveedor">
-                                    </select>    
-                                    <button class="btn btn-primary hand">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                                
-                                <br>
-
-                                <label class="negrita text-primary">Clasificación</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="cmbClasedos">
-                                    </select>
-                                    <button class="btn btn-primary hand">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                                
-                                <br>
 
                             </div>
                         </div>
                 </div>
+            </div>
+            
+            <br>
 
-                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <div class="row">
+                <div class="col-12">
                         <div class="card card-rounded col-12 border-primary">
                             <div class="card-body p-4" style="font-size:80%"> 
 
@@ -239,7 +251,7 @@ function getView(){
                                 <br>
                                 <label class="negrita text-primary">Costo Unitario</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control text-danger col-9 negrita" id="txtCosto">
+                                    <input type="number" class="form-control text-danger col-3 negrita" id="txtCosto">
                                     <button class="btn btn-success hand hidden" id="">
                                         <i class="fal fa-plus"></i>
                                     </button>
@@ -259,6 +271,8 @@ function getView(){
                                             <td>MAYOREOA</td>
                                             <td>MAYOREOB</td>
                                             <td>MAYOREOC</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </thead>
                                     <tbody id="tblDataPrecios"></tbody>
@@ -284,7 +298,115 @@ function getView(){
         },
         modal_nuevo_precio:()=>{
             return `
-            
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_nuevo_precio">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-primary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white" id="">
+                                Nuevo Precio
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                                    <table class="table table-responsive h-full f-med">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>MEDIDA_PRECIO</td>
+                                                <td>EQUIVALE</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <select class="form-control" id="cmbPreMedida">
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="negrita form-control" id="txtPreEquivale">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                                    <table class="table table-responsive h-full f-med">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>COSTO UN.</td>
+                                                <td>COSTO MEDIDA</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="number" class="negrita text-danger form-control" disabled=true id="txtPreCosto">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="negrita text-danger form-control" disabled=true id="txtPreTotalCosto">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                
+                                
+                            </div>
+
+                            <div class="row">
+
+                                <table class="table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="negrita text-primary">Utilidad</td>
+                                            <td class="negrita text-primary">Margen %</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="negrita">Precio Público</td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-primary" id="txtPrePublico">
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-info" id="txtPreUtilidadPublico" disabled=true>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-info" id="txtPreMargenPublico" disabled=true>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="negrita">Precio Mayoreo A</td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-primary" id="txtPreMayoreoA">
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-info" id="txtPreUtilidadMayoreoA" disabled=true>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control negrita text-info" id="txtPreMargenMayoreoA" disabled=true>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="text-left btn btn-circle btn-secondary btn-xl hand shadow" data-dismiss="modal" id="">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             
             `
@@ -300,6 +422,18 @@ function addListeners(){
     listeners_listado();
     
     get_combos_producto();
+
+
+    let btnNuevoPrecio = document.getElementById('btnNuevoPrecio');
+    btnNuevoPrecio.addEventListener('click',()=>{
+
+        $("#modal_nuevo_precio").modal('show');
+
+
+
+
+    });
+
 
 
     let btnGuardarProducto = document.getElementById('btnGuardarProducto');
@@ -344,6 +478,7 @@ function addListeners(){
         })
     
     });
+
 
 
 

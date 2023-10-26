@@ -428,43 +428,14 @@ function getView(){
 
 function addListeners(){
 
-    listeners_listado();
-    
     get_combos_producto();
 
+    listeners_listado();
 
-    let btnNuevoPrecio = document.getElementById('btnNuevoPrecio');
-    btnNuevoPrecio.addEventListener('click',()=>{
+    listeners_precios();
+    
 
-            let txtCosto = document.getElementById('txtCosto').value || '0';
-            if(txtCosto=='0'){funciones.AvisoError('Indique un costo Unitario válido'); return;};
-
-
-            $("#modal_nuevo_precio").modal('show');
-
-            document.getElementById('txtPreCosto').value = document.getElementById('txtCosto').value
-            document.getElementById('txtPreEquivale').value = 1;
-
-            calcular_costo_medida();
-
-
-    });
-
-    document.getElementById('txtPreEquivale').addEventListener('input',()=>{
-        calcular_costo_medida();
-        calcular_utilidad_precios('P');
-        calcular_utilidad_precios('A');      
-    });
-
-    document.getElementById('txtPreMayoreoA').addEventListener('input',()=>{
-        calcular_utilidad_precios('A');  
-    });
-
-    document.getElementById('txtPrePublico').addEventListener('input',()=>{
-        calcular_utilidad_precios('P');  
-    });
-
-
+    
     let btnGuardarProducto = document.getElementById('btnGuardarProducto');
     btnGuardarProducto.addEventListener('click',()=>{
 
@@ -537,13 +508,113 @@ function listeners_listado(){
 
 };
 
+function listeners_precios(){
+
+    let btnNuevoPrecio = document.getElementById('btnNuevoPrecio');
+    btnNuevoPrecio.addEventListener('click',()=>{
+
+            let txtCosto = document.getElementById('txtCosto').value || '0';
+            if(txtCosto=='0'){funciones.AvisoError('Indique un costo Unitario válido'); return;};
+
+
+            $("#modal_nuevo_precio").modal('show');
+
+            document.getElementById('txtPreCosto').value = document.getElementById('txtCosto').value
+            document.getElementById('txtPreEquivale').value = 1;
+
+            calcular_costo_medida();
+
+
+    });
+
+    document.getElementById('txtPreEquivale').addEventListener('input',()=>{
+        calcular_costo_medida();
+        calcular_utilidad_precios('P');
+        calcular_utilidad_precios('A');      
+    });
+
+    document.getElementById('txtPreMayoreoA').addEventListener('input',()=>{
+        calcular_utilidad_precios('A');  
+    });
+
+    document.getElementById('txtPrePublico').addEventListener('input',()=>{
+        calcular_utilidad_precios('P');  
+    });
+
+    let btnPreGuardar = document.getElementById('btnPreGuardar');
+    btnPreGuardar.addEventListener('click',()=>{
+
+        btnPreGuardar.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+        btnPreGuardar.disabled = true;
+
+
+        insert_temp_precio()
+        .then(()=>{
+
+            funciones.Aviso('Precio guardado exitosamente!!')
+            $("#modal_nuevo_precio").modal('hide');
+
+        })
+        .catch(()=>{
+            funciones.AvisoError('No se pudo guardar este precio');
+        })
+
+        
+
+        
+
+    });
+
+};
+
+function insert_temp_precio(codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc){
+
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_temp_precio',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codprod:codprod,
+                codmedida:codmedida,
+                equivale:equivale,
+                peso:peso,
+                costo:costo,
+                preciop:preciop,
+                precioa:precioa,
+                preciob:preciob,
+                precioc:precioc
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve();             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    }) 
+
+};
 
 function calcular_costo_medida(){
 
-    let costo = document.getElementById('txtCosto').value;
-    let equivale = document.getElementById('txtPreEquivale').value || 1;
+    try {
+        let costo = document.getElementById('txtCosto').value;
+        let equivale = document.getElementById('txtPreEquivale').value || 1;
+    
+        document.getElementById('txtPreTotalCosto').value = Number(costo) * Number(equivale);
+            
+    } catch (error) {
+        
+    }
 
-    document.getElementById('txtPreTotalCosto').value = Number(costo) * Number(equivale);
     
 };
 

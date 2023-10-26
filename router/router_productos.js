@@ -3,6 +3,25 @@ const express = require('express');
 const router = express.Router();
 
 
+
+
+router.post("/insert_temp_precio", async(req,res)=>{
+   
+    const {token,sucursal,codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc} = req.body;
+
+    let utilidadq = (Number(preciop)-Number(costo))
+    let margen = (utilidadq / Number(preciop))*100;
+    let qry = `
+    INSERT INTO TEMP_PRECIOS 
+    (EMPNIT,CODMEDIDA,EQUIVALE,COSTO,PRECIO,UTILIDAD,MARGEN,MAYOREOA,MAYOREOB,MAYOREOC,PESO) 
+    VALUES 
+    ('${sucursal}','${codmedida}',${equivale},${costo},${preciop},${utilidadq},${margen},${precioa},${preciob},${precioc},${peso});
+    `
+    
+    execute.QueryToken(res,qry,token);
+     
+});
+
 router.post("/verify_codprod", async(req,res)=>{
    
     const { token, sucursal, codprod } = req.body;

@@ -5,6 +5,36 @@ const router = express.Router();
 
 
 
+router.post("/delete_temp_precio", async(req,res)=>{
+   
+    const {token,sucursal,id} = req.body;
+
+   
+    let qry = `
+    DELETE FROM TEMP_PRECIOS WHERE ID=${id};
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/lista_precios_temp", async(req,res)=>{
+   
+    const {token,sucursal} = req.body;
+
+   
+    let qry = `
+    SELECT  
+    ID,CODMEDIDA,EQUIVALE,COSTO,PRECIO AS PRECIOP,UTILIDAD,MARGEN,
+    MAYOREOA AS PRECIOA,MAYOREOB AS PRECIOB,MAYOREOC AS PRECIOC,PESO
+    FROM 
+    TEMP_PRECIOS WHERE EMPNIT='${sucursal}';
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
 router.post("/insert_temp_precio", async(req,res)=>{
    
     const {token,sucursal,codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc} = req.body;
@@ -15,7 +45,8 @@ router.post("/insert_temp_precio", async(req,res)=>{
     INSERT INTO TEMP_PRECIOS 
     (EMPNIT,CODMEDIDA,EQUIVALE,COSTO,PRECIO,UTILIDAD,MARGEN,MAYOREOA,MAYOREOB,MAYOREOC,PESO) 
     VALUES 
-    ('${sucursal}','${codmedida}',${equivale},${costo},${preciop},${utilidadq},${margen},${precioa},${preciob},${precioc},${peso});
+    ('${sucursal}','${codmedida}',${equivale},${costo},${preciop},${utilidadq},${margen},
+    ${precioa},${preciob},${precioc},${peso});
     `
     
     execute.QueryToken(res,qry,token);

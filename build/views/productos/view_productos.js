@@ -320,11 +320,11 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <select class="form-control" id="cmbPreMedida">
+                                                    <select class="form-control bg-amarillo" id="cmbPreMedida">
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <input type="number" class="negrita form-control" id="txtPreEquivale">
+                                                    <input type="number" class="negrita form-control bg-amarillo" id="txtPreEquivale">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -372,7 +372,7 @@ function getView(){
                                         <tr>
                                             <td class="negrita">Precio Público</td>
                                             <td>
-                                                <input type="number" class="form-control negrita text-danger" id="txtPrePublico">
+                                                <input type="number" class="bg-amarillo form-control negrita text-danger" id="txtPrePublico">
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control negrita text-info" id="txtPreUtilidadPublico" disabled=true>
@@ -384,7 +384,7 @@ function getView(){
                                         <tr>
                                             <td class="negrita">Precio Mayoreo A</td>
                                             <td>
-                                                <input type="number" class="form-control negrita text-danger" id="txtPreMayoreoA">
+                                                <input type="number" class="bg-amarillo form-control negrita text-danger" id="txtPreMayoreoA">
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control negrita text-info" id="txtPreUtilidadMayoreoA" disabled=true>
@@ -443,6 +443,26 @@ function addListeners(){
         if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
         txtCodprod.focus();
 
+
+
+     
+        let txtCodprod2 = document.getElementById('txtCodprod2');
+        let txtDesprod = document.getElementById('txtDesprod');
+        let txtDesprod2 = document.getElementById('txtDesprod2');
+        let txtDesprod3 = document.getElementById('txtDesprod3');
+        let txtUxc = document.getElementById('txtUxc');
+        let txtInvminimo = document.getElementById('txtInvminimo');
+        let cmbTipoProd = document.getElementById('cmbTipoProd');
+        let cmbColor = document.getElementById('cmbColor');
+        let cmbMarca = document.getElementById('cmbMarca');
+        let cmbClaseuno = document.getElementById('cmbClaseuno');
+        let cmbProveedor = document.getElementById('cmbProveedor');
+        let cmbClasedos = document.getElementById('cmbClasedos');
+        let txtCosto = document.getElementById('txtCosto');
+        let lastupdate = funciones.getFecha();
+        let exento = 0;
+
+
         btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
         btnGuardarProducto.disabled = true;
 
@@ -456,9 +476,10 @@ function addListeners(){
         })
         .catch(()=>{
 
-            insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
-                uxc,costo,codmarca,codclaseuno,codclasedos,codclasetres,
-                lastupdate,tipoprod,exento,nf)
+            insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
+                txtDesprod3.value,txtUxc.value,txtCosto.value,
+                cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
+                lastupdate,cmbTipoProd.value,exento,cmbColor.value)
                 .then(()=>{
 
 
@@ -501,6 +522,7 @@ function listeners_listado(){
     let btnNuevoProducto = document.getElementById('btnNuevoProducto');
     btnNuevoProducto.addEventListener('click',()=>{
         document.getElementById('tab-dos').click();
+        get_tbl_precios();
     });
 
     
@@ -547,17 +569,57 @@ function listeners_precios(){
         btnPreGuardar.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
         btnPreGuardar.disabled = true;
 
+        let codprod = document.getElementsByTagName('txtCodprod').value || '0';
+        let cmbPreMedida = document.getElementById('cmbPreMedida');
+        let txtPreEquivale = document.getElementById('txtPreEquivale').value || '0';
+        let txtPreTotalCosto = document.getElementById('txtPreTotalCosto').value || '0.01';
+        let txtPrePublico = document.getElementById('txtPrePublico').value || '0';
+        if(Number(txtPrePublico)<0){
+            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+            btnPreGuardar.disabled = false;
+            funciones.AvisoError('Agregue un precio válido');
+            return;
+        };
 
-        insert_temp_precio()
+        let txtPreMayoreoA = document.getElementById('txtPreMayoreoA').value || '0';
+        if(Number(txtPreMayoreoA)<0){
+            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+            btnPreGuardar.disabled = false;
+            funciones.AvisoError('Agregue un precio Mayoreo válido');
+            return;
+        };
+        if(txtPreMayoreoA=='0'){
+            txtPreMayoreoA = txtPrePublico
+        };
+
+        if(txtPreEquivale.toString()=='0'){
+            document.getElementById('txtPreEquivale').value='1';
+            calcular_costo_medida();
+            calcular_utilidad_precios('T');
+        }else{
+            txtPreEquivale=txtPreEquivale.replace('-','');
+            calcular_costo_medida();
+            calcular_utilidad_precios('T');
+        }
+
+        insert_temp_precio(codprod,cmbPreMedida.value,txtPreEquivale,'0',txtPreTotalCosto,txtPrePublico,txtPreMayoreoA,txtPreMayoreoA,txtPreMayoreoA)
         .then(()=>{
 
+            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+            btnPreGuardar.disabled = false;
+    
             funciones.Aviso('Precio guardado exitosamente!!')
             $("#modal_nuevo_precio").modal('hide');
 
+            get_tbl_precios();
         })
-        .catch(()=>{
+        .catch((err)=>{
+            console.log(err);
+            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+            btnPreGuardar.disabled = false;
+
             funciones.AvisoError('No se pudo guardar este precio');
-        })
+        });
 
         
 
@@ -568,6 +630,7 @@ function listeners_precios(){
 };
 
 function insert_temp_precio(codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc){
+
 
     return new Promise((resolve,reject)=>{
 
@@ -639,6 +702,12 @@ function calcular_utilidad_precios(tipoprecio){
                 break;
             case 'C':
                 
+                break;
+            case 'T':
+                calcular_utilidad_precios('P');
+                calcular_utilidad_precios('A');
+                calcular_utilidad_precios('B');
+                calcular_utilidad_precios('C');
                 break;
         }
     } catch (error) {
@@ -815,6 +884,94 @@ function handle_empresa_change(){
     get_tbl_productos();
     get_combos_producto();
 };
+
+function get_tbl_precios(){
+
+        let container = document.getElementById('tblDataPrecios');
+
+        axios.post(GlobalUrlCalls + '/productos/lista_precios_temp',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    let str = '';
+                    
+                    data.recordset.map((r)=>{
+                        let idbtnE = `btnE${r.ID}`;
+                        str += `
+                            <tr>
+                                <td>${r.CODMEDIDA}</td>
+                                <td>${r.EQUIVALE}</td>
+                                <td>${funciones.setMoneda(r.COSTO,'Q')}</td>
+                                <td>${funciones.setMoneda(r.PRECIOP,'Q')}</td>
+                                <td>${funciones.setMoneda(r.PRECIOA,'Q')}</td>
+                                <td>${funciones.setMoneda(r.PRECIOB,'Q')}</td>
+                                <td>${funciones.setMoneda(r.PRECIOC,'Q')}</td>
+                                <td>
+                                
+                                </td>
+                                <td>
+                                    <button class="btn-md btn-circle btn-danger hand shadow" id="${idbtnE}" onclick="delete_temp_precio('${idbtnE}','${r.ID}')">
+                                        <i class="fal fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `
+                    })
+                    container.innerHTML = str;             
+                }else{
+                    rootErrores.innerHTML = 'No hay filas para mostrar...';
+                    container.innerHTML = 'No se cargaron datos...';
+                }            
+            }else{
+                container.innerHTML = 'No se cargaron datos...';
+            }             
+        }, (error) => {
+            rootErrores.innerHTML = error;
+            container.innerHTML = 'No se cargaron datos...';
+        });
+     
+};
+
+function delete_temp_precio(idbtn,id){
+
+    let btn = document.getElementById(idbtn);
+    
+    btn.innerHTML = `<i class="fal fa-trash fa-spin"></i>`;
+    btn.disabled = true;
+
+        axios.post(GlobalUrlCalls + '/productos/delete_temp_precio',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                id:id
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    funciones.Aviso('Precio eliminado exitosamente!!');
+                    get_tbl_precios();           
+                }else{
+                    btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                    btn.disabled = false;
+                }            
+            }else{
+                btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                btn.disabled = false;
+            }             
+        }, (error) => {
+            btn.innerHTML = `<i class="fal fa-trash"></i>`;
+            btn.disabled = false;
+        });
+      
+
+};
+
 
 function data_productos_listado(){
     

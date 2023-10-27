@@ -55,6 +55,11 @@ function requestPermission() {
 InicializarServiceWorkerNotif();
 
 
+Mousetrap.bind(['command+e', 'ctrl+e'], function(e) {
+  $('#modalErrores').modal('show');
+  
+  return false;
+});
 
 
 Navegar.login();

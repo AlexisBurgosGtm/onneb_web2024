@@ -5,6 +5,19 @@ const router = express.Router();
 
 
 
+router.post("/delete_lista_temp_precio", async(req,res)=>{
+   
+    const {token,sucursal} = req.body;
+
+   
+    let qry = `
+    DELETE FROM TEMP_PRECIOS WHERE EMPNIT='${sucursal}';
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
 router.post("/delete_temp_precio", async(req,res)=>{
    
     const {token,sucursal,id} = req.body;
@@ -73,7 +86,7 @@ router.post("/insert_producto", async(req,res)=>{
     const {token,sucursal,codprod,codprod2,
         desprod,desprod2,desprod3,uxc,costo,
         codmarca,codclaseuno,codclasedos,codclasetres,
-        lastupdate,tipoprod,exento,nf} = req.body;
+        lastupdate,tipoprod,exento,nf,invminimo} = req.body;
 
     let qry = `
     INSERT INTO PRODUCTOS (EMPNIT,CODPROD,CODPROD2,DESPROD,
@@ -84,8 +97,20 @@ router.post("/insert_producto", async(req,res)=>{
     VALUES ('${sucursal}','${codprod}','${codprod2}',
     '${desprod}','${desprod2}','${desprod3}',${uxc},
     'UNIDAD',${costo},${codmarca},${codclaseuno},${codclasedos},
-    ${codclasetres},'SI','2000-01-01',0,${exento},
+    ${codclasetres},'SI','2000-01-01',${invminimo},${exento},
     ${nf},'${tipoprod}',0,'${lastupdate}');
+    INSERT INTO INVSALDO 
+        (EMPNIT,CODPROD,ANIO,MES,SALDOINICIAL,ENTRADAS,SALIDAS,SALDO)
+        VALUES
+        ('${sucursal}','${codprod}',0,0,0,0,0,0);
+    INSERT INTO PRECIOS 
+        (EMPNIT,CODPROD,CODMEDIDA,EQUIVALE,COSTO,PRECIO,UTILIDAD,
+        PORCUTILIDAD,HABILITADO,MAYOREOA,MAYOREOB,MAYOREOC,PESO,LASTUPDATE)
+    SELECT '${sucursal}' AS EMPNIT,'${codprod}' AS CODPROD, CODMEDIDA,
+        EQUIVALE,COSTO,PRECIO,UTILIDAD,
+        MARGEN AS PORCUTILIDAD,'SI' AS HABILITADO,MAYOREOA,MAYOREOB,MAYOREOC,
+        PESO,'${lastupdate}' AS LASTUPDATE 
+    FROM TEMP_PRECIOS WHERE EMPNIT='${sucursal}';
     `
     
     execute.QueryToken(res,qry,token);

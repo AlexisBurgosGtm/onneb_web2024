@@ -447,11 +447,22 @@ function addListeners(){
 
      
         let txtCodprod2 = document.getElementById('txtCodprod2');
+        if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
+
         let txtDesprod = document.getElementById('txtDesprod');
         let txtDesprod2 = document.getElementById('txtDesprod2');
+        if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
+
         let txtDesprod3 = document.getElementById('txtDesprod3');
+        if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
+
         let txtUxc = document.getElementById('txtUxc');
+        if(txtUxc.value==''){txtUxc.value='1'};
+        if(txtUxc.value=='0'){txtUxc.value='1'};
+        
         let txtInvminimo = document.getElementById('txtInvminimo');
+        if(txtInvminimo.value==''){txtInvminimo.value='0'};
+        
         let cmbTipoProd = document.getElementById('cmbTipoProd');
         let cmbColor = document.getElementById('cmbColor');
         let cmbMarca = document.getElementById('cmbMarca');
@@ -466,6 +477,8 @@ function addListeners(){
         btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
         btnGuardarProducto.disabled = true;
 
+        funciones.showToast('Verificando el código de producto');
+
         GF.verify_codprod(txtCodprod.value)
         .then(()=>{
             funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
@@ -476,16 +489,25 @@ function addListeners(){
         })
         .catch(()=>{
 
+            funciones.showToast('Creando el nuevo producto');
+        
+
             insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
                 txtDesprod3.value,txtUxc.value,txtCosto.value,
                 cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
-                lastupdate,cmbTipoProd.value,exento,cmbColor.value)
+                lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
                 .then(()=>{
+
+                    funciones.Aviso('Se ha creado un nuevo producto');
 
 
                     btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
                     btnGuardarProducto.disabled = false;
         
+                    delete_lista_temp_precios();
+                    document.getElementById('tab-uno').click();
+                    get_tbl_productos();
+
                 })
                 .catch(()=>{
             
@@ -521,6 +543,16 @@ function listeners_listado(){
     
     let btnNuevoProducto = document.getElementById('btnNuevoProducto');
     btnNuevoProducto.addEventListener('click',()=>{
+
+        document.getElementById('txtCodprod2').value = '';
+        document.getElementById('txtDesprod').value = '';
+        document.getElementById('txtDesprod2').value = '';
+        document.getElementById('txtDesprod3').value = '';
+        document.getElementById('txtUxc').value = '1';
+        document.getElementById('txtInvminimo').value = '0';
+        document.getElementById('cmbTipoProd').value = 'P';
+        document.getElementById('txtCosto').value = '0';
+
         document.getElementById('tab-dos').click();
         get_tbl_precios();
     });
@@ -972,6 +1004,33 @@ function delete_temp_precio(idbtn,id){
 
 };
 
+function delete_lista_temp_precios(){
+    
+    
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/delete_lista_temp_precio',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
+
+};
 
 function data_productos_listado(){
     
@@ -1064,7 +1123,7 @@ function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
 
 function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
         uxc,costo,codmarca,codclaseuno,codclasedos,codclasetres,
-        lastupdate,tipoprod,exento,nf){
+        lastupdate,tipoprod,exento,nf,invminimo){
     
 
     return new Promise((resolve,reject)=>{
@@ -1087,7 +1146,8 @@ function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
                 lastupdate:lastupdate,
                 tipoprod:tipoprod,
                 exento:exento,
-                nf:nf
+                nf:nf,
+                invminimo:invminimo
             })
         .then((response) => {
             if(response.status.toString()=='200'){

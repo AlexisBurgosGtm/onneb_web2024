@@ -419,7 +419,47 @@ function getView(){
 
             
             `
-        }
+        },
+        modal_marcas:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_marcas">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-secondary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white" id="">
+                                Gestión de Marcas
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            
+
+                            <div class="form-group">
+                                <label>Búsqueda de Marcas</label>
+                                <input type="search" class="negrita text-danger border-danger" id="txtBuscarProdMarcas" oninput="funciones.FiltrarTabla('tblProdMarcas','txtBuscarProdMarcas')">
+                            </div>
+
+                            <table class="table table-responsive h-full f-med" id="tblProdMarcas">
+                                <thead class="negrita text-primary">
+                                    <tr>
+                                        <td>CODIGO</td>
+                                        <td>MARCA</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblDataProdMarcas">
+                                            
+                                </tbody>
+                            </table>
+                                
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            
+            `
+        },
     }
     
     root.innerHTML = view.body();
@@ -462,7 +502,7 @@ function addListeners(){
         
         let txtInvminimo = document.getElementById('txtInvminimo');
         if(txtInvminimo.value==''){txtInvminimo.value='0'};
-        
+
         let cmbTipoProd = document.getElementById('cmbTipoProd');
         let cmbColor = document.getElementById('cmbColor');
         let cmbMarca = document.getElementById('cmbMarca');

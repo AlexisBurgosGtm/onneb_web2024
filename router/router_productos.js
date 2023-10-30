@@ -5,6 +5,8 @@ const router = express.Router();
 
 
 
+
+
 router.post("/delete_lista_temp_precio", async(req,res)=>{
    
     const {token,sucursal} = req.body;
@@ -164,10 +166,26 @@ router.post("/listado_marcas", async(req,res)=>{
     const { token, sucursal } = req.body;
 
     let qry = `
-        SELECT CODMARCA, DESMARCA FROM MARCAS WHERE EMPNIT='${sucursal}';
+        SELECT CODMARCA, DESMARCA 
+        FROM MARCAS 
+        WHERE EMPNIT='${sucursal}'
+        ORDER BY DESMARCA;
     `
     
   
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/insert_marca", async(req,res)=>{
+   
+    const {token,sucursal,codmarca,desmarca} = req.body;
+
+   
+    let qry = `
+    INSERT INTO MARCAS (EMPNIT,CODMARCA,DESMARCA) VALUES ('${sucursal}',${codmarca},'${desmarca}');
+    `
+
     execute.QueryToken(res,qry,token);
      
 });
@@ -178,7 +196,8 @@ router.post("/listado_claseuno", async(req,res)=>{
 
     let qry = `
         SELECT CODCLAUNO, DESCLAUNO FROM CLASIFICACIONUNO  
-        WHERE EMPNIT='${sucursal}';
+        WHERE EMPNIT='${sucursal}'
+        ORDER BY DESCLAUNO;
     `
     
   
@@ -192,7 +211,8 @@ router.post("/listado_proveedores", async(req,res)=>{
 
     let qry = `
         SELECT CODPROV, EMPRESA FROM PROVEEDORES  
-        WHERE EMPNIT='${sucursal}';
+        WHERE EMPNIT='${sucursal}'
+        ORDER BY EMPRESA;
     `
     
   
@@ -206,7 +226,8 @@ router.post("/listado_clasedos", async(req,res)=>{
 
     let qry = `
         SELECT CODCLADOS, DESCLADOS FROM CLASIFICACIONDOS  
-        WHERE EMPNIT='${sucursal}';
+        WHERE EMPNIT='${sucursal}'
+        ORDER BY DESCLADOS;
     `
     
   

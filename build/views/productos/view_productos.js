@@ -8,7 +8,7 @@ function getView(){
                             ${view.vista_listado() + view.modal_opciones_producto()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ficha_producto() + view.modal_nuevo_precio()}
+                            ${view.vista_ficha_producto() + view.modal_nuevo_precio() + view.modal_marcas()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -193,7 +193,7 @@ function getView(){
                                         <div class="input-group">
                                             <select class="form-control" id="cmbMarca">
                                             </select>
-                                            <button class="btn btn-primary hand">
+                                            <button class="btn btn-primary hand" id="btnBuscarMarca">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -432,17 +432,44 @@ function getView(){
                         </div>
                         <div class="modal-body p-4">
                             
+                            <div class="card card-rounded">
+                                <div class="card-body p-2">
+                                    <table class="table table-responsive">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>CÓDIGO</td>
+                                                <td>MARCA</td>
+                                                <td></td>    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodmarca"></td>
+                                                <td>
+                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesmarca"></td>
+                                                <td>
+                                                    <button class="btn btn-success btn-circle hand shadow" id="btnProdAgregarMarca">
+                                                        <i class="fal fa-plus"></i>
+                                                    </button>
+                                                </td>    
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label>Búsqueda de Marcas</label>
-                                <input type="search" class="negrita text-danger border-danger" id="txtBuscarProdMarcas" oninput="funciones.FiltrarTabla('tblProdMarcas','txtBuscarProdMarcas')">
+                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdMarcas" oninput="funciones.FiltrarTabla('tblProdMarcas','txtBuscarProdMarcas')">
                             </div>
 
                             <table class="table table-responsive h-full f-med" id="tblProdMarcas">
-                                <thead class="negrita text-primary">
+                                <thead class="negrita bg-primary text-white">
                                     <tr>
                                         <td>CODIGO</td>
                                         <td>MARCA</td>
+                                        <td></td>
                                     </tr>
                                 </thead>
                                 <tbody id="tblDataProdMarcas">
@@ -450,6 +477,7 @@ function getView(){
                                 </tbody>
                             </table>
                                 
+                           
 
                         </div>
                        
@@ -599,6 +627,64 @@ function listeners_listado(){
 
     
     get_tbl_productos();
+
+
+    // MARCAS ---------------------------
+    let btnBuscarMarca = document.getElementById('btnBuscarMarca');
+    btnBuscarMarca.addEventListener('click',()=>{
+
+        $("#modal_marcas").modal('show');
+
+        get_lista_marcas();
+
+    });
+
+
+    let btnProdAgregarMarca = document.getElementById('btnProdAgregarMarca');
+    btnProdAgregarMarca.addEventListener('click',()=>{
+
+        let codigo = document.getElementById('txtProdCodmarca').value || '0';
+        if(codigo=='0'){funciones.AvisoError('Indique un código de marca válido');return;};
+
+        let marca = document.getElementById('txtProdDesmarca').value || 'SN';
+        if(marca=='SN'){funciones.AvisoError('Indique una descripción de marca válido');return;};
+        
+
+        funciones.Confirmacion('¿Está seguro que desea agregar esta nueva marca?')
+        .then((value)=>{
+            if(value==true){
+
+                btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus fa-spin"></i>`;
+                btnProdAgregarMarca.disabled = true;
+
+                insert_marca(codigo,marca)
+                .then(()=>{
+
+                    funciones.Aviso('Marca creada exitosamente!!');
+                    get_lista_marcas();
+                    get_combo_marcas();
+
+                    document.getElementById('txtProdCodmarca').value ='';
+                    document.getElementById('txtProdDesmarca').value ='';
+                    
+                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i>`;
+                    btnProdAgregarMarca.disabled = false;
+
+                })
+                .catch(()=>{
+                    funciones.AvisoError('No se pudo guardar esta marca');
+                    
+                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i>`;
+                    btnProdAgregarMarca.disabled = false;
+                })
+            }
+        })
+
+        
+
+    });
+
+    // MARCAS ---------------------------
 
 };
 
@@ -818,6 +904,68 @@ function get_combo_marcas(){
             container.innerHTML = `<option value='SN'>No se cargó las Marcas</option>`;
         });
 
+};
+function get_lista_marcas(){
+
+    let container = document.getElementById('tblDataProdMarcas');
+    container.innerHTML = GlobalLoader;
+
+    axios.post(GlobalUrlCalls + '/productos/listado_marcas',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<tr>
+                                <td>${r.CODMARCA}</td>
+                                <td>${r.DESMARCA}</td>
+                                <td></td>
+                            </tr>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `No se cargó las Marcas`;
+            }            
+        }else{
+            container.innerHTML = `No se cargó las Marcas`;
+        }             
+    }, (error) => {
+        container.innerHTML = `No se cargó las Marcas`;
+    });
+
+};
+
+function insert_marca(codmarca,desmarca){
+  
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_marca',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codmarca:codmarca,
+                desmarca:desmarca
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
 };
 
 function get_combo_fabricantes(){

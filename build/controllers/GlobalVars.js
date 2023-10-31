@@ -30,6 +30,11 @@ let GlobalLoader = `
                 `
 
 
+// VARIABLES
+let GlobalSelected_Codprod = '';
+let GlobalSelected_Desprod = '';
+let GlobalSelected_Costo = 0;
+
 
 
 

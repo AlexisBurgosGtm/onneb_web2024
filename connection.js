@@ -4,6 +4,15 @@ function get_conf_token(token){
 	let config = [];
 
 	switch (token) {
+		case 'PRUEBAS':
+			config = {
+				user: 'db_a6478c_onneweb_admin',
+				password: 'razors1805',
+				server: 'sql5092.site4now.net',
+				database: 'db_a6478c_onneweb',
+				pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+			};
+			break;
 		case 'ONNE':
 			config = {
 				user: 'db_a6478c_onneweb_admin',

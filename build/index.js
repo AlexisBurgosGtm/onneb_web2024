@@ -1,5 +1,5 @@
 ﻿
-let versionapp = "OnneBusiness - modif: 22-10-2023"
+let versionapp = "modif: 30-10-2023"
 
 //document.getElementById('lbVersion').innerText = versionapp;
 //<h5 class="text-white" id="lbVersion"></h5>

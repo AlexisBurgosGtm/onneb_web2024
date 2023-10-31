@@ -144,6 +144,39 @@ router.post("/listado", async(req,res)=>{
      
 });
 
+router.post("/lista_precios", async(req,res)=>{
+   
+    const {token,sucursal,codprod} = req.body;
+
+   
+    let qry = `
+    SELECT ID,  
+    EMPNIT,CODPROD,CODMEDIDA,EQUIVALE,COSTO,PRECIO AS PRECIOP,
+	UTILIDAD,PORCUTILIDAD,HABILITADO,MAYOREOA AS PRECIOA,
+	MAYOREOB AS PRECIOB,MAYOREOC AS PRECIOC,PESO,MARGEN,LASTUPDATE
+    FROM
+    PRECIOS WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/delete_precio", async(req,res)=>{
+   
+    const {token,sucursal,id} = req.body;
+
+   
+    let qry = `
+    DELETE FROM PRECIOS WHERE ID=${id};
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
+
 
 
 router.post("/listado_medidas", async(req,res)=>{
@@ -205,6 +238,23 @@ router.post("/listado_claseuno", async(req,res)=>{
      
 });
 
+router.post("/insert_claseuno", async(req,res)=>{
+   
+    const {token,sucursal,codigo,descripcion} = req.body;
+
+   
+    let qry = `
+    INSERT INTO CLASIFICACIONUNO (EMPNIT,CODCLAUNO,DESCLAUNO) 
+    VALUES ('${sucursal}',${codigo},'${descripcion}');
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
+
+
 router.post("/listado_proveedores", async(req,res)=>{
    
     const { token, sucursal } = req.body;
@@ -219,6 +269,23 @@ router.post("/listado_proveedores", async(req,res)=>{
     execute.QueryToken(res,qry,token);
      
 });
+
+router.post("/insert_proveedor", async(req,res)=>{
+   
+    const {token,sucursal,codigo,descripcion} = req.body;
+
+   
+    let qry = `
+    INSERT INTO PROVEEDORES (EMPNIT,CODPROV,EMPRESA,RAZONSOCIAL,DIRECCION,TELEMPRESA,CONTACTO,TELCONTACTO,NIT,SALDO) 
+    VALUES ('${sucursal}',${codigo},'${descripcion}','${descripcion}','CIUDAD','000','SN','SN','CF',0);
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
+
 
 router.post("/listado_clasedos", async(req,res)=>{
    

@@ -8,7 +8,7 @@ function getView(){
                             ${view.vista_listado() + view.modal_opciones_producto()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ficha_producto() + view.modal_nuevo_precio() + view.modal_marcas()}
+                            ${view.vista_ficha_producto() + view.modal_nuevo_precio() + view.modal_marcas() + view.modal_claseuno() + view.modal_proveedores()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -109,7 +109,88 @@ function getView(){
         },
         modal_opciones_producto:()=>{
             return `
-            
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_menu_producto">
+                <div class="modal-dialog modal-dialog-left modal-lg">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-primary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white">
+                                 Opciones del Producto
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            <h3 id="lbDetDesprod">DESPROD</h3>
+                            <small class="negrita text-danger" id="lbDetCodprod">0001</small>
+                            
+                            <hr class="solid">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fal fa-edit"></i>
+                                        </button> <b class="text-primary">Editar Producto</b>
+                                        <br><br>
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fal fa-list"></i>
+                                        </button> <b class="text-primary">Kardex</b>
+                                        <br><br>
+                                        <button class="btn btn-circle btn-danger">
+                                            <i class="fal fa-trash"></i>
+                                        </button> <b class="text-danger">Eliminar</b>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fal fa-edit"></i>
+                                        </button> <b class="text-primary">Editar Producto</b>
+                                        <br><br>
+                                        <button class="btn btn-circle btn-primary">
+                                            <i class="fal fa-list"></i>
+                                        </button> <b class="text-primary">Kardex</b>
+                                        <br><br>
+                                        <button class="btn btn-circle btn-danger">
+                                            <i class="fal fa-trash"></i>
+                                        </button> <b class="text-danger">Eliminar</b>
+                                    </div>
+                                </div>
+                                    
+
+                            <hr class="solid">
+                            
+
+                            <div class="card card-rounded p-2">
+                                <div class="card-body">
+
+                                    <table class="table table-responsive h-full">
+                                        <thead class="bg-primary text-white">
+                                            <tr>
+                                                <td>CODMEDIDA</td>
+                                                <td>EQ</td>
+                                                <td>COSTO</td>
+                                                <td>PÚBLICO</td>
+                                                <td>MAYOREOA</td>
+                                                <td>MAYOREOB</td>
+                                                <td>MAYOREOC</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblDataPreciosProd"></tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                           
+                           
+                        </div>
+                        <div class="modal-footer text-left">
+
+                            <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
 
             
             `
@@ -204,7 +285,7 @@ function getView(){
                                         <div class="input-group">
                                             <select class="form-control" id="cmbClaseuno">
                                             </select>
-                                            <button class="btn btn-primary hand">
+                                            <button class="btn btn-primary hand" id="btnBuscarClaseuno">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -215,7 +296,7 @@ function getView(){
                                         <div class="input-group">
                                             <select class="form-control" id="cmbProveedor">
                                             </select>    
-                                            <button class="btn btn-primary hand">
+                                            <button class="btn btn-primary hand" id="btnBuscarProv">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -449,8 +530,8 @@ function getView(){
                                                 <td>
                                                     <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesmarca"></td>
                                                 <td>
-                                                    <button class="btn btn-success btn-circle hand shadow" id="btnProdAgregarMarca">
-                                                        <i class="fal fa-plus"></i>
+                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarMarca">
+                                                        <i class="fal fa-plus"></i> Agregar
                                                     </button>
                                                 </td>    
                                             </tr>
@@ -477,8 +558,156 @@ function getView(){
                                 </tbody>
                             </table>
                                 
-                           
+                            <div class="row">
+                                <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                            </div>
 
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            
+            `
+        },
+        modal_claseuno:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_claseuno">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-secondary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white" id="">
+                                Gestión de Fabricantes (Clasificación Uno)
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            
+                            <div class="card card-rounded">
+                                <div class="card-body p-2">
+                                    <table class="table table-responsive">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>CÓDIGO</td>
+                                                <td>FABRICANTE</td>
+                                                <td></td>    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodClaseuno"></td>
+                                                <td>
+                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesClaseuno"></td>
+                                                <td>
+                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarClaseuno">
+                                                        <i class="fal fa-plus"></i> Agregar
+                                                    </button>
+                                                </td>    
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Búsqueda de Fabricantes</label>
+                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdClaseuno" oninput="funciones.FiltrarTabla('tblProdClaseuno','txtBuscarProdClaseuno')">
+                            </div>
+
+                            <table class="table table-responsive h-full f-med" id="tblProdClaseuno">
+                                <thead class="negrita bg-primary text-white">
+                                    <tr>
+                                        <td>CODIGO</td>
+                                        <td>FABRICANTE</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblDataProdClaseuno">
+                                            
+                                </tbody>
+                            </table>
+                                
+                           
+                            <div class="row">
+                                <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            
+            `
+        },
+        modal_proveedores:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_proveedores">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-secondary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white" id="">
+                                Gestión de Proveedores
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            
+                            <div class="card card-rounded">
+                                <div class="card-body p-2">
+                                    <table class="table table-responsive">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>CODIGO</td>
+                                                <td>PROVEEDOR</td>
+                                                <td></td>    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodProv"></td>
+                                                <td>
+                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesProv"></td>
+                                                <td>
+                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarProv">
+                                                        <i class="fal fa-plus"></i> Agregar
+                                                    </button>
+                                                </td>    
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Búsqueda de Fabricantes</label>
+                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdProv" oninput="funciones.FiltrarTabla('tblProdProv','txtBuscarProdProv')">
+                            </div>
+
+                            <table class="table table-responsive h-full f-med" id="tblProdProv">
+                                <thead class="negrita bg-primary text-white">
+                                    <tr>
+                                        <td>CODIGO</td>
+                                        <td>PROVEEDOR</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblDataProdProv">
+                                            
+                                </tbody>
+                            </table>
+                                
+                           
+                            <div class="row">
+                                <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                            </div>
                         </div>
                        
                     </div>
@@ -667,14 +896,14 @@ function listeners_listado(){
                     document.getElementById('txtProdCodmarca').value ='';
                     document.getElementById('txtProdDesmarca').value ='';
                     
-                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i>`;
+                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
                     btnProdAgregarMarca.disabled = false;
 
                 })
                 .catch(()=>{
                     funciones.AvisoError('No se pudo guardar esta marca');
                     
-                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i>`;
+                    btnProdAgregarMarca.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
                     btnProdAgregarMarca.disabled = false;
                 })
             }
@@ -685,6 +914,124 @@ function listeners_listado(){
     });
 
     // MARCAS ---------------------------
+
+    // CLASEUNO -------------------------
+
+    
+    let btnBuscarClaseuno = document.getElementById('btnBuscarClaseuno');
+    btnBuscarClaseuno.addEventListener('click',()=>{
+
+        $("#modal_claseuno").modal('show');
+
+        get_lista_fabricantes();
+
+    });
+
+    let btnProdAgregarClaseuno = document.getElementById('btnProdAgregarClaseuno');
+    btnProdAgregarClaseuno.addEventListener('click',()=>{
+
+        let codigo = document.getElementById('txtProdCodClaseuno').value || '0';
+        if(codigo=='0'){funciones.AvisoError('Indique un código de Fabricante válido');return;};
+
+        let descripcion = document.getElementById('txtProdDesClaseuno').value || 'SN';
+        if(descripcion=='SN'){funciones.AvisoError('Indique una descripción de Fabricante válido');return;};
+        
+
+        funciones.Confirmacion('¿Está seguro que desea agregar este Fabricante?')
+        .then((value)=>{
+            if(value==true){
+
+                btnProdAgregarClaseuno.innerHTML = `<i class="fal fa-plus fa-spin"></i>`;
+                btnProdAgregarClaseuno.disabled = true;
+
+                insert_fabricante(codigo,descripcion)
+                .then(()=>{
+
+                    funciones.Aviso('Fabricante creada exitosamente!!');
+                    get_lista_fabricantes();
+                    get_combo_fabricantes();
+
+                    document.getElementById('txtProdCodClaseuno').value ='';
+                    document.getElementById('txtProdDesClaseuno').value ='';
+                    
+                    btnProdAgregarClaseuno.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarClaseuno.disabled = false;
+
+                })
+                .catch(()=>{
+                    funciones.AvisoError('No se pudo guardar este Fabricante');
+                    
+                    btnProdAgregarClaseuno.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarClaseuno.disabled = false;
+                })
+            }
+        })
+
+        
+
+    });
+
+
+    // CLASEUNO -------------------------
+
+
+    // PROVEEDORES -------------------------
+
+    let btnBuscarProv = document.getElementById('btnBuscarProv');
+    btnBuscarProv.addEventListener('click',()=>{
+
+        $("#modal_proveedores").modal('show');
+
+        get_lista_proveedores();
+
+    });
+
+    let btnProdAgregarProv = document.getElementById('btnProdAgregarProv');
+    btnProdAgregarProv.addEventListener('click',()=>{
+
+        let codigo = document.getElementById('txtProdCodProv').value || '0';
+        if(codigo=='0'){funciones.AvisoError('Indique un código de Proveedor válido');return;};
+
+        let descripcion = document.getElementById('txtProdDesProv').value || 'SN';
+        if(descripcion=='SN'){funciones.AvisoError('Indique una descripción de Proveedor válido');return;};
+        
+
+        funciones.Confirmacion('¿Está seguro que desea agregar este Proveedor?')
+        .then((value)=>{
+            if(value==true){
+
+                btnProdAgregarProv.innerHTML = `<i class="fal fa-plus fa-spin"></i>`;
+                btnProdAgregarProv.disabled = true;
+
+                insert_proveedor(codigo,descripcion)
+                .then(()=>{
+
+                    funciones.Aviso('Proveedor creada exitosamente!!');
+                    get_lista_proveedores();
+                    get_combo_proveedores();
+
+                    document.getElementById('txtProdCodClaseuno').value ='';
+                    document.getElementById('txtProdDesClaseuno').value ='';
+                    
+                    btnProdAgregarProv.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarProv.disabled = false;
+
+                })
+                .catch(()=>{
+                    funciones.AvisoError('No se pudo guardar este Proveedor');
+                    
+                    btnProdAgregarProv.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarProv.disabled = false;
+                })
+            }
+        })
+
+        
+
+    });
+
+
+    // PROVEEDORES -------------------------
 
 };
 
@@ -939,7 +1286,6 @@ function get_lista_marcas(){
     });
 
 };
-
 function insert_marca(codmarca,desmarca){
   
     return new Promise((resolve,reject)=>{
@@ -953,12 +1299,16 @@ function insert_marca(codmarca,desmarca){
             })
         .then((response) => {
             if(response.status.toString()=='200'){
-                let data = response.data;
-                if(Number(data.rowsAffected[0])>0){
-                    resolve(data);             
-                }else{
+                if(response.data.toString()=='error'){
                     reject();
-                }            
+                }else{
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }
+                }      
             }else{
                 reject();
             }             
@@ -996,6 +1346,72 @@ function get_combo_fabricantes(){
         container.innerHTML = `<option value='SN'>No se cargó los fabricantes</option>`;
     });
 };
+function get_lista_fabricantes(){
+
+    let container = document.getElementById('tblDataProdClaseuno');
+    container.innerHTML = GlobalLoader;
+
+    axios.post(GlobalUrlCalls + '/productos/listado_claseuno',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<tr>
+                                <td>${r.CODCLAUNO}</td>
+                                <td>${r.DESCLAUNO}</td>
+                                <td></td>
+                            </tr>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `No se cargó los Fabricantes`;
+            }            
+        }else{
+            container.innerHTML = `No se cargó los Fabricantes`;
+        }             
+    }, (error) => {
+        container.innerHTML = `No se cargó los Fabricantes`;
+    });
+
+};
+function insert_fabricante(codigo,descripcion){
+  
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_claseuno',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codigo:codigo,
+                descripcion:descripcion
+            })
+        .then((response) => {
+            console.log(response);
+            if(response.status.toString()=='200'){
+                if(response.data.toString()=='error'){
+                    reject();
+                }else{
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }
+                }       
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
+};
 
 function get_combo_proveedores(){
 
@@ -1025,6 +1441,74 @@ function get_combo_proveedores(){
         container.innerHTML = `<option value='SN'>No se cargó los proveedores</option>`;
     });
 };
+function get_lista_proveedores(){
+
+    let container = document.getElementById('tblDataProdProv');
+    container.innerHTML = GlobalLoader;
+
+    axios.post(GlobalUrlCalls + '/productos/listado_proveedores',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<tr>
+                                <td>${r.CODPROV}</td>
+                                <td>${r.EMPRESA}</td>
+                                <td></td>
+                            </tr>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `No se cargó los Proveedores`;
+            }            
+        }else{
+            container.innerHTML = `No se cargó los Proveedores`;
+        }             
+    }, (error) => {
+        container.innerHTML = `No se cargó los Proveedores`;
+    });
+
+};
+function insert_proveedor(codigo,descripcion){
+  
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_proveedor',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codigo:codigo,
+                descripcion:descripcion
+            })
+        .then((response) => {
+            console.log(response);
+            if(response.status.toString()=='200'){
+                if(response.data.toString()=='error'){
+                    reject();
+                }else{
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }
+                }       
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
+};
+
+
 
 function get_combo_clasedos(){
     let container = document.getElementById('cmbClasedos');
@@ -1295,14 +1779,6 @@ function get_tbl_productos(){
 };
 
 
-function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
-
-
-
-    
-
-};
-
 
 //----------------
 //nuevo producto
@@ -1339,12 +1815,16 @@ function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
             })
         .then((response) => {
             if(response.status.toString()=='200'){
-                let data = response.data;
-                if(Number(data.rowsAffected[0])>0){
-                    resolve();             
-                }else{
+                if(response.data.toString()=='error'){
                     reject();
-                }            
+                }else{
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }
+                }        
             }else{
                 reject();
             }             
@@ -1359,3 +1839,106 @@ function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
 //----------------
 
 
+function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
+
+
+        $("#modal_menu_producto").modal('show');
+
+
+        GlobalSelected_Codprod = codprod;
+        GlobalSelected_Desprod = desprod;
+        GlobalSelected_Costo = Number(costo);
+
+        document.getElementById('lbDetDesprod').innerText = desprod;
+        document.getElementById('lbDetCodprod').innerText = codprod;
+
+        get_tbl_precios_producto(codprod,'tblDataPreciosProd');
+    
+
+};
+
+function get_tbl_precios_producto(codprod,idcontainer){
+
+    let container = document.getElementById(idcontainer);
+    container.innerHTML = GlobalLoader;
+
+    axios.post(GlobalUrlCalls + '/productos/lista_precios',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN,
+            codprod:codprod
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                
+                data.recordset.map((r)=>{
+                    let idbtnE = `btnE${r.ID}`;
+                    str += `
+                        <tr>
+                            <td>${r.CODMEDIDA}</td>
+                            <td>${r.EQUIVALE}</td>
+                            <td>${funciones.setMoneda(r.COSTO,'Q')}</td>
+                            <td>${funciones.setMoneda(r.PRECIOP,'Q')}</td>
+                            <td>${funciones.setMoneda(r.PRECIOA,'Q')}</td>
+                            <td>${funciones.setMoneda(r.PRECIOB,'Q')}</td>
+                            <td>${funciones.setMoneda(r.PRECIOC,'Q')}</td>
+                            <td>
+                                <button class="btn-md btn-circle btn-danger hand shadow" id="${idbtnE}" onclick="delete_precio('${idbtnE}','${r.ID}','${codprod}')">
+                                    <i class="fal fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `
+                })
+                container.innerHTML = str;             
+            }else{
+                rootErrores.innerHTML = 'No hay filas para mostrar...';
+                container.innerHTML = 'No se cargaron datos...';
+            }            
+        }else{
+            container.innerHTML = 'No se cargaron datos...';
+        }             
+    }, (error) => {
+        rootErrores.innerHTML = error;
+        container.innerHTML = 'No se cargaron datos...';
+    });
+ 
+};
+
+function delete_precio(idbtn,id,codprod){
+
+    let btn = document.getElementById(idbtn);
+    
+    btn.innerHTML = `<i class="fal fa-trash fa-spin"></i>`;
+    btn.disabled = true;
+
+        axios.post(GlobalUrlCalls + '/productos/delete_precio',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                id:id
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    funciones.Aviso('Precio eliminado exitosamente!!');
+                    get_tbl_precios_producto(codprod,'tblDataPreciosProd');           
+                }else{
+                    btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                    btn.disabled = false;
+                }            
+            }else{
+                btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                btn.disabled = false;
+            }             
+        }, (error) => {
+            btn.innerHTML = `<i class="fal fa-trash"></i>`;
+            btn.disabled = false;
+        });
+      
+
+};

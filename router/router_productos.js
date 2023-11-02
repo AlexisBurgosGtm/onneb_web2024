@@ -119,6 +119,37 @@ router.post("/insert_producto", async(req,res)=>{
      
 });
 
+router.post("/edit_producto", async(req,res)=>{
+   
+    const {token,sucursal,codprod,codprod2,
+        desprod,desprod2,desprod3,uxc,costo,
+        codmarca,codclaseuno,codclasedos,codclasetres,
+        lastupdate,tipoprod,exento,nf,invminimo} = req.body;
+
+    let qry = `
+    UPDATE PRODUCTOS SET 
+        CODPROD2='${codprod2}',
+        DESPROD='${desprod}',
+        DESPROD2='${desprod2}',
+        DESPROD3='${desprod3}',
+        UXC=${uxc},
+        COSTO=${costo},
+        CODMARCA=${codmarca},
+        CODCLAUNO=${codclaseuno},
+        CODCLADOS=${codclasedos},
+        CODCLATRES=${codclasetres},
+        INVMINIMO=${invminimo},
+        EXENTO=${exento},
+        NF=${nf},
+        TIPOPROD='${tipoprod}',
+        LASTUPDATE='${lastupdate}'
+    WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    `
+    
+    execute.QueryToken(res,qry,token);
+     
+});
+
 router.post("/listado", async(req,res)=>{
    
     const { token, sucursal, habilitado } = req.body;
@@ -192,6 +223,20 @@ router.post("/listado_medidas", async(req,res)=>{
     execute.QueryToken(res,qry,token);
      
 });
+router.post("/insert_medida", async(req,res)=>{
+   
+    const {token,sucursal,codigo,descripcion} = req.body;
+
+   
+    let qry = `
+    INSERT INTO MEDIDAS (EMPNIT,CODMEDIDA,TIPOPRECIO) 
+    VALUES ('${sucursal}','${codigo}','${descripcion}');
+    `
+
+    execute.QueryToken(res,qry,token);
+     
+});
+
 
 
 router.post("/listado_marcas", async(req,res)=>{

@@ -8,7 +8,7 @@ function getView(){
                             ${view.vista_listado() + view.modal_opciones_producto()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ficha_producto() + view.modal_nuevo_precio() + view.modal_marcas() + view.modal_claseuno() + view.modal_proveedores()}
+                            ${view.vista_ficha_producto() + view.modal_nuevo_precio() + view.modal_medidas() + view.modal_marcas() + view.modal_claseuno() + view.modal_proveedores()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -123,37 +123,46 @@ function getView(){
                             
                             <hr class="solid">
                                 <div class="row">
+
                                     <div class="col-6">
-                                        <button class="btn btn-circle btn-primary">
-                                            <i class="fal fa-edit"></i>
-                                        </button> <b class="text-primary">Editar Producto</b>
-                                        <br><br>
-                                        <button class="btn btn-circle btn-primary">
-                                            <i class="fal fa-list"></i>
-                                        </button> <b class="text-primary">Kardex</b>
-                                        <br><br>
-                                        <button class="btn btn-circle btn-danger">
-                                            <i class="fal fa-trash"></i>
-                                        </button> <b class="text-danger">Eliminar</b>
+                                        
+                                            <button class="btn btn-circle btn-primary" id="btnProdMenEditar">
+                                                <i class="fal fa-edit"></i>
+                                            </button>  <b class="text-primary hand">Editar Producto</b>
+                                        <hr class="solid">
+                                            <button class="btn btn-circle btn-primary" id="btnProdMenKardex">
+                                                <i class="fal fa-list"></i>
+                                            </button>  <b class="text-primary hand">Kardex</b>
+                                        <hr class="solid">
+                                        
+                                            <button class="btn btn-circle btn-danger" id="btnProdMenEliminar">
+                                                <i class="fal fa-trash"></i>
+                                            </button>  <b class="text-danger hand">Eliminar</b>
+                                        
                                     </div>
+
                                     <div class="col-6">
-                                        <button class="btn btn-circle btn-primary">
-                                            <i class="fal fa-edit"></i>
-                                        </button> <b class="text-primary">Editar Producto</b>
-                                        <br><br>
-                                        <button class="btn btn-circle btn-primary">
-                                            <i class="fal fa-list"></i>
-                                        </button> <b class="text-primary">Kardex</b>
-                                        <br><br>
-                                        <button class="btn btn-circle btn-danger">
-                                            <i class="fal fa-trash"></i>
-                                        </button> <b class="text-danger">Eliminar</b>
+                                            <button class="btn btn-circle btn-primary" id="btnProdMenVentas">
+                                                <i class="fal fa-chart-pie"></i>
+                                            </button>  <b class="text-primary hand">Ventas por Fechas</b>
+                                        
+                                        <hr class="solid">
+                                            <button class="btn btn-circle btn-primary" id="btnProdMenCompras">
+                                                <i class="fal fa-box"></i>
+                                            </button>  <b class="text-primary hand">Compras por Fechas</b>
+                                        
+                                        <hr class="solid">
+                                            <button class="btn btn-circle btn-warning" id="btnProdMenActivar">
+                                                <i class="fal fa-sync"></i>
+                                            </button>  <b class="text-warning hand">Activar/Desactivar</b>
+                                        
                                     </div>
+
+                                    
+                                    
                                 </div>
                                     
-
-                            <hr class="solid">
-                            
+                            <br>
 
                             <div class="card card-rounded p-2">
                                 <div class="card-body">
@@ -161,7 +170,7 @@ function getView(){
                                     <table class="table table-responsive h-full">
                                         <thead class="bg-primary text-white">
                                             <tr>
-                                                <td>CODMEDIDA</td>
+                                                <td>MEDIDA</td>
                                                 <td>EQ</td>
                                                 <td>COSTO</td>
                                                 <td>PÚBLICO</td>
@@ -205,19 +214,19 @@ function getView(){
                             <div class="card-body p-4" style="font-size:80%"> 
                                     
                                         <label class="negrita text-primary">Código</label>
-                                        <input type="text" class="form-control" id="txtCodprod">
+                                        <input type="text" class="form-control" id="txtCodprod" maxlength="50">
                                     <br>
                                         <label class="negrita text-primary">Código Alterno (Barras)</label>
-                                        <input type="text" class="form-control" id="txtCodprod2">
+                                        <input type="text" class="form-control" id="txtCodprod2" maxlength="50">
                                     <br>
                                         <label class="negrita text-primary">Descripción</label>
-                                        <input type="text" class="form-control" id="txtDesprod">
+                                        <input type="text" class="form-control" id="txtDesprod" maxlength="255">
                                     <br>
                                         <label class="negrita text-primary">Descripción 2</label>
-                                        <input type="text" class="form-control" id="txtDesprod2">
+                                        <input type="text" class="form-control" id="txtDesprod2" maxlength="255">
                                     <br>
                                         <label class="negrita text-primary">Descripción 3</label>
-                                        <input type="text" class="form-control" id="txtDesprod3">
+                                        <input type="text" class="form-control" id="txtDesprod3" maxlength="255">
                                     <br>
                                      
                             </div>                   
@@ -401,8 +410,14 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <select class="form-control bg-amarillo" id="cmbPreMedida">
-                                                    </select>
+                                                    <div class="input-group">
+                                                        <select class="form-control bg-amarillo" id="cmbPreMedida">
+                                                        </select>
+                                                        <button class="btn btn-primary hand" id="btnBuscarMedidas">
+                                                            <i class="fal fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                    
                                                 </td>
                                                 <td>
                                                     <input type="number" class="negrita form-control bg-amarillo" id="txtPreEquivale">
@@ -490,6 +505,71 @@ function getView(){
                                         <i class="fal fa-save"></i>
                                     </button>
                                 </div>
+                            </div>
+
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            
+            `
+        },
+        modal_medidas:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_medidas">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-secondary d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white" id="">
+                                Gestión de Medidas de Precio
+                            </h4>
+                        </div>
+                        <div class="modal-body p-4">
+                            
+                            <div class="card card-rounded">
+                                <div class="card-body p-2">
+                                    <table class="table table-responsive">
+                                        <thead class="negrita text-primary">
+                                            <tr>
+                                                <td>MEDIDA</td>
+                                                <td></td>    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" maxlength="30" class="border-primary form-control negrita text-primary" id="txtProdCodmedida"></td>
+                                                <td>
+                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarMedida">
+                                                        <i class="fal fa-plus"></i> Agregar
+                                                    </button>
+                                                </td>    
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            
+
+                            <table class="table table-responsive h-full f-med" id="">
+                                <thead class="negrita bg-primary text-white">
+                                    <tr>
+                                        <td>MEDIDA</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblDataProdMedidas">
+                                            
+                                </tbody>
+                            </table>
+                                
+                            <div class="row">
+                                <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
                             </div>
 
                         </div>
@@ -1033,6 +1113,7 @@ function listeners_listado(){
 
     // PROVEEDORES -------------------------
 
+    
 };
 
 function listeners_precios(){
@@ -1131,6 +1212,60 @@ function listeners_precios(){
         
 
     });
+
+   
+
+    // MEDIDAS -----------------------------
+    let btnBuscarMedidas = document.getElementById('btnBuscarMedidas');
+    btnBuscarMedidas.addEventListener('click',()=>{
+
+        $("#modal_medidas").modal('show');
+        get_lista_medidas();
+
+    });
+
+    let btnProdAgregarMedida = document.getElementById('btnProdAgregarMedida');
+    btnProdAgregarMedida.addEventListener('click',()=>{
+
+     
+        let descripcion = document.getElementById('txtProdCodmedida').value || 'SN';
+        if(descripcion=='SN'){funciones.AvisoError('Indique una descripción de medida válida');return;};
+        
+
+        funciones.Confirmacion('¿Está seguro que desea agregar esta Medida?')
+        .then((value)=>{
+            if(value==true){
+
+                btnProdAgregarMedida.innerHTML = `<i class="fal fa-plus fa-spin"></i>`;
+                btnProdAgregarMedida.disabled = true;
+
+                insert_medida(descripcion,descripcion)
+                .then(()=>{
+
+                    funciones.Aviso('Medida creada exitosamente!!');
+                    get_lista_medidas();
+                    get_combo_medidas();
+
+                    document.getElementById('txtProdCodmedida').value ='';
+                    
+                    btnProdAgregarMedida.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarMedida.disabled = false;
+
+                })
+                .catch(()=>{
+                    funciones.AvisoError('No se pudo guardar esta Medida');
+                    
+                    btnProdAgregarMedida.innerHTML = `<i class="fal fa-plus"></i> Agregar`;
+                    btnProdAgregarMedida.disabled = false;
+                })
+            }
+        })
+
+        
+
+    });
+    // MEDIDAS -----------------------------
+
 
 };
 
@@ -1539,6 +1674,7 @@ function get_combo_clasedos(){
 
 };
 
+
 function get_combo_medidas(){
     let container = document.getElementById('cmbPreMedida');
         
@@ -1566,6 +1702,71 @@ function get_combo_medidas(){
         container.innerHTML = `<option value='SN'>No se cargó las Medidas de precio</option>`;
     });
 
+};
+function get_lista_medidas(){
+
+    let container = document.getElementById('tblDataProdMedidas');
+    container.innerHTML = GlobalLoader;
+
+    axios.post(GlobalUrlCalls + '/productos/listado_medidas',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            let data = response.data;
+            if(Number(data.rowsAffected[0])>0){
+                let str = '';
+                data.recordset.map((r)=>{
+                    str += `<tr>
+                                <td>${r.CODMEDIDA}</td>
+                                <td></td>
+                            </tr>`
+                })
+                container.innerHTML = str;     
+            }else{
+                container.innerHTML = `No se cargó las medidas`;
+            }            
+        }else{
+            container.innerHTML = `No se cargó las medidas`;
+        }             
+    }, (error) => {
+        container.innerHTML = `No se cargó las medidas`;
+    });
+
+};
+function insert_medida(codigo,descripcion){
+  
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_medida',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codigo:codigo,
+                descripcion:descripcion
+            })
+        .then((response) => {
+            console.log(response);
+            if(response.status.toString()=='200'){
+                if(response.data.toString()=='error'){
+                    reject();
+                }else{
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }
+                }       
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
 };
 
 
@@ -1942,3 +2143,5 @@ function delete_precio(idbtn,id,codprod){
       
 
 };
+
+

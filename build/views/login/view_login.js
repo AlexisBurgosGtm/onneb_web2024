@@ -9,11 +9,11 @@ function getView(){
 
             <div class="col-md-6 col-sm-12 col-lg-6 col-lx-6">
    
-                <div class="card shadow p-2 card-rounded border-primary">
+                <div  class="card shadow p-2 card-rounded border-primary">
                     <div class="card-header text-center bg-white">
-                        <div class="row">
-                            <div class="col-12">
-                                <img id="imgLogo" src="./favicon.png" width="110" height="80" ondblclick="send_test()">                            
+                        <div class="row" >
+                            <div id="scene" class="text-center">
+                                <img data-depth="1.0" id="imgLogo" src="./favicon.png" width="110" height="80" ondblclick="send_test()">                            
                             </div>    
                         </div>
                     </div>
@@ -43,8 +43,9 @@ function getView(){
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6" align="left">  
-                                    <small class="text-secondary negrita">${versionapp}</small>
+                                <div class="col-6" align="left" id="scene2">
+                                
+                                    <small data-depth="0.8" class="text-secondary negrita">${versionapp}</small>
                                 </div>
                                 <div class="col-6" align="right">
                                     <button class="btn btn-primary btn-xl shadow btn-circle" id="btnIniciar">
@@ -60,7 +61,11 @@ function getView(){
 
             <div class="col-md-3 col-sm-0 col-lg-3 col-lx-3">
             </div>
+        </div>
+
+      
             `
+            
         }
     };
 
@@ -115,6 +120,11 @@ function addListeners(){
             })
         })
 
+
+        var scene = document.getElementById('scene');
+        var scene2 = document.getElementById('scene2');
+        var parallaxInstance = new Parallax(scene);
+        var parallaxInstance2 = new Parallax(scene2);
 
 };
 

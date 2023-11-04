@@ -21,12 +21,14 @@ let Navegar = {
         }
     },
     inicio_administrador:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/inicio_administrador.js','root')
         .then(async()=>{
             initView();
         })
     },
     inicio_ventas:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/inicio_ventas.js','root')
         .then(async()=>{
             initView();
@@ -39,18 +41,21 @@ let Navegar = {
         })
     },
     app_autoventa:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/apps/app_autoventa.js','root')
         .then(async()=>{
             initView();
         })
     },
     mantenimientos_productos:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/productos/view_productos.js','root')
         .then(async()=>{
             initView();
         })
     },
     mantenimientos_empleados:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/empleados/view_empleados.js','root')
         .then(async()=>{
             //lbForm.innerText = "Empleados";

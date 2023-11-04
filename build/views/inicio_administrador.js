@@ -62,18 +62,6 @@ function getView(){
 function addListeners(){
 
 
-    document.getElementById('btnMenuAppAutoventa').addEventListener('click',()=>{
-        Navegar.app_autoventa();
-    });
-
-    document.getElementById('btnMenuEmpleados').addEventListener('click',()=>{
-        Navegar.mantenimientos_empleados();
-    });
-
-    document.getElementById('btnMenuProductos').addEventListener('click',()=>{
-        Navegar.mantenimientos_productos();
-    });
-
 
 
 

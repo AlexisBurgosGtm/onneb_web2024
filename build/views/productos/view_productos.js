@@ -104,9 +104,7 @@ function getView(){
                 <i class="fal fa-plus"></i>
             </button>
 
-            <button class="btn btn-primary btn-bottom-l btn-circle btn-xl hand shadow" onclick="Navegar.inicio()">
-                <i class="fal fa-home"></i>
-            </button>
+         
 
             `
         },

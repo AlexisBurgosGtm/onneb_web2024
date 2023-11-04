@@ -1,19 +1,20 @@
 
+
 let GlobalUrlCalls = '';
 let GlobalUrlServicioLocal = 'http://192.168.1.16:8080'
 let TOKEN = '';
 
 let GlobalUsuario = '';
 let GlobalPass = '';
+let GlobalNivelUsuario = 0;
 
 let data_empresas = [];
 
 
 let root = document.getElementById('root');
-let rootMenu = document.getElementById('rootMenu');
-let rootMenuFooter = document.getElementById('rootMenuFooter');
-let rootErrores = document.getElementById('rootErrores');
 let cmbEmpresa = document.getElementById('cmbEmpresa');
+
+let navmenu = document.getElementById('js-nav-menu');
 
 //let btnMenu = document.getElementById('btnMenu');
 //btnMenu.style = "visibility:hidden";

@@ -1076,7 +1076,7 @@ html body {
     top: 0;
     z-index: 950; }
   .header-function-fixed:not(.nav-function-top):not(.nav-function-fixed) .page-sidebar .primary-nav {
-    margin-top: 4.125rem; }
+    margin-top: 1.125rem; }
   .header-function-fixed:not(.nav-function-top):not(.nav-function-fixed).desktop.nav-function-hidden .page-logo {
     position: absolute;
     -webkit-transition: none !important;
@@ -1706,14 +1706,14 @@ html body {
       display: flex;
       width: 100%;
       max-width: 100%;
-      height: 3.5rem;
+      height: 2.75rem;
       z-index: 999;
       padding: 0 0.625rem;
       background: #fff;
       -webkit-box-shadow: 0px 0px 14px 0px rgba(86, 61, 124, 0.13);
               box-shadow: 0px 0px 14px 0px rgba(86, 61, 124, 0.13);
       position: absolute;
-      top: 4.125rem;
+      top: 0.125rem;
       -webkit-box-ordinal-group: 3;
           -ms-flex-order: 2;
               order: 2; }
@@ -6937,7 +6937,7 @@ body:not(.no-slimscroll) .custom-scroll {
         -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
                 box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1); }
       .mod-main-boxed.nav-function-fixed:not(.nav-function-top) .page-wrapper .page-sidebar .primary-nav {
-        margin-top: 4.125rem; }
+        margin-top: 2.125rem; }
     .mod-main-boxed.nav-function-fixed:not(.nav-function-top).nav-function-hidden .page-logo {
       position: absolute !important;
       -webkit-transition: none;

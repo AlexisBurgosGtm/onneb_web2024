@@ -76,7 +76,10 @@ function getView(){
 function addListeners(){
   
 
+        navmenu.style = "visibility:hidden";
+
         TOKEN = '';
+        GlobalNivelUsuario = 0;
         data_empresas = [];
         cmbEmpresa.innerHTML = `<option value=''>No hay empresas disponibles...</option>`;
 
@@ -104,11 +107,16 @@ function addListeners(){
                 let str = '';
                 data_empresas.map((r)=>{
                     TOKEN = r.TOKEN;
+                    GlobalNivelUsuario = Number(r.NIVEL);
                     str += `<option value='${r.EMPNIT}'>${r.EMPNOMBRE}</option>`
                 });
                 cmbEmpresa.innerHTML = str;
 
-                Navegar.mantenimientos_productos();
+                navmenu.style = "visibility:visible";
+                
+                Navegar.inicio();
+                
+
             })
             .catch(()=>{
                 

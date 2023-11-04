@@ -6,10 +6,10 @@ function getView(){
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                     ${view.vista_menu()}
                                 </div>
-                                <div class="col-9">
+                                <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                                     ${view.vista_tabla()}
                                 </div>
                             </div>
@@ -43,16 +43,7 @@ function getView(){
         },
         vista_menu:()=>{
             return `
-            <hr class="solid">
-                <button class="btn btn-circle hand btn-outline-primary">
-                    <i class="fal fa-shoping-cart"></i>
-                </button>  Productos y Precios
-            
-            <hr class="solid">
-                <button class="btn btn-circle hand btn-outline-primary">
-                    <i class="fal fa-shoping-cart"></i>
-                </button>  Productos y Precios
-            <hr class="solid">
+          
             `
         },
         vista_tabla:()=>{
@@ -69,6 +60,20 @@ function getView(){
 
 
 function addListeners(){
+
+
+    document.getElementById('btnMenuAppAutoventa').addEventListener('click',()=>{
+        Navegar.app_autoventa();
+    });
+
+    document.getElementById('btnMenuEmpleados').addEventListener('click',()=>{
+        Navegar.mantenimientos_empleados();
+    });
+
+    document.getElementById('btnMenuProductos').addEventListener('click',()=>{
+        Navegar.mantenimientos_productos();
+    });
+
 
 
 

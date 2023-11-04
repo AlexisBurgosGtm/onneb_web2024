@@ -1,5 +1,5 @@
 ﻿
-let versionapp = "modif: 30-10-2023"
+let versionapp = "Modif: 03.11.2023"
 
 //document.getElementById('lbVersion').innerText = versionapp;
 //<h5 class="text-white" id="lbVersion"></h5>
@@ -23,7 +23,7 @@ document.getElementById('btnLogout').addEventListener('click',()=>{
 
 
 //inicializa la instalacion de la app
-funciones.instalationHandlers('btnInstalarApp');
+//funciones.instalationHandlers('btnInstalarApp');
 
 
 function InicializarServiceWorkerNotif(){

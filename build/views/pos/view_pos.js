@@ -134,22 +134,22 @@ function getView(){
                         <div class="modal-body p-4">
                             <div class="row">
                                 <div class="col-4 text-center">
-                                    <img src="./favicon.png" width="120px" height="120px">
+                                    <img src="./favicon.png" width="120px" height="100px">
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <label>Cantidad:</label>
+                                        <label class="negrita text-secondary">Cantidad:</label>
                                         <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidad">
                                     </div>   
                                     
                                     <div class="form-group">
-                                        <label>Precio:</label>
+                                        <label class="negrita text-secondary">Precio ${GlobalSignoMoneda}:</label>
                                         <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecio">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Subtotal:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-primary border-primary shadow col-10" id="txtMCTotalPrecio" disabled>
+                                        <label class="negrita text-secondary">Subtotal ${GlobalSignoMoneda}:</label>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-primary shadow col-10" id="txtMCTotalPrecio" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -157,7 +157,7 @@ function getView(){
                             <br>
         
                             <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-5 text-right">
                                         <button class="btn btn-secondary btn-xl btn-circle hand shadow waves-effect waves-themed" data-dismiss="modal" id="">
                                             <i class="fal fa-arrow-left"></i>
                                         </button>                                
@@ -165,7 +165,7 @@ function getView(){
         
                                     <div class="col-1"></div>
         
-                                    <div class="col-5">
+                                    <div class="col-5 text-right">
                                         <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardar">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>
@@ -189,22 +189,22 @@ function getView(){
                         <div class="modal-body p-4">
                             <div class="row">
                                 <div class="col-4 text-center">
-                                    <img src="./favicon.png" width="120px" height="120px">
+                                    <img src="./favicon.png" width="120px" height="100px">
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
-                                        <label>Cantidad:</label>
+                                        <label class="negrita text-secondary">Cantidad:</label>
                                         <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidadE">
                                     </div>   
                                     
                                     <div class="form-group">
-                                        <label>Precio:</label>
+                                        <label class="negrita text-secondary">Precio ${GlobalSignoMoneda}:</label>
                                         <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecioE">
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label>Subtotal:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-primary border-primary shadow col-10" id="txtMCTotalPrecioE" disabled>
+                                        <label class="negrita text-secondary">Subtotal ${GlobalSignoMoneda}:</label>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-primary shadow col-10" id="txtMCTotalPrecioE" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -212,7 +212,7 @@ function getView(){
                             <br>
         
                             <div class="row">
-                                    <div class="col-5">
+                                    <div class="col-5 text-right">
                                         <button class="btn btn-secondary btn-xl btn-circle hand shadow waves-effect waves-themed" data-dismiss="modal" id="">
                                             <i class="fal fa-arrow-left"></i>
                                         </button>                                
@@ -220,7 +220,7 @@ function getView(){
         
                                     <div class="col-1"></div>
         
-                                    <div class="col-5">
+                                    <div class="col-5 text-right">
                                         <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardarE">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>

@@ -21,14 +21,19 @@ let navmenu = document.getElementById('js-nav-menu');
 
 
 
-let GlobalLoader = ` 
+let GlobalLoader = `
+
                 <div>
-                    <div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-border text-warning" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-border text-warning" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-border text-warning" role="status"><span class="sr-only">Loading...</span></div>
                 </div>
                 `
+                /*
+                <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
+                */
 
 
 // VARIABLES

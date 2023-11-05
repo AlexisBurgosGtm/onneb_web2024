@@ -47,7 +47,9 @@ function getView(){
             `
         },
         vista_tabla:()=>{
-            return ``
+            return `
+            <img width="auto" height="auto" src="http://alexissoporte-001-site1.etempurl.com/fondo"></img>
+            `
         },
         vista_grafica:()=>{
             return ``
@@ -62,8 +64,7 @@ function getView(){
 function addListeners(){
 
 
-
-
+ 
 
 };
 

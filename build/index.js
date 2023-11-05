@@ -1,29 +1,10 @@
 ﻿
-let versionapp = "Modif: 03.11.2023"
+let versionapp = "Modif: 05.11.2023"
 
-//document.getElementById('lbVersion').innerText = versionapp;
-//<h5 class="text-white" id="lbVersion"></h5>
-
-
-/*
-document.getElementById('btnLogout').addEventListener('click',()=>{
-    funciones.Confirmacion('¿Está seguro que desea Salir?')
-    .then((value)=>{
-      if(value==true){
-        
-          btnMenu.style="visibility:hidden";
-          classNavegar.login();
-          document.getElementById('menu_open').checked=false;
-
-      }
-    })
-    
-});
-*/
+var sceneL = document.getElementById('sceneL');
+var parallaxInstanceL = new Parallax(sceneL);
 
 
-//inicializa la instalacion de la app
-//funciones.instalationHandlers('btnInstalarApp');
 
 
 function InicializarServiceWorkerNotif(){

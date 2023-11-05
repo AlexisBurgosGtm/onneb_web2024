@@ -1,6 +1,17 @@
 let lbForm = document.getElementById('lbForm');
 
 let Navegar = {
+    pendiente:()=>{
+        funciones.Aviso('Esta opción aún no está disponible, pronto lo estará!!')
+    },
+    salir:()=>{
+        funciones.Confirmacion('¿Está seguro que desea cerrar sesión y salir?')
+        .then((value)=>{
+            if(value==true){
+                Navegar.login();
+            }
+        })
+    },
     login:()=>{
         funciones.loadScript('../views/login/view_login.js','root')
         .then(async()=>{

@@ -4,14 +4,14 @@ function getView(){
         body:()=>{
             return `
                 <div class="row">
-                    <div class="col-2 text-left">
-                            <img src="./favicon.png" width="100px" height="100px">
+                    <div class="col-1 text-left">
+                            <img src="./favicon.png" width="80px" height="60px">
                     </div>
-                    <div class="card bg-naranja card-rounded shadow col-10 p-2">
+                    <div class="card bg-primary card-rounded shadow col-11 p-2">
                         
                             <div class="row">
                                 <div class="col-4 text-left">
-                                    <label class="text-white negrita h5" style="font-size:180%">Sala de Ventas</label>
+                                    <label class="text-white negrita h5" style="font-size:180%">Punto de Venta</label>
                                 </div>
                                 <div class="col-4 text-left">
                                     <label class="text-white negrita h5" style="font-size:140%" id="lbTotalItems">0 items</label>
@@ -61,11 +61,11 @@ function getView(){
 
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 
-                    <input type="search" autocomplete="off" class="form-control border-naranja negrita" placeholder='Escriba para buscar...' id="txtPosCodprod">
+                    <input type="search" autocomplete="off" class="form-control border-primary negrita" placeholder='Escriba para buscar...' id="txtPosCodprod">
                     
                     <div class="table-responsive col-12 p-2">
-                        <table class="table table-responsive table-hover table-border col-12" id="tblProductosBuscar">
-                            <thead class="bg-naranja text-white">
+                        <table class="table table-responsive table-hover table-border col-12 h-fulls" id="tblProductosBuscar">
+                            <thead class="bg-primary text-white">
                                 <tr>
                                     <td>Producto</td>
                                     <td>Medida</td>
@@ -78,20 +78,18 @@ function getView(){
                     </div>  
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <div class="card card-rounded shadow border-naranja col-12 p-2">
+                    <div class="card card-rounded shadow border-primary col-12 p-2">
                         <div class="card-body">
+                            
                             <div class="row">
-                                <div class="col-8">
-                                    <b class="text-naranja">Productos agregados a la Factura</b>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <img src="./favicon.png" width="50px" height="50px">
+                                <div class="col-12">
+                                    <b class="text-primary">Productos agregados a la Factura</b>
                                 </div>
                             </div>
                             
                            
                                 <table class="table table-responsive  table-hover col-12">
-                                    <thead class="bg-naranja text-white">
+                                    <thead class="bg-primary text-white">
                                         <tr>
                                             <td>PRODUCTO</td>
                                             <td>CANTIDAD</td>
@@ -130,7 +128,7 @@ function getView(){
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <label class="modal-title text-naranja h3" id="lbCantidadDesprod">Cantidad de producto</label>
+                            <label class="modal-title text-primary h3" id="lbCantidadDesprod">Cantidad de producto</label>
                         </div>
             
                         <div class="modal-body p-4">
@@ -141,17 +139,17 @@ function getView(){
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label>Cantidad:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-naranja shadow col-10" id="txtMCCantidad">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidad">
                                     </div>   
                                     
                                     <div class="form-group">
                                         <label>Precio:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-naranja shadow col-10" id="txtMCPrecio">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecio">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>Subtotal:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-naranja border-naranja shadow col-10" id="txtMCTotalPrecio" disabled>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-primary border-primary shadow col-10" id="txtMCTotalPrecio" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -168,7 +166,7 @@ function getView(){
                                     <div class="col-1"></div>
         
                                     <div class="col-5">
-                                        <button class="btn btn-naranja btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardar">
+                                        <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardar">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>
                                     </div>
@@ -184,7 +182,7 @@ function getView(){
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
 
-                        <div class="modal-header bg-naranja">
+                        <div class="modal-header bg-primary">
                             <label class="modal-title text-white h3" id="lbCantidadDesprodE">Cantidad de producto</label>
                         </div>
             
@@ -196,17 +194,17 @@ function getView(){
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label>Cantidad:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-naranja shadow col-10" id="txtMCCantidadE">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidadE">
                                     </div>   
                                     
                                     <div class="form-group">
                                         <label>Precio:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-naranja shadow col-10" id="txtMCPrecioE">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecioE">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>Subtotal:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-naranja border-naranja shadow col-10" id="txtMCTotalPrecioE" disabled>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-primary border-primary shadow col-10" id="txtMCTotalPrecioE" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -223,7 +221,7 @@ function getView(){
                                     <div class="col-1"></div>
         
                                     <div class="col-5">
-                                        <button class="btn btn-naranja btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardarE">
+                                        <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardarE">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>
                                     </div>
@@ -238,14 +236,14 @@ function getView(){
             <div class="row">
                 
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card card-rounded shadow border-naranja p-4"  style="font-size:80%">
+                    <div class="card card-rounded shadow border-primary p-4"  style="font-size:80%">
                         <div class="card-body">
                             
                             <div class="form-group">
-                                <label class="negrita text-f-90">NIT / DPI</label>
+                                <label class="negrita text-primary">NIT / DPI</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-md border-naranja negrita text-f-90" id="txtPosCobroNit">
-                                    <button class="btn btn-naranja text-white hand" id="btnBuscarCliente">
+                                    <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNit">
+                                    <button class="btn btn-primary text-white hand" id="btnBuscarCliente">
                                         <i class="fal fa-search"></i>
                                     </button>
                                 </div>
@@ -254,18 +252,18 @@ function getView(){
                             </div>
 
                             <div class="form-group">
-                                <label class="negrita text-f-90">CÓDIGO CLIENTE</label>
-                                <input disabled type="text" class="form-control form-control-md border-naranja negrita text-f-90" id="txtPosCobroNitclie" autocomplete="off">                            
+                                <label class="negrita text-primary">CÓDIGO CLIENTE</label>
+                                <input disabled type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNitclie" autocomplete="off">                            
                             </div>
 
                             <div class="form-group">
-                                <label class="negrita text-f-90">CLIENTE</label>
-                                <input type="text" class="form-control form-control-md border-naranja negrita text-f-90" id="txtPosCobroNombre">
+                                <label class="negrita text-primary">CLIENTE</label>
+                                <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNombre">
                             </div>
                             
                             <div class="form-group">
-                                <label class="negrita text-f-90">DIRECCIÓN</label>
-                                <input type="text" class="form-control form-control-md border-naranja negrita text-f-90" id="txtPosCobroDireccion">
+                                <label class="negrita text-primary">DIRECCIÓN</label>
+                                <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroDireccion">
                             </div>
 
                         </div>
@@ -273,7 +271,7 @@ function getView(){
                 </div>
 
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card card-rounded shadow border-naranja p-4">
+                    <div class="card card-rounded shadow border-primary p-4">
                         <div class="card-body">
                             
                                 <div class="row">
@@ -350,7 +348,7 @@ function getView(){
                 <div class="modal-dialog modal-lg modal-dialog-left" role="document">
                     <div class="modal-content">
                     
-                        <div class="modal-header bg-naranja">
+                        <div class="modal-header bg-primary">
                         </div>
                         
                         <div class="modal-body p-4">
@@ -358,8 +356,8 @@ function getView(){
                                 <div class="form-group col-12">
                                     <label>Búsqueda de Clientes</label>
                                     <div class="input-group">
-                                        <input type="search" autocomplete="off" class="form-control border-naranja negrita" id="txtBuscarClie">
-                                        <button class="btn btn-naranja hand text-white" id="btnBuscarClie">
+                                        <input type="search" autocomplete="off" class="form-control border-primary negrita" id="txtBuscarClie">
+                                        <button class="btn btn-primary hand text-white" id="btnBuscarClie">
                                             <i class="fal fa-search"></i>
                                         </button>
                                     </div>
@@ -368,7 +366,7 @@ function getView(){
                             <br>
                             <div class="row">
                                 <table class="col-12 table table-responsive table-hover table-border">
-                                    <thead class="bg-naranja text-white">
+                                    <thead class="bg-primary text-white">
                                         <tr>
                                             <td>NIT / CÓDIGO</td>
                                             <td>CLIENTE</td>
@@ -394,7 +392,7 @@ function getView(){
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label class="negrita text-naranja">Filtrar documentos por...</label>
+                                        <label class="negrita text-primary">Filtrar documentos por...</label>
                                         <div class="input-group">
                                             <input type="date" class="negrita form-control" id="txtFechaDoc">
                                             <select class="form-control negrita" id="cmbTipoDoc">
@@ -423,6 +421,10 @@ function getView(){
 };
 
 function addListeners(){
+
+
+    funciones.slideAnimationTabs();
+
 
 
     // LISTENER DE LA VENTANA DE PEDIDOS
@@ -514,9 +516,7 @@ function addListeners(){
         funciones.AvisoError('No se cargó la lista de vendedores');
     })
     
-    funciones.slideAnimationTabs();
-
-
+  
 
 };
 
@@ -853,7 +853,7 @@ function insert_new_cliente(nitclie,nit,nombre,direccion){
         axios.post('/clientes/clientes_nuevo',{
             fecha:funciones.getFecha(),
             codven: document.getElementById('cmbVendedor').value,
-            empnit: GlobalCodSucursal,
+            empnit: cmbEmpresa.value,
             nitclie: nit,
             nomclie: nombre,
             dirclie: direccion,
@@ -917,7 +917,7 @@ function tbl_clientes(filtro){
     let str = '';
 
     axios.post('/pos/buscar_cliente', {
-        sucursal: GlobalCodSucursal,
+        sucursal: cmbEmpresa.value,
         filtro:filtro
     })
     .then((response) => {        
@@ -962,7 +962,7 @@ function fcn_buscar_cliente(nit){
         };
     
         axios.post('/pos/buscar_cliente_nit', {
-            sucursal: GlobalCodSucursal,
+            sucursal: cmbEmpresa.value,
             nit:nit
         })
         .then((response) => {        
@@ -1035,7 +1035,8 @@ function get_buscar_producto(filtro){
     let idf = 'first-element'; let i =0;
 
     axios.post('/pos/productos_filtro', {
-        sucursal: GlobalCodSucursal,
+        sucursal: cmbEmpresa.value,
+        token:TOKEN,
         filtro:filtro
     })
     .then((response) => {        
@@ -1049,7 +1050,7 @@ function get_buscar_producto(filtro){
                 let strClassExist = 'text-success';
                 if(Number(r.EXISTENCIA)<0){strClassExist="text-danger"};
                 str += `
-                <tr id="${idf}" class="hand border-secondary border-top-0 border-left-0 border-right-0" onclick="get_producto('${r.CODPROD}','${funciones.limpiarTexto(r.DESPROD)}','${r.CODMEDIDA}','${r.EQUIVALE}','${r.COSTO}','${r.PRECIO}')">
+                <tr id="${idf}" class="hand border-secondary border-top-0 border-left-0 border-right-0 border-bottom-secondary" onclick="get_producto('${r.CODPROD}','${funciones.limpiarTexto(r.DESPROD)}','${r.CODMEDIDA}','${r.EQUIVALE}','${r.COSTO}','${r.PRECIO}')">
                     <td>
                         ${funciones.limpiarTexto(r.DESPROD)}
                         <br>
@@ -1085,6 +1086,8 @@ function get_buscar_producto(filtro){
 
 
 function getMoveTable(){
+
+    return;
 
         let start = document.getElementById('first-element');
         start.focus();
@@ -1160,7 +1163,7 @@ function get_tbl_productos_clasificacion(codigo){
     let str = '';
 
     axios.post('/pos/productos_categoria', {
-        sucursal: GlobalCodSucursal,
+        sucursal: cmbEmpresa.value,
         codigo:codigo
     })
     .then((response) => {        
@@ -1225,8 +1228,8 @@ function insert_producto_pedido(codprod,desprod,codmedida,equivale,costo,precio,
     
     let datos = 
         {
-            CODSUCURSAL:GlobalCodSucursal.toString(),
-            EMPNIT:GlobalCodSucursal.toString(),
+            CODSUCURSAL:cmbEmpresa.value.toString(),
+            EMPNIT:cmbEmpresa.value.toString(),
             USUARIO:'',
             CODPROD:codprod.toString(),
             DESPROD:desprod.toString(),
@@ -1264,14 +1267,14 @@ function get_tbl_pedido(){
     let varTotalVenta = 0;
     let varTotalCosto = 0;
 
-    selectTempVentasPOS(GlobalCodSucursal)
+    selectTempVentasPOS(cmbEmpresa.value)
     .then((data)=>{
         let datos = data.map((rows)=>{
             varTotalItems += 1;
             varTotalVenta = varTotalVenta + Number(rows.TOTALPRECIO);
             varTotalCosto = varTotalCosto + Number(rows.TOTALCOSTO);
             return `
-            <tr class="border-naranja border-left-0 border-right-0 border-top-0">
+            <tr class="border-primary border-left-0 border-right-0 border-top-0">
                 <td class="text-left">
                     ${rows.DESPROD}
                     <br>
@@ -1359,7 +1362,7 @@ function delete_item_pedido(id){
 function get_coddoc(tipo){
     return new Promise((resolve, reject)=>{
         axios.post('/tipodocumentos/series_doc', {
-            sucursal: GlobalCodSucursal,
+            sucursal: cmbEmpresa.value,
             tipo:tipo
         })
         .then((response) => {
@@ -1378,7 +1381,7 @@ function get_coddoc(tipo){
 function get_correlativo_coddoc(coddoc){
     return new Promise((resolve, reject)=>{
         axios.post('/tipodocumentos/correlativo_doc', {
-            sucursal: GlobalCodSucursal,
+            sucursal: cmbEmpresa.value,
             coddoc:coddoc
         })
         .then((response) => {
@@ -1401,7 +1404,7 @@ function get_correlativo_coddoc(coddoc){
 function get_vendedores(){
     
         return new Promise((resolve, reject) => {
-            axios.post('/empleados/vendedores', {sucursal:GlobalCodSucursal})
+            axios.post('/empleados/vendedores', {sucursal:cmbEmpresa.value})
             .then((response) => {
                 const data = response.data;        
                 
@@ -1498,7 +1501,7 @@ function finalizar_pedido(tipo){
                             .then((response)=>{
                                 axios.post('/pos/insertventa', {
                                     jsondocproductos:JSON.stringify(response),
-                                    codsucursal:GlobalCodSucursal,
+                                    codsucursal:cmbEmpresa.value,
                                     empnit: GlobalEmpnit,
                                     coddoc:coddoc,
                                     correl: correlativoDoc,
@@ -1665,7 +1668,7 @@ function tbl_lista_documentos(){
     }
    
     let tableheader = `<table class="table table-responsive table-hover table-striped table-bordered">
-                        <thead class="bg-naranja text-white">
+                        <thead class="bg-primary text-white">
                             <tr>
                                 <td>Documento</td>
                                 <td>Cliente</td>
@@ -1680,7 +1683,7 @@ function tbl_lista_documentos(){
     let totalpedidos = 0;
     
     axios.post('/pos/lista_documentos_tipo', {
-        sucursal: GlobalCodSucursal,
+        sucursal: cmbEmpresa.value,
         tipo:tipo,
         fecha:fecha,
         coddoc:coddoc   
@@ -1721,7 +1724,7 @@ function tbl_lista_documentos(){
                                 <b>${funciones.setMoneda(rows.IMPORTE,'Q')}</b>
                             </td>
                             <td>
-                                <button class="btn btn-circle btn-naranja btn-md hand shadow" id="${idBtnDownload}" onclick="get_pdf('${rows.NIT}','${funciones.limpiarTexto(rows.NOMCLIE)}','${funciones.limpiarTexto(rows.DIRCLIE)}','${rows.CODDOC}','${rows.CORRELATIVO}','${idBtnDownload}')">
+                                <button class="btn btn-circle btn-primary btn-md hand shadow" id="${idBtnDownload}" onclick="get_pdf('${rows.NIT}','${funciones.limpiarTexto(rows.NOMCLIE)}','${funciones.limpiarTexto(rows.DIRCLIE)}','${rows.CODDOC}','${rows.CORRELATIVO}','${idBtnDownload}')">
                                     <i class="fal fa-download"></i>
                                 </button>
                             </td>
@@ -1747,7 +1750,7 @@ function get_pdf(nit,cliente,direccion,coddoc, correlativo, idbtn){
     btn.disabled = true;
 
     axios.post('/pdf',{
-        sucursal:GlobalCodSucursal,
+        sucursal:cmbEmpresa.value,
         coddoc:coddoc,
         correlativo:correlativo,
         nit:nit,
@@ -1840,7 +1843,7 @@ function loadDetallePedido(coddoc,correlativo){
     
     return new Promise((resolve,reject)=>{
         axios.post('/ventas/loadpedido_edicion', {
-            sucursal:GlobalCodSucursal,
+            sucursal:cmbEmpresa.value,
             coddoc: coddoc,
             correlativo: correlativo,
             usuario:GlobalUsuario
@@ -1864,7 +1867,7 @@ function loadDetallePedido(coddoc,correlativo){
 function anular_pedido(coddoc,correlativo){
     return new Promise((resolve,reject)=>{
         axios.post('/ventas/anular_pedido', {
-            sucursal:GlobalCodSucursal,
+            sucursal:cmbEmpresa.value,
             coddoc: coddoc,
             correlativo: correlativo
         })
@@ -1905,7 +1908,7 @@ function fcn_delete_pedido(coddoc,correlativo,st,idBtn){
                             btn.disabled = true;
                             btn.innerHTML = '<i class="fal fa-trash fa-spin"></i>';
 
-                                delete_pedido(GlobalCodSucursal,coddoc,correlativo)
+                                delete_pedido(cmbEmpresa.value,coddoc,correlativo)
                                 .then(()=>{
                                     funciones.Aviso('Pedido Eliminado Exitosamente!!')
                                     tbl_lista_documentos();

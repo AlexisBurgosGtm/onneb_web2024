@@ -12,7 +12,7 @@ function getView(){
                 <div  class="card shadow p-2 card-rounded border-primary">
                     <div class="card-header text-center bg-white">
                         <div class="row" >
-                            <div id="scene" class="text-center">
+                            <div  id="scene" class="text-center">
                                 <img data-depth="1.0" id="imgLogo" src="./favicon.png" width="110" height="80" ondblclick="send_test()">                            
                             </div>    
                         </div>

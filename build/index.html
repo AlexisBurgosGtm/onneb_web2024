@@ -112,27 +112,12 @@
                      
                         <ul id="js-nav-menu" class="nav-menu hidden">
                            
-
                             <li>
-                                <a href="#" title="Mantenimientos" data-filter-tags="package info">
-                                    <i class="fal fa-tag"></i>
-                                    <span class="nav-link-text" data-i18n="nav.package_info">Mantenimiento</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="Navegar.mantenimientos_empleados()" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Empleados</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="Navegar.mantenimientos_productos()" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Productos</span>
-                                        </a>
-                                    </li>
-                                    
-                                </ul>
+                                <div id="sceneL">
+                                    <img data-depth="1.2" src="./favicon.png" width="70px" height="50px">
+                                </div>
                             </li>
-                            
+                            <!-- OPERACIONES -->
                             <li>
                                 <a href="#" title="Operaciones" data-filter-tags="utilities">
                                     <i class="fal fa-bolt"></i>
@@ -140,23 +125,24 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#" onclick="Navegar.pendiente()" title="Facturación" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">FACTURACIÓN</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pos()" title="Punto de Venta" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">PUNTO DE VENTA (POS)</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Compras" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">COMPRAS</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            
+
+                            <!-- ORDENES -->
                             <li>
                                 <a href="#" title="Ordenes" data-filter-tags="datatables datagrid">
                                     <i class="fal fa-shopping-cart"></i>
@@ -164,23 +150,53 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Cotizaciones" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Cotizaciones</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Orden de Soporte" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Orden de Soporte</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Orden de Trabajo" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Orden Trabajo (Taller)</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                           
+
+                            <!-- MANTENIMIENTOS -->
+                            <li>
+                                <a href="#" title="Mantenimientos" data-filter-tags="package info">
+                                    <i class="fal fa-tag"></i>
+                                    <span class="nav-link-text" data-i18n="nav.package_info">Mantenimiento</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="Navegar.mantenimientos_productos()" title="Catálogo de Productos" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Productos</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="Navegar.pendiente()" title="Clientes" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Clientes</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="Navegar.pendiente()" title="Empleados" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Empleados</span>
+                                        </a>
+                                    </li>
+                                   
+                                    
+                                </ul>
+                            </li>
+                            
+                            
+                            
+                           <!-- REPORTES -->
                             <li>
                                 <a href="#" title="Statistics" data-filter-tags="statistics chart graphs">
                                     <i class="fal fa-chart-pie"></i>
@@ -188,23 +204,49 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Dashboard" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Dashboard</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Reporte por Fechas" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Por Fechas</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Documentation" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentation</span>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Reporte por Vendedor" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Por Vendedor</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
 
+                            <!-- ARCHIVO -->
+                            <li>
+                                <a href="#" title="Statistics" data-filter-tags="statistics chart graphs">
+                                    <i class="fal fa-archive"></i>
+                                    <span class="nav-link-text" data-i18n="nav.statistics">Archivo</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Documentos" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentos</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"  onclick="Navegar.pendiente()" title="Bitácora" data-filter-tags="package info documentation">
+                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Bitacora</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- SALIR -->
+                            <li>
+                                <a href="#" onclick="Navegar.salir()" title="Salir" data-filter-tags="statistics chart graphs">
+                                    <i class="text-danger fal fa-power-off"></i>
+                                    <span class="text-danger nav-link-text" data-i18n="nav.statistics">Salir</span>
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     <!-- END PRIMARY NAVIGATION -->
@@ -216,8 +258,8 @@
                 <div class="page-content-wrapper">
                   
                     <div class="hidden-lg-up">
-                        <a href="#" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
-                            <i class="ni ni-menu"></i>
+                        <a href="#" class="header-btn btn-circle btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+                            <i class="fal fa-home"></i> <!--<i class="ni ni-menu"></i>-->
                         </a>
                     </div>
                     <!-- END Page Header -->

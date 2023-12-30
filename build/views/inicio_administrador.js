@@ -43,12 +43,23 @@ function getView(){
         },
         vista_menu:()=>{
             return `
-          
+            <hr><hr>
+            <div class="row">
+                <button class="btn btn-info btn-xl hand shadow col-12" onclick="Navegar.pos()">
+                    <i class="fal fa-shopping-cart"></i> Punto de Venta
+                </button>
+            </div>
+            <hr><hr>
+            <div class="row">
+                <button class="btn btn-info btn-xl hand shadow col-12" onclick="Navegar.mantenimientos_productos()">
+                    <i class="fal fa-box"></i> Catálogo de productos
+                </button>
+            </div>
             `
         },
         vista_tabla:()=>{
             return `
-            <img width="auto" height="auto" src="http://alexissoporte-001-site1.etempurl.com/fondo"></img>
+            <img width="800px" height="500px" src="http://alexissoporte-001-site1.etempurl.com/fondo"></img>
             `
         },
         vista_grafica:()=>{

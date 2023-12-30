@@ -152,10 +152,38 @@ router.post("/edit_producto", async(req,res)=>{
 
 router.post("/listado", async(req,res)=>{
    
+    const { token, sucursal, filtro, habilitado } = req.body;
+
+    let qry = `
+        SELECT TOP 50 PRODUCTOS.CODPROD, 
+            PRODUCTOS.DESPROD, PRODUCTOS.DESPROD2, PRODUCTOS.DESPROD3, 
+            PRODUCTOS.UXC, PRODUCTOS.COSTO, 
+            PRODUCTOS.CODMARCA, MARCAS.DESMARCA, 
+            PRODUCTOS.TIPOPROD, 
+            ISNULL(PRODUCTOS.LASTUPDATE,'2020-01-01') AS LASTUPDATE, 
+            PRODUCTOS.EXISTENCIA
+        FROM PRODUCTOS LEFT OUTER JOIN
+        MARCAS ON PRODUCTOS.CODMARCA = MARCAS.CODMARCA AND PRODUCTOS.EMPNIT = MARCAS.EMPNIT
+        WHERE (PRODUCTOS.EMPNIT = '${sucursal}')
+            AND (PRODUCTOS.CODPROD='${filtro}') 
+            AND (PRODUCTOS.HABILITADO='${habilitado}')
+            OR
+            (PRODUCTOS.EMPNIT = '${sucursal}')
+            AND (PRODUCTOS.DESPROD LIKE '%${filtro}%') 
+            AND (PRODUCTOS.HABILITADO='${habilitado}')
+        ORDER BY PRODUCTOS.CODPROD
+    `
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/BACKUP_listado", async(req,res)=>{
+   
     const { token, sucursal, habilitado } = req.body;
 
     let qry = `
-        SELECT PRODUCTOS.CODPROD, 
+        SELECT TOP 50 PRODUCTOS.CODPROD, 
             PRODUCTOS.DESPROD, PRODUCTOS.DESPROD2, PRODUCTOS.DESPROD3, 
             PRODUCTOS.UXC, PRODUCTOS.COSTO, 
             PRODUCTOS.CODMARCA, MARCAS.DESMARCA, 

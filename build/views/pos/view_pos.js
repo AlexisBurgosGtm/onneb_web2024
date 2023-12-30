@@ -234,10 +234,94 @@ function getView(){
         documento:()=>{
             return `
             <div class="row">
-                
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card card-rounded shadow border-primary p-4"  style="font-size:80%">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                    ${view.documento_card_cliente()}
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                    <div class="card card-rounded shadow col-12">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group text-left">
+                                        <label class="text-secondary">Vendedor</label>
+                                        <select class="form-control" id="cmbVendedor">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group text-right">
+                                        <label class="negrita text-secondary h4">Total a Pagar</label>
+                                        <h2 class="negrita text-danger" style="font-size:280%" id="lbPosCobroTotalPagar">Q 0.00</h2>
+                                    </div>         
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-factura').click()">
+                                        Crear Factura Contable
+                                    </button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-pedido').click()">
+                                        Crear Factura Interna
+                                    </button>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-cotizacion').click()">
+                                        Crear Cotización
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    
+                    ${view.documento_tipos_body()}
+                </div>
+            </div>
+
+            <button class="btn btn-secondary btn-xl btn-bottom-l btn-circle shadow hand" id="btnPosDocumentoAtras">
+                <i class="fal fa-arrow-left"></i>
+            </button>
+            `
+        },
+        documento_tipos_body:()=>{
+            return `
+                <div class="col-12 p-0">
+                    
+                    <div class="tab-content" id="">
+                        <div class="tab-pane fade show active" id="crear_factura" role="tabpanel" aria-labelledby="dias-tab">
+                            ${view.documento_card_factura()}
+                        </div>
+                        <div class="tab-pane fade" id="crear_pedido" role="tabpanel" aria-labelledby="clientes-tab">
+                          
+                        </div>
+                        <div class="tab-pane fade" id="crear_cotizacion" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.documento_card_cotizacion()}
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs table-border hidden" id="myTabHome2" role="tablist">
+                        <li class="nav-item negrita text-primary">
+                            <a class="nav-link active" id="tab-crear-factura" data-toggle="tab" href="#crear_factura" role="tab" aria-controls="profile" aria-selected="false">
+                                <i class="fal fa-list"></i></a>Factura Contable
+                        </li>
+                        <li class="nav-item negrita text-info">
+                            <a class="nav-link negrita" id="tab-crear-pedido" data-toggle="tab" href="#crear_pedido" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-edit"></i></a>Factura Interna
+                        </li> 
+                        <li class="nav-item negrita text-success">
+                            <a class="nav-link" id="tab-crear-cotizacion" data-toggle="tab" href="#crear_cotizacion" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-sync"></i></a>Cotización
+                        </li>                           
+                    </ul>
+                </div>
+            `
+        },
+        documento_card_cliente:()=>{
+            return `
+            <div class="card card-rounded shadow border-primary p-4"  style="font-size:80%">
+                <div class="card-body">
                             
                             <div class="form-group">
                                 <label class="negrita text-primary">NIT / DPI</label>
@@ -268,78 +352,28 @@ function getView(){
 
                         </div>
                     </div>
+            `
+        },
+        documento_card_factura:()=>{
+            return `
+            <div class="card card-rounded shadow col-12">
+                <div class="card-body">
+                    <input type="date" id="txtFecha">
+                    <select id="cmbCoddoc"></select>
+                    <input type="text" id="txtCorrelativo">
                 </div>
-
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="card card-rounded shadow border-primary p-4">
-                        <div class="card-body">
-                            
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label class="negrita h4">Total a Pagar</label>
-                                        <h1 class="negrita text-danger" style="font-size:280%" id="lbPosCobroTotalPagar">Q 0.00</h1>
-                                    </div>
-                                  
-                                </div>
-                                <br><br>
-                                
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Fecha</label>
-                                            <input type="date" class="form-control" id="txtFecha">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Vendedor</label>
-                                            <select class="form-control" id="cmbVendedor">
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <br><br>
-                              
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Serie Documento</label>
-                                            <div class="input-group">
-                                                <select class="form-control" id="cmbCoddoc">
-                                                </select>
-                                                <input type="text" class="form-control" id="txtCorrelativo">
-                                            </div>
-                                        </div>
-                                        <button class="btn form-control btn-xl btn-info hand shadow" id="btnGuardarPedido">
-                                            <i class="fal fa-save"></i> Crear Pedido (f8)
-                                        </button>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Serie Documento</label>
-                                            <div class="input-group">
-                                                <select class="form-control" id="cmbCoddocCot">
-                                                </select>
-                                                <input type="text" class="form-control" id="txtCorrelativoCot">
-                                            </div>
-                                        </div>
-                                        <button class="btn form-control btn-xl btn-warning hand shadow" id="btnGuardarCotizacion">
-                                            <i class="fal fa-save"></i> Crear Cotización (f9)
-                                        </button>
-                                    </div>
-                                    
-                                </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
-            <button class="btn btn-secondary btn-xl btn-bottom-l btn-circle shadow hand" id="btnPosDocumentoAtras">
-                <i class="fal fa-arrow-left"></i>
-            </button>
+            `
+        },
+        documento_card_cotizacion:()=>{
+            return `
+            <div class="card card-rounded shadow col-12">
+                <div class="card-body">
+                    <input type="date" id="txtFecha">
+                    <select id="cmbCoddocCot"></select>
+                    <input type="text" id="txtCorrelativoCot">
+                </div>
+            </div>
             `
         },
         modal_lista_clientes:()=>{
@@ -442,7 +476,7 @@ function addListeners(){
 
 
     document.getElementById('txtFecha').value = funciones.getFecha();
-    document.getElementById('txtFechaDoc').value = funciones.getFecha();
+    //document.getElementById('txtFechaDoc').value = funciones.getFecha();
 
    
 
@@ -780,68 +814,6 @@ function listener_vista_cobro(){
         tbl_clientes(document.getElementById('txtBuscarClie').value||'');
     });
 
-
-
-
-    //finalización de pedido
-    document.getElementById('btnGuardarPedido').addEventListener('click',()=>{
-
-        let codcliente = document.getElementById('txtPosCobroNitclie').value || ''; //GlobalSelectedCodCliente;
-        if(codcliente==''){
-            funciones.Confirmacion('¿Desea crear este nuevo cliente?')
-            .then((value)=>{
-                if(value==true){
-
-                        let nit = document.getElementById('txtPosCobroNit').value;
-                        document.getElementById('txtPosCobroNitclie').value = nit;
-                        let nombre = document.getElementById('txtPosCobroNombre').value;
-                        let direccion = document.getElementById('txtPosCobroDireccion').value || "CIUDAD";
-
-                        insert_new_cliente(nit,nit,nombre,direccion)
-                        .then(()=>{
-                            finalizar_pedido('PED');
-                        })  
-                        .catch(()=>{
-                            funciones.AvisoError('No se pudo crear el nuevo cliente, revise los datos e inténtelo de nuevo')
-                        })                    
-
-                }
-            })
-        }else{
-            finalizar_pedido('PED');
-        }
-
-        
-    });
-
-    document.getElementById('btnGuardarCotizacion').addEventListener('click',()=>{
-        let codcliente = document.getElementById('txtPosCobroNitclie').value || ''; //GlobalSelectedCodCliente;
-        if(codcliente==''){
-            funciones.Confirmacion('¿Desea crear este nuevo cliente?')
-            .then((value)=>{
-                if(value==true){
-
-                        let nit = document.getElementById('txtPosCobroNit').value;
-                        document.getElementById('txtPosCobroNitclie').value = nit;
-                        let nombre = document.getElementById('txtPosCobroNombre').value;
-                        let direccion = document.getElementById('txtPosCobroDireccion').value || "CIUDAD";
-
-                        insert_new_cliente(nit,nit,nombre,direccion)
-                        .then(()=>{
-                            finalizar_pedido('COT');
-                        })  
-                        .catch(()=>{
-                            funciones.AvisoError('No se pudo crear el nuevo cliente, revise los datos e inténtelo de nuevo');
-                            document.getElementById('txtPosCobroNitclie').value = '';
-                        })                    
-
-                }
-            })
-        }else{
-            finalizar_pedido('COT');
-        }
-
-    });
 
 
 

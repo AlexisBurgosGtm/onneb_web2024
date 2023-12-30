@@ -13,6 +13,15 @@ function get_conf_token(token){
 				pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
 			};
 			break;
+		case 'SACOR':
+			config = {
+				user: 'db_a6478c_sacor_admin',
+				password: 'razors1805',
+				server: 'sql5052.site4now.net',
+				database: 'db_a6478c_sacor',
+				pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+			};
+			break;
 		case 'ONNE':
 			config = {
 				user: 'db_a6478c_onneweb_admin',
@@ -21,7 +30,7 @@ function get_conf_token(token){
 				database: 'db_a6478c_onneweb',
 				pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
 			};
-			break;
+			break;	
 		case 'PROXY':
 				config = {
 					user: 'db_a6478c_onneweb_admin',

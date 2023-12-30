@@ -1,5 +1,5 @@
 ﻿
-let versionapp = "Modif: 05.11.2023"
+let versionapp = "Modif: 29.12.2023"
 
 var sceneL = document.getElementById('sceneL');
 var parallaxInstanceL = new Parallax(sceneL);

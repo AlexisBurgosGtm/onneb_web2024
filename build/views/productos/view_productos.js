@@ -78,7 +78,7 @@ function getView(){
 
                     <div class="form-group">
                         <label>Búsqueda de productos</label>
-                        <input type="text" class="form-control border-primary negrita text-primary" oninput="funciones.FiltrarTabla('tblProductos','txtBuscar')" placeholder="Escriba para filtrar..." id="txtBuscar">
+                        <input type="text" class="form-control border-primary negrita text-primary" placeholder="Escriba para filtrar..." id="txtBuscar">
                     </div>
                     <table class="table table-responsive h-full" id="tblProductos">
                         <thead class="bg-primary text-white f-med">
@@ -821,7 +821,7 @@ function addListeners(){
         if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
         txtCodprod.focus();
 
-
+        
 
      
         let txtCodprod2 = document.getElementById('txtCodprod2');
@@ -935,7 +935,13 @@ function listeners_listado(){
         get_tbl_precios();
     });
 
-    
+    let txtBuscar = document.getElementById('txtBuscar');
+    txtBuscar.addEventListener('keyup',(e)=>{
+        if(e.keyCode == 13){
+            get_tbl_productos();
+        }
+    })
+
     get_tbl_productos();
 
 
@@ -1906,7 +1912,7 @@ function delete_lista_temp_precios(){
 
 };
 
-function data_productos_listado(){
+function data_productos_listado(filtro){
     
     
     let habilitado = document.getElementById('cmbTipoLista').value;
@@ -1917,7 +1923,8 @@ function data_productos_listado(){
             {
                 sucursal:cmbEmpresa.value,
                 token:TOKEN,
-                habilitado:habilitado
+                habilitado:habilitado,
+                filtro:filtro
             })
         .then((response) => {
             if(response.status.toString()=='200'){
@@ -1939,6 +1946,7 @@ function data_productos_listado(){
 
 function get_tbl_productos(){
 
+    let filtro = document.getElementById('txtBuscar').value || '';
 
     let container = document.getElementById('tblDataProductos');
     container.innerHTML = GlobalLoader;
@@ -1949,7 +1957,7 @@ function get_tbl_productos(){
     let str = '';
 
 
-    data_productos_listado()
+    data_productos_listado(filtro)
     .then((data)=>{
         
         let conteo = 0;

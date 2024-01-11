@@ -51,9 +51,8 @@ let Navegar = {
             initView();
         })
     },
-    app_autoventa:()=>{
-        if(Number(GlobalNivelUsuario)==0){return;}
-        funciones.loadScript('../views/apps/app_autoventa.js','root')
+    tasks:()=>{
+        funciones.loadScript('../views/tasks/tasks.js','root')
         .then(async()=>{
             initView();
         })

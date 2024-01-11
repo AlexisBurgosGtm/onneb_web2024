@@ -45,13 +45,13 @@ function getView(){
             return `
             <hr><hr>
             <div class="row">
-                <button class="btn btn-info btn-xl hand shadow col-12" onclick="Navegar.pos()">
+                <button class="btn btn-primary btn-xl hand shadow col-12" onclick="Navegar.pos()">
                     <i class="fal fa-shopping-cart"></i> Punto de Venta
                 </button>
             </div>
             <hr><hr>
             <div class="row">
-                <button class="btn btn-info btn-xl hand shadow col-12" onclick="Navegar.mantenimientos_productos()">
+                <button class="btn btn-primary btn-xl hand shadow col-12" onclick="Navegar.mantenimientos_productos()">
                     <i class="fal fa-box"></i> Catálogo de productos
                 </button>
             </div>

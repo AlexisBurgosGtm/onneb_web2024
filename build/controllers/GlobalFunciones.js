@@ -25,6 +25,31 @@ let GF = {
             });
         })   
     
+    },
+    get_data_empleados_tipo:(tipo)=>{
+        return new Promise((resolve,reject)=>{
+    
+            axios.post(GlobalUrlCalls + '/empleados/empleados_tipo',
+                {
+                    sucursal:cmbEmpresa.value,
+                    token:TOKEN,
+                    tipo:tipo
+                })
+            .then((response) => {
+                if(response.status.toString()=='200'){
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }            
+                }else{
+                    reject();
+                }             
+            }, (error) => {
+                reject();
+            });
+        })     
     }
 
 };

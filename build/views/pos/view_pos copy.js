@@ -4,13 +4,13 @@ function getView(){
         body:()=>{
             return `
                 <div class="row">
-                    <div class="col-2 text-left">
-                            <img src="./favicon.png" width="50px" height="50px">
+                    <div class="col-1 text-left">
+                            <img src="./favicon.png" width="80px" height="60px">
                     </div>
-                    <div class="card bg-primary card-rounded shadow col-10 p-2">
+                    <div class="card bg-primary card-rounded shadow col-11 p-2">
                         
                             <div class="row">
-                                <div class="col-4 text-left">   
+                                <div class="col-4 text-left">
                                     <label class="text-white negrita h5" style="font-size:180%">Punto de Venta</label>
                                 </div>
                                 <div class="col-4 text-left">
@@ -27,14 +27,14 @@ function getView(){
                 <div class="col-12 p-0">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="pedido" role="tabpanel" aria-labelledby="dias-tab">
-                            ${view.pedido() + view.modal_cantidad() + view.modal_editar_cantidad() + view.modal_lista_documentos() }
-                        </div> 
+                            ${view.pedido() + view.modal_cantidad() + view.modal_editar_cantidad() + view.modal_lista_documentos()}
+                        </div>
                         <div class="tab-pane fade" id="precios" role="tabpanel" aria-labelledby="clientes-tab">
                           
                         </div>
 
                         <div class="tab-pane fade" id="documento" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.documento() + view.modal_lista_clientes() + view.modal_cobro_factura_fel() + view.modal_cobro_factura_envio() + view.modal_cobro_cotizacion()}
+                            ${view.documento() + view.modal_lista_clientes()}
                         </div>
                     </div>
 
@@ -59,21 +59,25 @@ function getView(){
             return `
             <div class="row">
 
-                <div class="col-12">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" list="lista_productos" autocomplete="off" class="form-control border-primary negrita col-12" placeholder='Escriba para buscar...' id="txtPosCodprod">
-                            <button class="btn btn-primary hand" id="btnBuscarProd">
-                                <i class="fal fa-search"></i>
-                            </button>
-                            <datalist width="100%" id="lista_productos" class="col-12">
-                        </div>
-                    </div>
-                   
-                </datalist>
-                <hr class="solid">
-
+                    <input type="search" autocomplete="off" class="form-control border-primary negrita" placeholder='Escriba para buscar...' id="txtPosCodprod">
+                    
+                    <div class="table-responsive col-12 p-2">
+                        <table class="table table-responsive table-hover table-border col-12 h-fulls" id="tblProductosBuscar">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <td>Producto</td>
+                                    <td>Medida</td>
+                                    <td>Precio Un.</td>
+                                    <td>Existencia</td>
+                                </tr>
+                            </thead>
+                            <tbody  id="tblPosProductosCategoria"></tbody>
+                        </table>
+                    </div>  
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                     <div class="card card-rounded shadow border-primary col-12 p-2">
                         <div class="card-body">
                             
@@ -128,8 +132,6 @@ function getView(){
                         </div>
             
                         <div class="modal-body p-4">
-                            <div class="" id="container_precio">
-                            </div>
                             <div class="row">
                                 <div class="col-4 text-center">
                                     <img src="./favicon.png" width="120px" height="100px">
@@ -153,7 +155,7 @@ function getView(){
                             </div>
                                 
                             <br>
-
+        
                             <div class="row">
                                     <div class="col-5 text-right">
                                         <button class="btn btn-secondary btn-xl btn-circle hand shadow waves-effect waves-themed" data-dismiss="modal" id="">
@@ -239,52 +241,81 @@ function getView(){
                 <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
                     <div class="card card-rounded shadow col-12">
                         <div class="card-body">
-
                             <div class="row">
-                                <div class="form-group">
-                                    <label class="negrita text-secondary h4">Total a Pagar</label>
-                                    <h2 class="negrita text-danger" style="font-size:280%" id="lbPosCobroTotalPagar">Q 0.00</h2>
-                                </div>  
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group text-left">
-                                    <label class="text-secondary">Vendedor</label>
-                                    <select class="form-control" id="cmbVendedor">
-                                    </select>
+                                <div class="col-6">
+                                    <div class="form-group text-left">
+                                        <label class="text-secondary">Vendedor</label>
+                                        <select class="form-control" id="cmbVendedor">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group text-right">
+                                        <label class="negrita text-secondary h4">Total a Pagar</label>
+                                        <h2 class="negrita text-danger" style="font-size:280%" id="lbPosCobroTotalPagar">Q 0.00</h2>
+                                    </div>         
                                 </div>
                             </div>
-                            
-                            <hr class="solid">
-                            <hr class="solid">
-
                             <div class="row">
                                 <div class="col-4">
-                                    <button class="btn btn-outline-info shadow hand col-12" id="btnCobrarFel">
-                                        Crear Factura Contable (F7)
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-factura').click()">
+                                        Crear Factura Contable
                                     </button>
                                 </div>
                                 <div class="col-4">
-                                    <button class="btn btn-outline-primary shadow hand col-12" id="btnCobrarFactura">
-                                        Crear Factura Interna (F8)
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-pedido').click()">
+                                        Crear Factura Interna
                                     </button>
                                 </div>
                                 <div class="col-4">
-                                    <button class="btn btn-outline-secondary shadow hand col-12" id="btnCobrarCotizacion">
-                                        Crear       Cotización (F9)
+                                    <button class="btn btn-outline-primary shadow hand col-12" onclick="document.getElementById('tab-crear-cotizacion').click()">
+                                        Crear Cotización
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <hr>
-                 
+                    
+                    ${view.documento_tipos_body()}
                 </div>
             </div>
 
             <button class="btn btn-secondary btn-xl btn-bottom-l btn-circle shadow hand" id="btnPosDocumentoAtras">
                 <i class="fal fa-arrow-left"></i>
             </button>
+            `
+        },
+        documento_tipos_body:()=>{
+            return `
+                <div class="col-12 p-0">
+                    
+                    <div class="tab-content" id="">
+                        <div class="tab-pane fade show active" id="crear_factura" role="tabpanel" aria-labelledby="dias-tab">
+                            ${view.documento_card_factura()}
+                        </div>
+                        <div class="tab-pane fade" id="crear_pedido" role="tabpanel" aria-labelledby="clientes-tab">
+                          
+                        </div>
+                        <div class="tab-pane fade" id="crear_cotizacion" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.documento_card_cotizacion()}
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs table-border hidden" id="myTabHome2" role="tablist">
+                        <li class="nav-item negrita text-primary">
+                            <a class="nav-link active" id="tab-crear-factura" data-toggle="tab" href="#crear_factura" role="tab" aria-controls="profile" aria-selected="false">
+                                <i class="fal fa-list"></i></a>Factura Contable
+                        </li>
+                        <li class="nav-item negrita text-info">
+                            <a class="nav-link negrita" id="tab-crear-pedido" data-toggle="tab" href="#crear_pedido" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-edit"></i></a>Factura Interna
+                        </li> 
+                        <li class="nav-item negrita text-success">
+                            <a class="nav-link" id="tab-crear-cotizacion" data-toggle="tab" href="#crear_cotizacion" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-sync"></i></a>Cotización
+                        </li>                           
+                    </ul>
+                </div>
             `
         },
         documento_card_cliente:()=>{
@@ -321,6 +352,28 @@ function getView(){
 
                         </div>
                     </div>
+            `
+        },
+        documento_card_factura:()=>{
+            return `
+            <div class="card card-rounded shadow col-12">
+                <div class="card-body">
+                    <input type="date" id="txtFecha">
+                    <select id="cmbCoddoc"></select>
+                    <input type="text" id="txtCorrelativo">
+                </div>
+            </div>
+            `
+        },
+        documento_card_cotizacion:()=>{
+            return `
+            <div class="card card-rounded shadow col-12">
+                <div class="card-body">
+                    <input type="date" id="txtFecha">
+                    <select id="cmbCoddocCot"></select>
+                    <input type="text" id="txtCorrelativoCot">
+                </div>
+            </div>
             `
         },
         modal_lista_clientes:()=>{
@@ -394,50 +447,7 @@ function getView(){
                     </div>
                 </div>
             </div>`
-        },
-        modal_cobro_factura_fel:()=>{
-            return `
-            <div class="modal fade" id="modal_cobro_fel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-right" role="document">
-                    <div class="modal-content">
-                    
-                        <div class="modal-body p-4">
-                            <input type="date" id="txtFecha">
-                            <select id="cmbCoddoc"></select>
-                            <input type="text" id="txtCorrelativo">
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        },
-        modal_cobro_factura_envio:()=>{
-            return `
-            <div class="modal fade" id="modal_cobro_factura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-right" role="document">
-                    <div class="modal-content">
-                    
-                        <div class="modal-body p-4">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        },
-        modal_cobro_cotizacion:()=>{
-            return `
-            <div class="modal fade" id="modal_cobro_cotizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-right" role="document">
-                    <div class="modal-content">
-                    
-                        <div class="modal-body p-4">
-                            <input type="date" id="txtFecha">
-                            <select id="cmbCoddocCot"></select>
-                            <input type="text" id="txtCorrelativoCot">
-                        </div>
-                    </div>
-                </div>
-            </div>`
-        },
+        }
     }
 
     root.innerHTML = view.body();
@@ -526,21 +536,21 @@ function addListeners(){
     });
 
     //carga el código vendedor
-    get_vendedores();
+    get_vendedores()
+    .then((data)=>{
+        let container = document.getElementById('cmbVendedor');
+        let str = '';
+        data.recordset.map((rows)=>{
+            str += `<option value="${rows.CODIGO}">${rows.NOMBRE}</option>`
+        })            
+        container.innerHTML = str;
+        container.value = GlobalCodUsuario;
+    })
+    .catch(()=>{
+        funciones.AvisoError('No se cargó la lista de vendedores');
+    })
     
-    document.getElementById('btnCobrarFel').addEventListener("click",()=>{
-        $("#modal_cobro_fel").modal('show');
-    });
-
-    document.getElementById('btnCobrarFactura').addEventListener("click",()=>{
-        $("#modal_cobro_factura").modal('show');
-    });
-
-    document.getElementById('btnCobrarCotizacion').addEventListener("click",()=>{
-        $("#modal_cobro_cotizacion").modal('show');
-    });
   
-    document.getElementById('txtPosCodprod').focus();
 
 };
 
@@ -548,7 +558,6 @@ function listener_teclado(){
     //evitando errores
     //Mousetrap.bind('f5', function(e) { e.preventDefault(); });
     Mousetrap.bind('f7', function(e) { e.preventDefault(); });
-
     Mousetrap.bind('f10', function(e) { e.preventDefault(); });
     Mousetrap.bind('f11', function(e) { e.preventDefault(); });
     Mousetrap.bind('f12', function(e) { e.preventDefault(); });
@@ -572,20 +581,16 @@ function listener_teclado(){
         document.getElementById('btnBuscarCliente').click();
 
     });
+    Mousetrap.bind('f8', function() { 
+        document.getElementById('btnPosCobro').click();
+        document.getElementById('btnGuardarPedido').click(); 
 
-    Mousetrap.bind('f7', function(e) {
-        e.preventDefault(); 
-        document.getElementById('btnCobrarFel').click();
     });
 
-    Mousetrap.bind('f8', function(e) {
-        e.preventDefault(); 
-        document.getElementById('btnCobrarFactura').click();
-    });
-
-    Mousetrap.bind('f9', function(e) {
-        e.preventDefault(); 
-        document.getElementById('btnCobrarCotizacion').click(); 
+    Mousetrap.bind('f9', function() { 
+        document.getElementById('btnPosCobro').click();
+        document.getElementById('btnGuardarCotizacion').click();
+       
     });
 
 
@@ -593,23 +598,6 @@ function listener_teclado(){
 
 function listener_vista_pedido(){
 
-
-    const opts = document.getElementById('lista_productos').childNodes;
-    const dinput = document.getElementById('txtPosCodprod');
-    let eventSource = null;
-    let value = '';
-
-    dinput.addEventListener('keydown', (e) => {
-    eventSource = e.key ? 'input' : 'list';
-    });
-    dinput.addEventListener('input', (e) => {
-        value = e.target.value;
-        if (eventSource === 'list') {
-            get_producto(value);
-        }
-    });
-
-   
 
     let txtPosCodprod = document.getElementById('txtPosCodprod');
     txtPosCodprod.addEventListener('keyup',(e)=>{
@@ -621,24 +609,12 @@ function listener_vista_pedido(){
         if(filtro==''){return;}
 
         if (e.code === 'Enter') { 
-            document.getElementById('btnBuscarProd').click();
-            //get_buscar_producto(filtro);
+            get_buscar_producto(filtro);
+        };
+        if (e.keyCode === 13 && !e.shiftKey) {
+            get_buscar_producto(filtro);
         };
 
-        //if (e.keyCode === 13 && !e.shiftKey) {
-            //get_buscar_producto(filtro);
-        //};
-
-    });
-
-    document.getElementById('btnBuscarProd').addEventListener('click',()=>{
-        txtPosCodprod.value = txtPosCodprod.value.toUpperCase();
-        let filtro = txtPosCodprod.value || '';
-
-        if(filtro==''){return;}
-
-        get_buscar_producto(filtro);
-        
     });
     
 
@@ -755,10 +731,6 @@ function listener_vista_pedido(){
             document.getElementById('btnMCGuardarE').focus();
         };  
     });
-
-
-
-   
     
 };
 
@@ -902,21 +874,6 @@ function initView(){
 
 };
 
-function get_vendedores(){
-    GF.get_data_empleados_tipo(3)
-    .then((data)=>{
-        let str = '';
-        data.recordset.map((r)=>{
-            str += `<option value="${r.CODEMPLEADO}">${r.NOMEMPLEADO}</option>`
-        });
-        document.getElementById('cmbVendedor').innerHTML = str;
-    })
-    .catch(()=>{
-        funciones.AvisoError('No se cargaron los vendedores');
-        document.getElementById('cmbVendedor').innerHTML ='<option value="1">SIN VENDEDOR</option>';
-    })
-}
-
 function tbl_clientes(filtro){
    
     if(filtro==''){
@@ -1042,58 +999,6 @@ function CalcularTotalPrecioEditar(){
 
 function get_buscar_producto(filtro){
 
-    let container = document.getElementById('lista_productos');
-    container.innerHTML = ''; //GlobalLoader
-
-    document.getElementById('btnBuscarProd').innerHTML = '<i class="fal fa-sync fa-spin"></i>';
-    document.getElementById('btnBuscarProd').disabled=true;
-
-    let str = '';
-
-    let idf = 'first-element'; let i =0;
-
-    axios.post('/pos/productos_filtro', {
-        sucursal: cmbEmpresa.value,
-        token:TOKEN,
-        filtro:filtro
-    })
-    .then((response) => {        
-        if(response=='error'){
-            funciones.AvisoError('Error en la solicitud');
-            container.innerHTML = 'No day datos....';
-        }else{
-            const data = response.data.recordset;
-            data.map((r)=>{
-                if(Number(i)==0){}else{idf=""};
-                let strClassExist = 'text-success';
-                if(Number(r.EXISTENCIA)<0){strClassExist="text-danger"};
-                str += `
-                <option width="100%"
-                    value="${r.CODPROD} // ${funciones.limpiarTexto(r.DESPROD)} // ${r.CODMEDIDA}">
-                    ${r.CODMEDIDA} (${r.EQUIVALE}) P:${funciones.setMoneda(r.PRECIO,'Q')} E: ${r.EXISTENCIA}
-                </option>
-                `
-            })
-            container.innerHTML = str;
-            
-            document.getElementById('btnBuscarProd').innerHTML = '<i class="fal fa-search"></i>';
-            document.getElementById('btnBuscarProd').disabled=false;
-
-            //getMoveTable();
-        }
-    }, (error) => {
-        funciones.AvisoError('Error en la solicitud');
-        container.innerHTML = 'No day datos....';
-        document.getElementById('btnBuscarProd').innerHTML = '<i class="fal fa-search"></i>';
-        document.getElementById('btnBuscarProd').disabled=false;
-    });
-
-
-
-};
-
-function BACKUP_get_buscar_producto(filtro){
-
     let container = document.getElementById('tblPosProductosCategoria');
     container.innerHTML = GlobalLoader;
 
@@ -1117,8 +1022,7 @@ function BACKUP_get_buscar_producto(filtro){
                 let strClassExist = 'text-success';
                 if(Number(r.EXISTENCIA)<0){strClassExist="text-danger"};
                 str += `
-                <tr id="${idf}" class="hand border-secondary border-top-0 border-left-0 border-right-0 border-bottom-secondary" 
-                onclick="get_producto('${r.CODPROD}','${funciones.limpiarTexto(r.DESPROD)}','${r.CODMEDIDA}','${r.EQUIVALE}','${r.COSTO}','${r.PRECIO}')">
+                <tr id="${idf}" class="hand border-secondary border-top-0 border-left-0 border-right-0 border-bottom-secondary" onclick="get_producto('${r.CODPROD}','${funciones.limpiarTexto(r.DESPROD)}','${r.CODMEDIDA}','${r.EQUIVALE}','${r.COSTO}','${r.PRECIO}')">
                     <td>
                         ${funciones.limpiarTexto(r.DESPROD)}
                         <br>
@@ -1151,9 +1055,6 @@ function BACKUP_get_buscar_producto(filtro){
 
 
 };
-
-
-
 
 
 function getMoveTable(){
@@ -1272,94 +1173,7 @@ function get_tbl_productos_clasificacion(codigo){
 
 };
 
-function get_producto(producto){
-
-    $("#modal_cantidad").modal('show');
- 
-    const datos_producto = producto.split(" // ");
-   
-    
-    let codprod = datos_producto[0].replace("'","");
-    let desprod = datos_producto[1].replace("'","");
-    let codmedida = datos_producto[2].replace("'","");
-
-    let container = document.getElementById('container_precio');
-    container.innerHTML = GlobalLoader;
-
-    document.getElementById('txtMCCantidad').value = '';
-    document.getElementById('txtMCPrecio').value = 0;
-    document.getElementById('btnMCGuardar').disabled = true;
-
-    CalcularTotalPrecio();
-
-    get_datos_precio(codprod,codmedida)
-    .then((data)=>{
-        let datos = data.recordset;
-
-            let equivale = Number(datos[0].EQUIVALE);
-            let costo = Number(datos[0].COSTO);
-            let precio = Number(datos[0].PRECIO);
-
-            Selected_codprod = codprod;
-            Selected_desprod = desprod;
-            Selected_codmedida = codmedida;
-            Selected_equivale = Number(equivale);
-            Selected_costo = Number(costo);
-            Selected_precio = Number(precio);
-
-            document.getElementById('lbCantidadDesprod').innerText = `${desprod} (${codmedida} - Eq: ${equivale})`;
-
-            document.getElementById('txtMCCantidad').value = '';
-            document.getElementById('txtMCPrecio').value = precio;
-
-            CalcularTotalPrecio();
-
-            document.getElementById('txtPosCodprod').value = '';
-
-            
-            container.innerHTML = '';
-
-            document.getElementById('btnMCGuardar').disabled = false;
-
-            document.getElementById('txtMCCantidad').focus();
-    })
-    .catch(()=>{
-        container.innerHTML = '';
-        document.getElementById('btnMCGuardar').disabled = false;
-        funciones.AvisoError('No se pudo obtener los datos del producto')
-    })
-
-    
-    
-};
-
-function get_datos_precio(codprod,codmedida){
-
-    return new Promise((resolve,reject)=>{
-
-        axios.post('/pos/productos_precio', {
-            sucursal: cmbEmpresa.value,
-            token:TOKEN,
-            codprod:codprod,
-            codmedida:codmedida
-        })
-        .then((response) => {
-            if(response=='error'){
-                funciones.AvisoError('Error en la solicitud');
-            }else{
-                const data = response.data;
-                resolve(data);
-            }
-        }, (error) => {
-            funciones.AvisoError('Error en la solicitud');
-        });
-
-    })
-
-};
-
-
-function BACKUP_get_producto(codprod,desprod,codmedida,equivale,costo,precio){
+function get_producto(codprod,desprod,codmedida,equivale,costo,precio){
 
     $("#modal_cantidad").modal('show');
 
@@ -1381,7 +1195,6 @@ function BACKUP_get_producto(codprod,desprod,codmedida,equivale,costo,precio){
     document.getElementById('txtMCCantidad').focus();
     
 };
-
 
 function insert_producto_pedido(codprod,desprod,codmedida,equivale,costo,precio,cantidad){
     
@@ -1560,7 +1373,20 @@ function get_correlativo_coddoc(coddoc){
     })
 };
 
-
+function get_vendedores(){
+    
+        return new Promise((resolve, reject) => {
+            axios.post('/empleados/vendedores', {sucursal:cmbEmpresa.value})
+            .then((response) => {
+                const data = response.data;        
+                
+               resolve(data); 
+            }, (error) => {
+                reject();
+            });
+        })
+        
+};
 
 function finalizar_pedido(tipo){
 

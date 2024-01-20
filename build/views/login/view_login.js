@@ -9,7 +9,7 @@ function getView(){
 
             <div class="col-md-6 col-sm-12 col-lg-6 col-lx-6">
    
-                <div  class="card shadow p-2 card-rounded border-primary">
+                <div  class="card shadow p-2 card-rounded border-personal">
                     <div class="card-header text-center bg-white">
                         <div class="row" >
                             <div  id="scene" class="text-center">
@@ -21,7 +21,7 @@ function getView(){
                         <div class="" id="frmLogin" autocomplete="off">
                            
                             <div class="form-group">
-                                <label class="negrita text-primary">Usuario:</label>
+                                <label class="negrita text-personal">Usuario:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -32,7 +32,7 @@ function getView(){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="negrita text-primary">Clave:</label>
+                                <label class="negrita text-personal">Clave:</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -48,7 +48,7 @@ function getView(){
                                     <small data-depth="0.8" class="text-secondary negrita">${versionapp}</small>
                                 </div>
                                 <div class="col-6" align="right">
-                                    <button class="btn btn-primary btn-xl shadow btn-circle" id="btnIniciar">
+                                    <button class="btn btn-personal btn-xl shadow btn-circle" id="btnIniciar">
                                         <i class="fal fa-unlock"></i>  
                                     </button>
                                 </div>
@@ -75,8 +75,6 @@ function getView(){
 
 function addListeners(){
   
-
-        navmenu.style = "visibility:hidden";
 
         TOKEN = '';
         GlobalNivelUsuario = 0;
@@ -112,7 +110,6 @@ function addListeners(){
                 });
                 cmbEmpresa.innerHTML = str;
 
-                navmenu.style = "visibility:visible";
                 
                 Navegar.inicio();
                 
@@ -135,7 +132,7 @@ function addListeners(){
         var parallaxInstance2 = new Parallax(scene2);
 
 
-        efecto_nieve();
+        //efecto_nieve();
 
 };
 

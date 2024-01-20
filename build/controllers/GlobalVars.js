@@ -41,6 +41,7 @@ let GlobalLoader = `
 let GlobalSelected_Codprod = '';
 let GlobalSelected_Desprod = '';
 let GlobalSelected_Costo = 0;
+let GlobalSelected_Status = '';
 
 
 

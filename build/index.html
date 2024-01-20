@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>
-           Onne Business
+           B STORE
         </title>
         <meta name="description" content="Blank">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +27,7 @@
         <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
         <link rel="stylesheet" media="screen, print" href="css/.../styles.css">
         <link rel="stylesheet" media="screen, print" href="./css/btn.css">
+        <link rel="stylesheet" media="screen, print" href="./css/custom_theme.css">
 
         <link rel="stylesheet" href="./libs/noty/noty.min.css">
         <link rel="stylesheet" href="./libs/animate.min.css">
@@ -34,7 +35,7 @@
         
         
 	<!-- service worker -->
-	<meta name="application-name" content="Onne Business" />
+	<meta name="application-name" content="B STORE" />
 	<meta name="theme-color" content="#ffffff">
     <link rel="manifest" href="manifest.json">
 
@@ -106,168 +107,11 @@
         <div class="page-wrapper">
             <div class="page-inner">
                 <!-- BEGIN Left Aside -->
-                <aside class="page-sidebar">
-                  
-                    <!-- BEGIN PRIMARY NAVIGATION -->
-                    <nav id="js-primary-nav" class="primary-nav" role="navigation">
-                     
-                        <ul id="js-nav-menu" class="nav-menu hidden">
-                           
-                            <li>
-                                <div id="sceneL">
-                                    <img data-depth="1.2" src="./favicon.png" width="70px" height="50px">
-                                </div>
-                            </li>
-                            <!-- OPERACIONES -->
-                            <li>
-                                <a href="#" title="Operaciones" data-filter-tags="utilities">
-                                    <i class="fal fa-bolt"></i>
-                                    <span class="nav-link-text" data-i18n="nav.utilities">Operaciones</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="Navegar.pendiente()" title="Facturación" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">FACTURACIÓN</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pos()" title="Punto de Venta" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">PUNTO DE VENTA (POS)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Compras" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">COMPRAS</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.tasks()" title="Eventos" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">TAREAS/CALENDARIO</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <!-- ORDENES -->
-                            <li>
-                                <a href="#" title="Ordenes" data-filter-tags="datatables datagrid">
-                                    <i class="fal fa-shopping-cart"></i>
-                                    <span class="nav-link-text" data-i18n="nav.datatables">Ordenes</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Cotizaciones" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Cotizaciones</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Orden de Soporte" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Orden de Soporte</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Orden de Trabajo" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Orden Trabajo (Taller)</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <!-- MANTENIMIENTOS -->
-                            <li>
-                                <a href="#" title="Mantenimientos" data-filter-tags="package info">
-                                    <i class="fal fa-tag"></i>
-                                    <span class="nav-link-text" data-i18n="nav.package_info">Mantenimiento</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="Navegar.mantenimientos_productos()" title="Catálogo de Productos" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Productos</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="Navegar.pendiente()" title="Clientes" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Clientes</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="Navegar.pendiente()" title="Empleados" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Empleados</span>
-                                        </a>
-                                    </li>
-                                   
-                                    
-                                </ul>
-                            </li>
-                            
-                            
-                            
-                           <!-- REPORTES -->
-                            <li>
-                                <a href="#" title="Statistics" data-filter-tags="statistics chart graphs">
-                                    <i class="fal fa-chart-pie"></i>
-                                    <span class="nav-link-text" data-i18n="nav.statistics">Reportes</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Dashboard" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Dashboard</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Reporte por Fechas" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Por Fechas</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Reporte por Vendedor" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Por Vendedor</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <!-- ARCHIVO -->
-                            <li>
-                                <a href="#" title="Statistics" data-filter-tags="statistics chart graphs">
-                                    <i class="fal fa-archive"></i>
-                                    <span class="nav-link-text" data-i18n="nav.statistics">Archivo</span>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Documentos" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Documentos</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#"  onclick="Navegar.pendiente()" title="Bitácora" data-filter-tags="package info documentation">
-                                            <span class="nav-link-text" data-i18n="nav.package_info_documentation">Bitacora</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- SALIR -->
-                            <li>
-                                <a href="#" onclick="Navegar.salir()" title="Salir" data-filter-tags="statistics chart graphs">
-                                    <i class="text-danger fal fa-power-off"></i>
-                                    <span class="text-danger nav-link-text" data-i18n="nav.statistics">Salir</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- END PRIMARY NAVIGATION -->
-                  
-                </aside>
-               
-
+                
                 <!-- END Left Aside -->
                 <div class="page-content-wrapper">
                   
-                    <div class="hidden-lg-up">
-                        <a href="#" class="header-btn btn-circle btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
-                            <i class="fal fa-home"></i> <!--<i class="ni ni-menu"></i>-->
-                        </a>
-                    </div>
+                    
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
@@ -280,12 +124,12 @@
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
-                    <footer class="page-footer foot bg-primary text-white" role="contentinfo">
+                    <footer class="page-footer foot bg-personal text-white" role="contentinfo">
                         <div class="d-flex align-items-center flex-1 text-white bg-primary">
-                            <select class="form-control bg-primary negrita text-white" id="cmbEmpresa"></select>
+                            <select class="form-control negrita text-personal" id="cmbEmpresa"></select>
                         </div>
                         <div class="d-flex align-items-right text-right flex-1 text-white">
-                            <span class="hidden-md-down fw-700">     2023 © Onne Business by&nbsp;<a href='https://wa.me/50257255092' class='text-white fw-500' title='gotbootstrap.com' target='_blank'>Alexis Burgos</a></span>
+                            <span class="hidden-md-down fw-700">     2023 © B STORE by&nbsp;<a href='https://wa.me/50257255092' class='text-white fw-500' title='gotbootstrap.com' target='_blank'>Alexis Burgos</a></span>
                         </div>
                     </footer>
                     <!-- END Page Footer -->
@@ -301,7 +145,7 @@
         <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
-                    <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+                    <div class="dropdown-header bg-personal d-flex justify-content-center align-items-center w-100">
                         <h4 class="m-0 text-center color-white">
                             Layout Settings
                             <small class="mb-0 opacity-80">User Interface Settings</small>

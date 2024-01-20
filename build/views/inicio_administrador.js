@@ -45,13 +45,13 @@ function getView(){
             return `
             <hr><hr>
             <div class="row">
-                <button class="btn btn-primary btn-xl hand shadow col-12" onclick="Navegar.pos()">
+                <button class="btn btn-personal btn-xl hand shadow col-12" onclick="Navegar.pos()">
                     <i class="fal fa-shopping-cart"></i> Punto de Venta
                 </button>
             </div>
             <hr><hr>
             <div class="row">
-                <button class="btn btn-primary btn-xl hand shadow col-12" onclick="Navegar.mantenimientos_productos()">
+                <button class="btn btn-personal btn-xl hand shadow col-12" onclick="Navegar.mantenimientos_productos()">
                     <i class="fal fa-box"></i> Catálogo de productos
                 </button>
             </div>
@@ -59,7 +59,19 @@ function getView(){
         },
         vista_tabla:()=>{
             return `
-            <img width="800px" height="500px" src="http://alexissoporte-001-site1.etempurl.com/fondo"></img>
+            <table class="table table-responsive col-12">
+                <thead class="bg-personal text-white negrita">
+                    <tr>
+                        <td>FECHA</td>
+                        <td>TOTAL COSTO</td>
+                        <td>TOTAL VENTA</td>
+                        <td>UTILIDAD</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             `
         },
         vista_grafica:()=>{

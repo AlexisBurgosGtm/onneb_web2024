@@ -49,12 +49,12 @@ function getView(){
         },
         vista_listado:()=>{
             return `
-            <div class="card card-rounded col-12 border-primary">
+            <div class="card card-rounded col-12 border-personal">
                 <div class="card-body p-4">
 
                     <div class="row">
                         <div class="col-6">
-                            <h5 class="text-primary negrita">Catálogo de Productos</h5>
+                            <h5 class="text-personal negrita">Catálogo de Productos</h5>
                             
                             <select class="form-control" id="cmbTipoLista">
                                 <option value="SI" class="negrita text-info">HABILITADOS</option>
@@ -73,15 +73,15 @@ function getView(){
                 </div>
             </div>
             <br>
-            <div class="card card-rounded col-12 border-primary">
+            <div class="card card-rounded col-12 border-personal">
                 <div class="card-body p-2">
 
                     <div class="form-group">
                         <label>Búsqueda de productos</label>
-                        <input type="text" class="form-control border-primary negrita text-primary" placeholder="Escriba para filtrar..." id="txtBuscar">
+                        <input type="text" class="form-control border-personal negrita text-personal" placeholder="Escriba para filtrar..." id="txtBuscar">
                     </div>
                     <table class="table table-responsive h-full" id="tblProductos">
-                        <thead class="bg-primary text-white f-med">
+                        <thead class="bg-personal text-white f-med">
                             <tr>
                                 <td>CÓDIGO</td>
                                 <td>DESCRIPCIÓN</td>
@@ -113,7 +113,7 @@ function getView(){
             <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_menu_producto">
                 <div class="modal-dialog modal-dialog-left modal-lg">
                     <div class="modal-content">
-                        <div class="dropdown-header bg-primary d-flex justify-content-center align-items-center w-100">
+                        <div class="dropdown-header bg-personal d-flex justify-content-center align-items-center w-100">
                             <h4 class="m-0 text-center color-white">
                                  Opciones del Producto
                             </h4>
@@ -127,13 +127,13 @@ function getView(){
 
                                     <div class="col-6">
                                         
-                                            <button class="btn btn-circle btn-primary" id="btnProdMenEditar">
+                                            <button class="btn btn-circle btn-personal" id="btnProdMenEditar">
                                                 <i class="fal fa-edit"></i>
-                                            </button>  <b class="text-primary hand">Editar Producto</b>
+                                            </button>  <b class="text-personal hand">Editar Producto</b>
                                         <hr class="solid">
-                                            <button class="btn btn-circle btn-primary" id="btnProdMenKardex">
+                                            <button class="btn btn-circle btn-personal" id="btnProdMenKardex">
                                                 <i class="fal fa-list"></i>
-                                            </button>  <b class="text-primary hand">Kardex</b>
+                                            </button>  <b class="text-personal hand">Kardex</b>
                                         <hr class="solid">
                                         
                                             <button class="btn btn-circle btn-danger" id="btnProdMenEliminar">
@@ -143,14 +143,14 @@ function getView(){
                                     </div>
 
                                     <div class="col-6">
-                                            <button class="btn btn-circle btn-primary" id="btnProdMenVentas">
+                                            <button class="btn btn-circle btn-personal" id="btnProdMenVentas">
                                                 <i class="fal fa-chart-pie"></i>
-                                            </button>  <b class="text-primary hand">Ventas por Fechas</b>
+                                            </button>  <b class="text-personal hand">Ventas por Fechas</b>
                                         
                                         <hr class="solid">
-                                            <button class="btn btn-circle btn-primary" id="btnProdMenCompras">
+                                            <button class="btn btn-circle btn-personal" id="btnProdMenCompras">
                                                 <i class="fal fa-box"></i>
-                                            </button>  <b class="text-primary hand">Compras por Fechas</b>
+                                            </button>  <b class="text-personal hand">Compras por Fechas</b>
                                         
                                         <hr class="solid">
                                             <button class="btn btn-circle btn-warning" id="btnProdMenActivar">
@@ -169,7 +169,7 @@ function getView(){
                                 <div class="card-body">
 
                                     <table class="table table-responsive h-full">
-                                        <thead class="bg-primary text-white">
+                                        <thead class="bg-personal text-white">
                                             <tr>
                                                 <td>MEDIDA</td>
                                                 <td>EQ</td>
@@ -211,22 +211,22 @@ function getView(){
             <div class="row">
 
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="card card-rounded col-12 border-primary">
+                        <div class="card card-rounded col-12 border-personal">
                             <div class="card-body p-4" style="font-size:80%"> 
                                     
-                                        <label class="negrita text-primary">Código</label>
+                                        <label class="negrita text-personal">Código</label>
                                         <input type="text" class="form-control" id="txtCodprod" maxlength="50">
                                     <br>
-                                        <label class="negrita text-primary">Código Alterno (Barras)</label>
+                                        <label class="negrita text-personal">Código Alterno (Barras)</label>
                                         <input type="text" class="form-control" id="txtCodprod2" maxlength="50">
                                     <br>
-                                        <label class="negrita text-primary">Descripción</label>
+                                        <label class="negrita text-personal">Descripción</label>
                                         <input type="text" class="form-control" id="txtDesprod" maxlength="255">
                                     <br>
-                                        <label class="negrita text-primary">Descripción 2</label>
+                                        <label class="negrita text-personal">Descripción 2</label>
                                         <input type="text" class="form-control" id="txtDesprod2" maxlength="255">
                                     <br>
-                                        <label class="negrita text-primary">Descripción 3</label>
+                                        <label class="negrita text-personal">Descripción 3</label>
                                         <input type="text" class="form-control" id="txtDesprod3" maxlength="255">
                                     <br>
                                      
@@ -235,18 +235,18 @@ function getView(){
                 </div>
                 
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="card card-rounded col-12 border-primary">
+                        <div class="card card-rounded col-12 border-personal">
                             <div class="card-body p-4" style="font-size:80%">
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         <div class="row">
                                             <div class="col-6">
-                                                <label class="negrita text-primary">Unidades por Caja (UxC)</label>
+                                                <label class="negrita text-personal">Unidades por Caja (UxC)</label>
                                                 <input type="number" class="form-control" id="txtUxc">
                                             </div>
                                             <div class="col-6">
-                                                <label class="negrita text-primary">Inventario Mínimo</label>
+                                                <label class="negrita text-personal">Inventario Mínimo</label>
                                                 <input type="number" class="form-control text-danger" id="txtInvminimo" value=0>
                                             </div>
                                         </div>
@@ -255,14 +255,14 @@ function getView(){
 
                                         <div class="row">
                                             <div class="col-6">
-                                                <label class="negrita text-primary">Tipo Producto</label>
+                                                <label class="negrita text-personal">Tipo Producto</label>
                                                 <select class="form-control" id="cmbTipoProd">
                                                     <option value="P">BIEN</option>
                                                     <option value="S">SERVICIO</option>
                                                 </select>
                                             </div>
                                             <div class="col-6">
-                                                <label class="negrita text-primary">Color Alerta</label>
+                                                <label class="negrita text-personal">Color Alerta</label>
                                                 <select class="form-control" id="cmbColor">
                                                     <option value="0">NINGUNO</option>
                                                     <option value="1">AMARILLO</option>
@@ -280,44 +280,44 @@ function getView(){
                                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                                         
 
-                                        <label class="negrita text-primary">Marca</label>
+                                        <label class="negrita text-personal">Marca</label>
                                         <div class="input-group">
                                             <select class="form-control" id="cmbMarca">
                                             </select>
-                                            <button class="btn btn-primary hand" id="btnBuscarMarca">
+                                            <button class="btn btn-personal hand" id="btnBuscarMarca">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
                                         
                                         <br>
 
-                                        <label class="negrita text-primary">Fabricante</label>
+                                        <label class="negrita text-personal">Fabricante</label>
                                         <div class="input-group">
                                             <select class="form-control" id="cmbClaseuno">
                                             </select>
-                                            <button class="btn btn-primary hand" id="btnBuscarClaseuno">
+                                            <button class="btn btn-personal hand" id="btnBuscarClaseuno">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
                                         
                                         <br>
 
-                                        <label class="negrita text-primary">Proveedor</label>
+                                        <label class="negrita text-personal">Proveedor</label>
                                         <div class="input-group">
                                             <select class="form-control" id="cmbProveedor">
                                             </select>    
-                                            <button class="btn btn-primary hand" id="btnBuscarProv">
+                                            <button class="btn btn-personal hand" id="btnBuscarProv">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
                                         
                                         <br>
 
-                                        <label class="negrita text-primary">Clasificación</label>
+                                        <label class="negrita text-personal">Clasificación</label>
                                         <div class="input-group">
                                             <select class="form-control" id="cmbClasedos">
                                             </select>
-                                            <button class="btn btn-primary hand">
+                                            <button class="btn btn-personal hand">
                                                 <i class="fal fa-search"></i>
                                             </button>
                                         </div>
@@ -335,12 +335,12 @@ function getView(){
 
             <div class="row">
                 <div class="col-12">
-                        <div class="card card-rounded col-12 border-primary">
+                        <div class="card card-rounded col-12 border-personal">
                             <div class="card-body p-4" style="font-size:80%"> 
 
                                 <h5 class="negrita text-danger">Gestión de Precios</h5>
                                 <br>
-                                <label class="negrita text-primary">Costo Unitario</label>
+                                <label class="negrita text-personal">Costo Unitario</label>
                                 <div class="input-group">
                                     <input type="number" class="form-control text-danger col-3 negrita" id="txtCosto">
                                     <button class="btn btn-success hand hidden" id="">
@@ -392,7 +392,7 @@ function getView(){
             <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_nuevo_precio">
                 <div class="modal-dialog modal-dialog-right modal-xl">
                     <div class="modal-content">
-                        <div class="dropdown-header bg-primary d-flex justify-content-center align-items-center w-100">
+                        <div class="dropdown-header bg-personal d-flex justify-content-center align-items-center w-100">
                             <h4 class="m-0 text-center color-white" id="">
                                 Nuevo Precio
                             </h4>
@@ -402,7 +402,7 @@ function getView(){
                                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
                                     <table class="table table-responsive h-full f-med">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>MEDIDA_PRECIO</td>
                                                 <td>EQUIVALE</td>
@@ -414,7 +414,7 @@ function getView(){
                                                     <div class="input-group">
                                                         <select class="form-control bg-amarillo" id="cmbPreMedida">
                                                         </select>
-                                                        <button class="btn btn-primary hand" id="btnBuscarMedidas">
+                                                        <button class="btn btn-personal hand" id="btnBuscarMedidas">
                                                             <i class="fal fa-search"></i>
                                                         </button>
                                                     </div>
@@ -431,7 +431,7 @@ function getView(){
                                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
                                     <table class="table table-responsive h-full f-med">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>COSTO UN.</td>
                                                 <td>COSTO MEDIDA</td>
@@ -461,8 +461,8 @@ function getView(){
                                         <tr>
                                             <td></td>
                                             <td></td>
-                                            <td class="negrita text-primary">Utilidad</td>
-                                            <td class="negrita text-primary">Margen %</td>
+                                            <td class="negrita text-personal">Utilidad</td>
+                                            <td class="negrita text-personal">Margen %</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -532,7 +532,7 @@ function getView(){
                             <div class="card card-rounded">
                                 <div class="card-body p-2">
                                     <table class="table table-responsive">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>MEDIDA</td>
                                                 <td></td>    
@@ -541,9 +541,9 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <input type="text" maxlength="30" class="border-primary form-control negrita text-primary" id="txtProdCodmedida"></td>
+                                                    <input type="text" maxlength="30" class="border-personal form-control negrita text-personal" id="txtProdCodmedida"></td>
                                                 <td>
-                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarMedida">
+                                                    <button class="btn btn-personal hand shadow" id="btnProdAgregarMedida">
                                                         <i class="fal fa-plus"></i> Agregar
                                                     </button>
                                                 </td>    
@@ -556,7 +556,7 @@ function getView(){
                             
 
                             <table class="table table-responsive h-full f-med" id="">
-                                <thead class="negrita bg-primary text-white">
+                                <thead class="negrita bg-personal text-white">
                                     <tr>
                                         <td>MEDIDA</td>
                                         <td></td>
@@ -597,7 +597,7 @@ function getView(){
                             <div class="card card-rounded">
                                 <div class="card-body p-2">
                                     <table class="table table-responsive">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>CÓDIGO</td>
                                                 <td>MARCA</td>
@@ -607,11 +607,11 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodmarca"></td>
+                                                    <input type="number" class="border-personal form-control negrita text-personal" id="txtProdCodmarca"></td>
                                                 <td>
-                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesmarca"></td>
+                                                    <input type="text" class="border-personal form-control negrita text-personal" id="txtProdDesmarca"></td>
                                                 <td>
-                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarMarca">
+                                                    <button class="btn btn-personal hand shadow" id="btnProdAgregarMarca">
                                                         <i class="fal fa-plus"></i> Agregar
                                                     </button>
                                                 </td>    
@@ -623,11 +623,11 @@ function getView(){
 
                             <div class="form-group">
                                 <label>Búsqueda de Marcas</label>
-                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdMarcas" oninput="funciones.FiltrarTabla('tblProdMarcas','txtBuscarProdMarcas')">
+                                <input type="search" class="negrita text-personal border-personal form-control" id="txtBuscarProdMarcas" oninput="funciones.FiltrarTabla('tblProdMarcas','txtBuscarProdMarcas')">
                             </div>
 
                             <table class="table table-responsive h-full f-med" id="tblProdMarcas">
-                                <thead class="negrita bg-primary text-white">
+                                <thead class="negrita bg-personal text-white">
                                     <tr>
                                         <td>CODIGO</td>
                                         <td>MARCA</td>
@@ -669,7 +669,7 @@ function getView(){
                             <div class="card card-rounded">
                                 <div class="card-body p-2">
                                     <table class="table table-responsive">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>CÓDIGO</td>
                                                 <td>FABRICANTE</td>
@@ -679,11 +679,11 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodClaseuno"></td>
+                                                    <input type="number" class="border-personal form-control negrita text-personal" id="txtProdCodClaseuno"></td>
                                                 <td>
-                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesClaseuno"></td>
+                                                    <input type="text" class="border-personal form-control negrita text-personal" id="txtProdDesClaseuno"></td>
                                                 <td>
-                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarClaseuno">
+                                                    <button class="btn btn-personal hand shadow" id="btnProdAgregarClaseuno">
                                                         <i class="fal fa-plus"></i> Agregar
                                                     </button>
                                                 </td>    
@@ -695,11 +695,11 @@ function getView(){
 
                             <div class="form-group">
                                 <label>Búsqueda de Fabricantes</label>
-                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdClaseuno" oninput="funciones.FiltrarTabla('tblProdClaseuno','txtBuscarProdClaseuno')">
+                                <input type="search" class="negrita text-personal border-personal form-control" id="txtBuscarProdClaseuno" oninput="funciones.FiltrarTabla('tblProdClaseuno','txtBuscarProdClaseuno')">
                             </div>
 
                             <table class="table table-responsive h-full f-med" id="tblProdClaseuno">
-                                <thead class="negrita bg-primary text-white">
+                                <thead class="negrita bg-personal text-white">
                                     <tr>
                                         <td>CODIGO</td>
                                         <td>FABRICANTE</td>
@@ -741,7 +741,7 @@ function getView(){
                             <div class="card card-rounded">
                                 <div class="card-body p-2">
                                     <table class="table table-responsive">
-                                        <thead class="negrita text-primary">
+                                        <thead class="negrita text-personal">
                                             <tr>
                                                 <td>CODIGO</td>
                                                 <td>PROVEEDOR</td>
@@ -751,11 +751,11 @@ function getView(){
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <input type="number" class="border-primary form-control negrita text-primary" id="txtProdCodProv"></td>
+                                                    <input type="number" class="border-personal form-control negrita text-personal" id="txtProdCodProv"></td>
                                                 <td>
-                                                    <input type="text" class="border-primary form-control negrita text-primary" id="txtProdDesProv"></td>
+                                                    <input type="text" class="border-personal form-control negrita text-personal" id="txtProdDesProv"></td>
                                                 <td>
-                                                    <button class="btn btn-primary hand shadow" id="btnProdAgregarProv">
+                                                    <button class="btn btn-personal hand shadow" id="btnProdAgregarProv">
                                                         <i class="fal fa-plus"></i> Agregar
                                                     </button>
                                                 </td>    
@@ -767,11 +767,11 @@ function getView(){
 
                             <div class="form-group">
                                 <label>Búsqueda de Fabricantes</label>
-                                <input type="search" class="negrita text-primary border-primary form-control" id="txtBuscarProdProv" oninput="funciones.FiltrarTabla('tblProdProv','txtBuscarProdProv')">
+                                <input type="search" class="negrita text-personal border-personal form-control" id="txtBuscarProdProv" oninput="funciones.FiltrarTabla('tblProdProv','txtBuscarProdProv')">
                             </div>
 
                             <table class="table table-responsive h-full f-med" id="tblProdProv">
-                                <thead class="negrita bg-primary text-white">
+                                <thead class="negrita bg-personal text-white">
                                     <tr>
                                         <td>CODIGO</td>
                                         <td>PROVEEDOR</td>
@@ -812,100 +812,185 @@ function addListeners(){
 
     listeners_precios();
     
+    listeners_menu_productos();+
 
+    //LISTENERS DEL MENÚ PRODUCTOS
     
-    let btnGuardarProducto = document.getElementById('btnGuardarProducto');
-    btnGuardarProducto.addEventListener('click',()=>{
-
-        let txtCodprod = document.getElementById('txtCodprod');
-        if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
-        txtCodprod.focus();
-
-        
-
-     
-        let txtCodprod2 = document.getElementById('txtCodprod2');
-        if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
-
-        let txtDesprod = document.getElementById('txtDesprod');
-        let txtDesprod2 = document.getElementById('txtDesprod2');
-        if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
-
-        let txtDesprod3 = document.getElementById('txtDesprod3');
-        if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
-
-        let txtUxc = document.getElementById('txtUxc');
-        if(txtUxc.value==''){txtUxc.value='1'};
-        if(txtUxc.value=='0'){txtUxc.value='1'};
-        
-        let txtInvminimo = document.getElementById('txtInvminimo');
-        if(txtInvminimo.value==''){txtInvminimo.value='0'};
-
-        let cmbTipoProd = document.getElementById('cmbTipoProd');
-        let cmbColor = document.getElementById('cmbColor');
-        let cmbMarca = document.getElementById('cmbMarca');
-        let cmbClaseuno = document.getElementById('cmbClaseuno');
-        let cmbProveedor = document.getElementById('cmbProveedor');
-        let cmbClasedos = document.getElementById('cmbClasedos');
-        let txtCosto = document.getElementById('txtCosto');
-        let lastupdate = funciones.getFecha();
-        let exento = 0;
-
-
-        btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-        btnGuardarProducto.disabled = true;
-
-        funciones.showToast('Verificando el código de producto');
-
-        GF.verify_codprod(txtCodprod.value)
-        .then(()=>{
-            funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
-            
-            btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
-            btnGuardarProducto.disabled = false;
-            return;
-        })
-        .catch(()=>{
-
-            funciones.showToast('Creando el nuevo producto');
-        
-
-            insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
-                txtDesprod3.value,txtUxc.value,txtCosto.value,
-                cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
-                lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
-                .then(()=>{
-
-                    funciones.Aviso('Se ha creado un nuevo producto');
-
-
-                    btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
-                    btnGuardarProducto.disabled = false;
-        
-                    delete_lista_temp_precios();
-                    document.getElementById('tab-uno').click();
-                    get_tbl_productos();
-
-                })
-                .catch(()=>{
-            
-                    btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
-                    btnGuardarProducto.disabled = false;
-
-                })
-
-            
-
-        })
-    
-    });
-
-
 
 
     funciones.slideAnimationTabs();
 
 };
+
+function listeners_menu_productos(){
+  
+        let btnGuardarProducto = document.getElementById('btnGuardarProducto');
+        btnGuardarProducto.addEventListener('click',()=>{
+
+            let txtCodprod = document.getElementById('txtCodprod');
+            if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
+            txtCodprod.focus();
+
+            
+
+        
+            let txtCodprod2 = document.getElementById('txtCodprod2');
+            if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
+
+            let txtDesprod = document.getElementById('txtDesprod');
+            let txtDesprod2 = document.getElementById('txtDesprod2');
+            if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
+
+            let txtDesprod3 = document.getElementById('txtDesprod3');
+            if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
+
+            let txtUxc = document.getElementById('txtUxc');
+            if(txtUxc.value==''){txtUxc.value='1'};
+            if(txtUxc.value=='0'){txtUxc.value='1'};
+            
+            let txtInvminimo = document.getElementById('txtInvminimo');
+            if(txtInvminimo.value==''){txtInvminimo.value='0'};
+
+            let cmbTipoProd = document.getElementById('cmbTipoProd');
+            let cmbColor = document.getElementById('cmbColor');
+            let cmbMarca = document.getElementById('cmbMarca');
+            let cmbClaseuno = document.getElementById('cmbClaseuno');
+            let cmbProveedor = document.getElementById('cmbProveedor');
+            let cmbClasedos = document.getElementById('cmbClasedos');
+            let txtCosto = document.getElementById('txtCosto');
+            let lastupdate = funciones.getFecha();
+            let exento = 0;
+
+
+            btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+            btnGuardarProducto.disabled = true;
+
+            funciones.showToast('Verificando el código de producto');
+
+            GF.verify_codprod(txtCodprod.value)
+            .then(()=>{
+                funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
+                
+                btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                btnGuardarProducto.disabled = false;
+                return;
+            })
+            .catch(()=>{
+
+                funciones.showToast('Creando el nuevo producto');
+            
+
+                insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
+                    txtDesprod3.value,txtUxc.value,txtCosto.value,
+                    cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
+                    lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
+                    .then(()=>{
+
+                        funciones.Aviso('Se ha creado un nuevo producto');
+
+
+                        btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                        btnGuardarProducto.disabled = false;
+            
+                        delete_lista_temp_precios();
+                        document.getElementById('tab-uno').click();
+                        get_tbl_productos();
+
+                    })
+                    .catch(()=>{
+                
+                        btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                        btnGuardarProducto.disabled = false;
+
+                    })
+
+                
+
+            })
+        
+        });
+
+
+        let btnProdMenEliminar = document.getElementById('btnProdMenEliminar');
+        btnProdMenEliminar.addEventListener('click',()=>{
+
+            funciones.Confirmacion('¿Está seguro que desea ELIMINAR este producto ' + GlobalSelected_Desprod + '?')
+            .then((value)=>{
+                if(value==true){
+
+                    btnProdMenEliminar.innerHTML = '<i class="fal fa-trash fa-spin"></i>';
+                    btnProdMenEliminar.disabled = true;
+
+                    GF.verify_codprod_movimientos(GlobalSelected_Codprod)
+                    .then(()=>{
+
+                        delete_producto(GlobalSelected_Codprod)
+                        .then(()=>{
+                            funciones.Aviso('Producto eliminado exitosamente!!')
+                            btnProdMenEliminar.innerHTML = '<i class="fal fa-trash"></i>';
+                            btnProdMenEliminar.disabled = false;
+                            $("#modal_menu_producto").modal('hide');
+                            get_tbl_productos();
+                        
+                        })
+                        .catch(()=>{
+                            funciones.AvisoError('No se pudo eliminar');
+                            btnProdMenEliminar.innerHTML = '<i class="fal fa-trash"></i>';
+                            btnProdMenEliminar.disabled = false;
+                            
+                        })
+        
+                    })
+                    .catch(()=>{
+                        funciones.AvisoError('Este producto ya tiene movimientos, no puede eliminarlo, debe DESACTIVARLO');
+                    })
+
+            
+
+                }
+            })
+
+
+        });
+
+        let btnProdMenActivar = document.getElementById('btnProdMenActivar');
+        btnProdMenActivar.addEventListener('click',()=>{
+
+            let habilitado = GlobalSelected_Status =='SI' ? 'DESHABILITAR' : 'HABILITAR';
+            
+            funciones.Confirmacion(`¿Está seguro que desea ${habilitado} el producto ${GlobalSelected_Desprod}`)
+            .then((value)=>{
+                if(value==true){
+
+                    btnProdMenActivar.innerHTML = '<i class="fal fa-sync fa-spin"></i>';
+                    btnProdMenActivar.disabled = false;
+
+
+                    desactivar_producto(GlobalSelected_Codprod,GlobalSelected_Status)
+                    .then(()=>{
+                        
+                        funciones.Aviso('Estado del Producto actualizado exitosamente!!')
+                        
+                        btnProdMenActivar.innerHTML = '<i class="fal fa-sync"></i>';
+                        btnProdMenActivar.disabled = false;
+
+                        $("#modal_menu_producto").modal('hide');
+                        get_tbl_productos();
+
+                    })
+                    .catch(()=>{
+                        funciones.AvisoError('No se pudo cambiar el Estado del Producto');
+                        btnProdMenActivar.innerHTML = '<i class="fal fa-sync"></i>';
+                        btnProdMenActivar.disabled = false;
+
+                    })
+
+                }
+            })
+
+        });
+
+}
 
 function listeners_listado(){
     cmbEmpresa.removeEventListener('change', handle_empresa_change)
@@ -1965,8 +2050,8 @@ function get_tbl_productos(){
             let strClass= ''; if(Number(r.EXISTENCIA)>0){strClass='text-success'}else{strClass='text-danger'};
             conteo += 1;
             str += `
-                <tr class="hand border-bottom border-primary" 
-                onclick="get_detalle_producto('${r.CODPROD}','${r.DESPROD}','${r.DESPROD2}','${funciones.setMoneda(r.COSTO,'Q')}','${funciones.convertDateNormal(r.LASTUPDATE)}')">
+                <tr class="hand border-bottom border-personal" 
+                onclick="get_detalle_producto('${r.CODPROD}','${r.DESPROD}','${r.DESPROD2}','${funciones.setMoneda(r.COSTO,'Q')}','${funciones.convertDateNormal(r.LASTUPDATE)}','${r.HABILITADO}')">
                     <td>${r.CODPROD}</td>
                     <td>${r.DESPROD}</td>
                     <td>${funciones.setMoneda(r.COSTO,'Q')}</td>
@@ -2049,7 +2134,7 @@ function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
 //----------------
 
 
-function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
+function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate,st){
 
 
         $("#modal_menu_producto").modal('show');
@@ -2058,6 +2143,7 @@ function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate){
         GlobalSelected_Codprod = codprod;
         GlobalSelected_Desprod = desprod;
         GlobalSelected_Costo = Number(costo);
+        GlobalSelected_Status = st;
 
         document.getElementById('lbDetDesprod').innerText = desprod;
         document.getElementById('lbDetCodprod').innerText = codprod;
@@ -2153,4 +2239,61 @@ function delete_precio(idbtn,id,codprod){
 
 };
 
+function delete_producto(codprod){
+    
+    
+    return new Promise((resolve,reject)=>{
 
+        axios.post(GlobalUrlCalls + '/productos/delete_producto',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codprod:codprod
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
+
+};
+
+function desactivar_producto(codprod,st){
+    
+    
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/desactivar_producto',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codprod:codprod,
+                status:st
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })   
+
+};

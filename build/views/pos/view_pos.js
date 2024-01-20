@@ -7,7 +7,7 @@ function getView(){
                     <div class="col-2 text-left">
                             <img src="./favicon.png" width="50px" height="50px">
                     </div>
-                    <div class="card bg-primary card-rounded shadow col-10 p-2">
+                    <div class="card bg-personal card-rounded shadow col-10 p-2">
                         
                             <div class="row">
                                 <div class="col-4 text-left">   
@@ -63,8 +63,8 @@ function getView(){
 
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" list="lista_productos" autocomplete="off" class="form-control border-primary negrita col-12" placeholder='Escriba para buscar...' id="txtPosCodprod">
-                            <button class="btn btn-primary hand" id="btnBuscarProd">
+                            <input type="text" list="lista_productos" autocomplete="off" class="form-control border-personal negrita col-12" placeholder='Escriba para buscar...' id="txtPosCodprod">
+                            <button class="btn btn-personal hand" id="btnBuscarProd">
                                 <i class="fal fa-search"></i>
                             </button>
                             <datalist width="100%" id="lista_productos" class="col-12">
@@ -74,18 +74,18 @@ function getView(){
                 </datalist>
                 <hr class="solid">
 
-                    <div class="card card-rounded shadow border-primary col-12 p-2">
+                    <div class="card card-rounded shadow border-personal col-12 p-2">
                         <div class="card-body">
                             
                             <div class="row">
                                 <div class="col-12">
-                                    <b class="text-primary">Productos agregados a la Factura</b>
+                                    <b class="text-personal">Productos agregados a la Factura</b>
                                 </div>
                             </div>
                             
                            
                                 <table class="table table-responsive  table-hover col-12">
-                                    <thead class="bg-primary text-white">
+                                    <thead class="bg-personal text-white">
                                         <tr>
                                             <td>PRODUCTO</td>
                                             <td>CANTIDAD</td>
@@ -124,7 +124,7 @@ function getView(){
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <label class="modal-title text-primary h3" id="lbCantidadDesprod">Cantidad de producto</label>
+                            <label class="modal-title text-personal h3" id="lbCantidadDesprod">Cantidad de producto</label>
                         </div>
             
                         <div class="modal-body p-4">
@@ -137,17 +137,17 @@ function getView(){
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Cantidad:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidad">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-personal shadow col-10" id="txtMCCantidad">
                                     </div>   
                                     
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Precio ${GlobalSignoMoneda}:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecio">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-personal shadow col-10" id="txtMCPrecio">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Subtotal ${GlobalSignoMoneda}:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-primary shadow col-10" id="txtMCTotalPrecio" disabled>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-personal shadow col-10" id="txtMCTotalPrecio" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -164,7 +164,7 @@ function getView(){
                                     <div class="col-1"></div>
         
                                     <div class="col-5 text-right">
-                                        <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardar">
+                                        <button class="btn btn-personal btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardar">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>
                                     </div>
@@ -180,7 +180,7 @@ function getView(){
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
 
-                        <div class="modal-header bg-primary">
+                        <div class="modal-header bg-personal">
                             <label class="modal-title text-white h3" id="lbCantidadDesprodE">Cantidad de producto</label>
                         </div>
             
@@ -192,17 +192,17 @@ function getView(){
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Cantidad:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCCantidadE">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-personal shadow col-10" id="txtMCCantidadE">
                                     </div>   
                                     
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Precio ${GlobalSignoMoneda}:</label>
-                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-primary shadow col-10" id="txtMCPrecioE">
+                                        <input type="number" style="font-size:140%" class="form-control negrita text-info border-personal shadow col-10" id="txtMCPrecioE">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="negrita text-secondary">Subtotal ${GlobalSignoMoneda}:</label>
-                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-primary shadow col-10" id="txtMCTotalPrecioE" disabled>
+                                        <input type="number" style="font-size:150%" class="form-control negrita text-danger border-personal shadow col-10" id="txtMCTotalPrecioE" disabled>
                                     </div>
                                 </div>            
                             </div>
@@ -219,7 +219,7 @@ function getView(){
                                     <div class="col-1"></div>
         
                                     <div class="col-5 text-right">
-                                        <button class="btn btn-primary btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardarE">
+                                        <button class="btn btn-personal btn-xl btn-circle hand shadow waves-effect waves-themed" id="btnMCGuardarE">
                                             <i class="fal fa-check mr-1"></i>
                                         </button>
                                     </div>
@@ -265,7 +265,7 @@ function getView(){
                                     </button>
                                 </div>
                                 <div class="col-4">
-                                    <button class="btn btn-outline-primary shadow hand col-12" id="btnCobrarFactura">
+                                    <button class="btn btn-outline-personal shadow hand col-12" id="btnCobrarFactura">
                                         Crear Factura Interna (F8)
                                     </button>
                                 </div>
@@ -289,14 +289,14 @@ function getView(){
         },
         documento_card_cliente:()=>{
             return `
-            <div class="card card-rounded shadow border-primary p-4"  style="font-size:80%">
+            <div class="card card-rounded shadow border-personal p-4"  style="font-size:80%">
                 <div class="card-body">
                             
                             <div class="form-group">
-                                <label class="negrita text-primary">NIT / DPI</label>
+                                <label class="negrita text-personal">NIT / DPI</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNit">
-                                    <button class="btn btn-primary text-white hand" id="btnBuscarCliente">
+                                    <input type="text" class="form-control form-control-md border-personal negrita text-personal" id="txtPosCobroNit">
+                                    <button class="btn btn-personal text-white hand" id="btnBuscarCliente">
                                         <i class="fal fa-search"></i>
                                     </button>
                                 </div>
@@ -305,18 +305,18 @@ function getView(){
                             </div>
 
                             <div class="form-group">
-                                <label class="negrita text-primary">CÓDIGO CLIENTE</label>
-                                <input disabled type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNitclie" autocomplete="off">                            
+                                <label class="negrita text-personal">CÓDIGO CLIENTE</label>
+                                <input disabled type="text" class="form-control form-control-md border-personal negrita text-personal" id="txtPosCobroNitclie" autocomplete="off">                            
                             </div>
 
                             <div class="form-group">
-                                <label class="negrita text-primary">CLIENTE</label>
-                                <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroNombre">
+                                <label class="negrita text-personal">CLIENTE</label>
+                                <input type="text" class="form-control form-control-md border-personal negrita text-personal" id="txtPosCobroNombre">
                             </div>
                             
                             <div class="form-group">
-                                <label class="negrita text-primary">DIRECCIÓN</label>
-                                <input type="text" class="form-control form-control-md border-primary negrita text-primary" id="txtPosCobroDireccion">
+                                <label class="negrita text-personal">DIRECCIÓN</label>
+                                <input type="text" class="form-control form-control-md border-personal negrita text-personal" id="txtPosCobroDireccion">
                             </div>
 
                         </div>
@@ -329,7 +329,7 @@ function getView(){
                 <div class="modal-dialog modal-lg modal-dialog-left" role="document">
                     <div class="modal-content">
                     
-                        <div class="modal-header bg-primary">
+                        <div class="modal-header bg-personal">
                         </div>
                         
                         <div class="modal-body p-4">
@@ -337,8 +337,8 @@ function getView(){
                                 <div class="form-group col-12">
                                     <label>Búsqueda de Clientes</label>
                                     <div class="input-group">
-                                        <input type="search" autocomplete="off" class="form-control border-primary negrita" id="txtBuscarClie">
-                                        <button class="btn btn-primary hand text-white" id="btnBuscarClie">
+                                        <input type="search" autocomplete="off" class="form-control border-personal negrita" id="txtBuscarClie">
+                                        <button class="btn btn-personal hand text-white" id="btnBuscarClie">
                                             <i class="fal fa-search"></i>
                                         </button>
                                     </div>
@@ -347,7 +347,7 @@ function getView(){
                             <br>
                             <div class="row">
                                 <table class="col-12 table table-responsive table-hover table-border">
-                                    <thead class="bg-primary text-white">
+                                    <thead class="bg-personal text-white">
                                         <tr>
                                             <td>NIT / CÓDIGO</td>
                                             <td>CLIENTE</td>
@@ -373,7 +373,7 @@ function getView(){
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label class="negrita text-primary">Filtrar documentos por...</label>
+                                        <label class="negrita text-personal">Filtrar documentos por...</label>
                                         <div class="input-group">
                                             <input type="date" class="negrita form-control" id="txtFechaDoc">
                                             <select class="form-control negrita" id="cmbTipoDoc">
@@ -1433,7 +1433,7 @@ function get_tbl_pedido(){
             varTotalVenta = varTotalVenta + Number(rows.TOTALPRECIO);
             varTotalCosto = varTotalCosto + Number(rows.TOTALCOSTO);
             return `
-            <tr class="border-primary border-left-0 border-right-0 border-top-0">
+            <tr class="border-personal border-left-0 border-right-0 border-top-0">
                 <td class="text-left">
                     ${rows.DESPROD}
                     <br>
@@ -1814,7 +1814,7 @@ function tbl_lista_documentos(){
     }
    
     let tableheader = `<table class="table table-responsive table-hover table-striped table-bordered">
-                        <thead class="bg-primary text-white">
+                        <thead class="bg-personal text-white">
                             <tr>
                                 <td>Documento</td>
                                 <td>Cliente</td>
@@ -1870,7 +1870,7 @@ function tbl_lista_documentos(){
                                 <b>${funciones.setMoneda(rows.IMPORTE,'Q')}</b>
                             </td>
                             <td>
-                                <button class="btn btn-circle btn-primary btn-md hand shadow" id="${idBtnDownload}" onclick="get_pdf('${rows.NIT}','${funciones.limpiarTexto(rows.NOMCLIE)}','${funciones.limpiarTexto(rows.DIRCLIE)}','${rows.CODDOC}','${rows.CORRELATIVO}','${idBtnDownload}')">
+                                <button class="btn btn-circle btn-personal btn-md hand shadow" id="${idBtnDownload}" onclick="get_pdf('${rows.NIT}','${funciones.limpiarTexto(rows.NOMCLIE)}','${funciones.limpiarTexto(rows.DIRCLIE)}','${rows.CODDOC}','${rows.CORRELATIVO}','${idBtnDownload}')">
                                     <i class="fal fa-download"></i>
                                 </button>
                             </td>

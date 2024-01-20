@@ -1,8 +1,5 @@
 ﻿
-let versionapp = "Modif: 29.12.2023"
-
-var sceneL = document.getElementById('sceneL');
-var parallaxInstanceL = new Parallax(sceneL);
+let versionapp = "Modif: 20.01.2024"
 
 
 
@@ -46,19 +43,3 @@ Mousetrap.bind(['command+e', 'ctrl+e'], function(e) {
 Navegar.login();
 
 
-/* 
-let btnMenuConfiguraciones = document.getElementById('btnMenuConfiguraciones');
-btnMenuConfiguraciones.addEventListener('click',()=>{classNavegar.configuraciones()});
-
-let btnMenuMantenimientos = document.getElementById('btnMenuMantenimientos');
-btnMenuMantenimientos.addEventListener('click',()=>{classNavegar.mantenimientos()});
-
-let btnMenuEmpleados = document.getElementById('btnMenuEmpleados');
-btnMenuEmpleados.addEventListener('click',()=>{classNavegar.empleados()});
-
-let btnMenuEnvioVoucher = document.getElementById('btnMenuEnvioVoucher');
-btnMenuEnvioVoucher.addEventListener('click',()=>{classNavegar.enviar()});
-
-let btnMenuTrabajarNomina = document.getElementById('btnMenuTrabajarNomina');
-btnMenuTrabajarNomina.addEventListener('click',()=>{classNavegar.nomina()});
-*/

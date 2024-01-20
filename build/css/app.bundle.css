@@ -606,7 +606,7 @@ RESULT:
 ========================================================================== */
 /* contains root variables to be used with css (see docs) */
 :root {
-  --theme-primary: #886ab5;
+  --theme-primary: rgb(204, 125, 6); /*#886ab5;*/
   --theme-secondary: #868e96;
   --theme-success: #1dc9b7;
   --theme-info: #2196F3;
@@ -1135,7 +1135,7 @@ html body {
 .nav-title {
   text-transform: uppercase;
   margin: 0;
-  color: #8268a8;
+  color:rgb(204, 125, 6);/* #8268a8;*/
   padding: 1rem 2rem;
   margin-top: 1.5rem;
   font-size: 0.7rem;
@@ -1161,7 +1161,7 @@ html body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    color: #967bbd; }
+    color: rgb(204, 125, 6);/*#967bbd;*/ }
     .nav-menu b.collapse-sign > [class*='fa-'],
     .nav-menu b.collapse-sign > .ni {
       font-size: inherit; }
@@ -1508,7 +1508,7 @@ html body {
     .nav-filter input[type="text"]:not(:focus) {
       border-color: rgba(0, 0, 0, 0.1); }
     .nav-filter input[type="text"]:focus {
-      border-color: #775c9f; }
+      border-color: rgb(204, 125, 6);/* #775c9f;*/ }
 
 .list-filter-active {
   /* these classes are triggered by JS */ }
@@ -1662,7 +1662,7 @@ html body {
       height: 2.125rem;
       background-image: -webkit-gradient(linear, right top, left top, from(rgba(51, 148, 225, 0.18)), to(transparent));
       background-image: linear-gradient(270deg, rgba(51, 148, 225, 0.18), transparent);
-      background-color: #584475;
+      background-color: rgb(204, 125, 6);/*#584475;*/
       position: absolute;
       top: 0;
       right: 0;
@@ -7612,7 +7612,7 @@ body:not(.mobile-detected).modal-open .modal::-webkit-scrollbar-thumb:vertical:h
   background-color: #efefef; }
 
 .page-sidebar .primary-nav::-webkit-scrollbar-thumb:vertical {
-  background-color: #666; }
+  background-color: rgb(204, 125, 6); /*#666;*/ }
 
 .page-sidebar .primary-nav::-webkit-scrollbar {
   height: 4px;
@@ -7622,7 +7622,7 @@ body:not(.mobile-detected).modal-open .modal::-webkit-scrollbar-thumb:vertical:h
   width: 40px; }
 
 .page-sidebar .primary-nav::-webkit-scrollbar-track-piece {
-  background-color: #efefef; }
+  background-color: rgb(204, 125, 6); /*#efefef; */}
 
 .page-sidebar .primary-nav::-webkit-scrollbar-thumb:vertical {
   background-color: #666; }

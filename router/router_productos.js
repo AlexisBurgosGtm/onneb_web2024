@@ -150,6 +150,58 @@ router.post("/edit_producto", async(req,res)=>{
      
 });
 
+router.post("/verify_codprod_movimientos", async(req,res)=>{
+   
+    const { token, sucursal, codprod } = req.body;
+
+    let qry = `
+        SELECT TOP 1 CODPROD 
+            FROM DOCPRODUCTOS 
+            WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+            `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+router.post("/desactivar_producto", async(req,res)=>{
+   
+    const { token, sucursal, codprod, status } = req.body;
+
+    let st = status=='SI' ? 'NO' : 'SI';
+
+    //if(status=='SI'){st='NO'}else{st='SI'};
+
+
+
+    let qry = `
+        UPDATE PRODUCTOS
+            SET HABILITADO='${st}' 
+            WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+            `
+    
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
+router.post("/delete_producto", async(req,res)=>{
+   
+    const {token,sucursal,codprod} = req.body;
+
+    let qry = `
+    DELETE FROM PRODUCTOS WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    DELETE FROM PRECIOS WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    DELETE FROM INVSALDO WHERE EMPNIT='${sucursal}' AND CODPROD='${codprod}';
+    `
+    
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
 router.post("/listado", async(req,res)=>{
    
     const { token, sucursal, filtro, habilitado } = req.body;
@@ -161,7 +213,8 @@ router.post("/listado", async(req,res)=>{
             PRODUCTOS.CODMARCA, MARCAS.DESMARCA, 
             PRODUCTOS.TIPOPROD, 
             ISNULL(PRODUCTOS.LASTUPDATE,'2020-01-01') AS LASTUPDATE, 
-            PRODUCTOS.EXISTENCIA
+            PRODUCTOS.EXISTENCIA,
+            PRODUCTOS.HABILITADO
         FROM PRODUCTOS LEFT OUTER JOIN
         MARCAS ON PRODUCTOS.CODMARCA = MARCAS.CODMARCA AND PRODUCTOS.EMPNIT = MARCAS.EMPNIT
         WHERE (PRODUCTOS.EMPNIT = '${sucursal}')

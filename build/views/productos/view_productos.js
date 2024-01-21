@@ -127,7 +127,7 @@ function getView(){
 
                                     <div class="col-6">
                                         
-                                            <button class="btn btn-circle btn-personal" id="btnProdMenEditar">
+                                            <button class="btn btn-circle btn-info" id="btnProdMenEditar">
                                                 <i class="fal fa-edit"></i>
                                             </button>  <b class="text-personal hand">Editar Producto</b>
                                         <hr class="solid">
@@ -824,90 +824,194 @@ function addListeners(){
 
 function listeners_menu_productos(){
   
+
+        let btnNuevoProducto = document.getElementById('btnNuevoProducto');
+        btnNuevoProducto.addEventListener('click',()=>{
+
+            document.getElementById('txtCodprod2').value = '';
+            document.getElementById('txtDesprod').value = '';
+            document.getElementById('txtDesprod2').value = '';
+            document.getElementById('txtDesprod3').value = '';
+            document.getElementById('txtUxc').value = '1';
+            document.getElementById('txtInvminimo').value = '0';
+            document.getElementById('cmbTipoProd').value = 'P';
+            document.getElementById('txtCosto').value = '0';
+
+            document.getElementById('tab-dos').click();
+            get_tbl_precios();
+
+            document.getElementById('btnGuardarProducto').style = "visibility:visible";
+            document.getElementById('btnGuardarProductoEditar').style = "visibility:hidden";
+            document.getElementById('txtCodprod').disabled = false;
+
+        });
+
+        
         let btnGuardarProducto = document.getElementById('btnGuardarProducto');
         btnGuardarProducto.addEventListener('click',()=>{
 
-            let txtCodprod = document.getElementById('txtCodprod');
-            if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
-            txtCodprod.focus();
+            funciones.Confirmacion('¿Está seguro que desea CREAR este nuevo producto?')
+            .then((value)=>{
+                if(value==true){
 
-            
+                    
+                    let txtCodprod = document.getElementById('txtCodprod');
+                    if(txtCodprod.value==''){funciones.AvisoError('Escriba un código de producto');return;}
+                    txtCodprod.focus();
 
-        
-            let txtCodprod2 = document.getElementById('txtCodprod2');
-            if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
+                    let txtCodprod2 = document.getElementById('txtCodprod2');
+                    if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
 
-            let txtDesprod = document.getElementById('txtDesprod');
-            let txtDesprod2 = document.getElementById('txtDesprod2');
-            if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
+                    let txtDesprod = document.getElementById('txtDesprod');
+                    let txtDesprod2 = document.getElementById('txtDesprod2');
+                    if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
 
-            let txtDesprod3 = document.getElementById('txtDesprod3');
-            if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
+                    let txtDesprod3 = document.getElementById('txtDesprod3');
+                    if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
 
-            let txtUxc = document.getElementById('txtUxc');
-            if(txtUxc.value==''){txtUxc.value='1'};
-            if(txtUxc.value=='0'){txtUxc.value='1'};
-            
-            let txtInvminimo = document.getElementById('txtInvminimo');
-            if(txtInvminimo.value==''){txtInvminimo.value='0'};
+                    let txtUxc = document.getElementById('txtUxc');
+                    if(txtUxc.value==''){txtUxc.value='1'};
+                    if(txtUxc.value=='0'){txtUxc.value='1'};
+                    
+                    let txtInvminimo = document.getElementById('txtInvminimo');
+                    if(txtInvminimo.value==''){txtInvminimo.value='0'};
 
-            let cmbTipoProd = document.getElementById('cmbTipoProd');
-            let cmbColor = document.getElementById('cmbColor');
-            let cmbMarca = document.getElementById('cmbMarca');
-            let cmbClaseuno = document.getElementById('cmbClaseuno');
-            let cmbProveedor = document.getElementById('cmbProveedor');
-            let cmbClasedos = document.getElementById('cmbClasedos');
-            let txtCosto = document.getElementById('txtCosto');
-            let lastupdate = funciones.getFecha();
-            let exento = 0;
+                    let cmbTipoProd = document.getElementById('cmbTipoProd');
+                    let cmbColor = document.getElementById('cmbColor');
+                    let cmbMarca = document.getElementById('cmbMarca');
+                    let cmbClaseuno = document.getElementById('cmbClaseuno');
+                    let cmbProveedor = document.getElementById('cmbProveedor');
+                    let cmbClasedos = document.getElementById('cmbClasedos');
+                    let txtCosto = document.getElementById('txtCosto');
+                    let lastupdate = funciones.getFecha();
+                    let exento = 0;
 
 
-            btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-            btnGuardarProducto.disabled = true;
+                    btnGuardarProducto.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarProducto.disabled = true;
 
-            funciones.showToast('Verificando el código de producto');
+                    funciones.showToast('Verificando el código de producto');
 
-            GF.verify_codprod(txtCodprod.value)
-            .then(()=>{
-                funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
-                
-                btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
-                btnGuardarProducto.disabled = false;
-                return;
-            })
-            .catch(()=>{
-
-                funciones.showToast('Creando el nuevo producto');
-            
-
-                insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
-                    txtDesprod3.value,txtUxc.value,txtCosto.value,
-                    cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
-                    lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
+                    GF.verify_codprod(txtCodprod.value)
                     .then(()=>{
-
-                        funciones.Aviso('Se ha creado un nuevo producto');
-
-
+                        funciones.AvisoError('Este código de producto ya existe, por favor, utilice otro');
+                        
                         btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
                         btnGuardarProducto.disabled = false;
-            
-                        delete_lista_temp_precios();
-                        document.getElementById('tab-uno').click();
-                        get_tbl_productos();
-
+                        return;
                     })
                     .catch(()=>{
-                
-                        btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
-                        btnGuardarProducto.disabled = false;
+
+                        funciones.showToast('Creando el nuevo producto');
+                    
+
+                        insert_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
+                            txtDesprod3.value,txtUxc.value,txtCosto.value,
+                            cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
+                            lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
+                            .then(()=>{
+
+                                funciones.Aviso('Se ha creado un nuevo producto');
+
+
+                                btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                                btnGuardarProducto.disabled = false;
+                    
+                                delete_lista_temp_precios();
+                                document.getElementById('tab-uno').click();
+                                get_tbl_productos();
+
+                            })
+                            .catch(()=>{
+                        
+                                btnGuardarProducto.innerHTML = `<i class="fal fa-save"></i>`;
+                                btnGuardarProducto.disabled = false;
+
+                            })
+
+                        
 
                     })
 
-                
-
+                }
             })
+            
         
+        });
+
+        let btnGuardarProductoEditar = document.getElementById('btnGuardarProductoEditar');
+        btnGuardarProductoEditar.addEventListener('click',()=>{
+
+            funciones.Confirmacion('¿Está seguro que desea EDITAR este producto?')
+            .then((value)=>{
+                if(value==true){
+
+                    let txtCodprod = document.getElementById('txtCodprod');                  
+                
+                    let txtCodprod2 = document.getElementById('txtCodprod2');
+                    if(txtCodprod2.value==''){txtCodprod2.value=txtCodprod.value};
+
+                    let txtDesprod = document.getElementById('txtDesprod');
+                    let txtDesprod2 = document.getElementById('txtDesprod2');
+                    if(txtDesprod2.value==''){txtDesprod2.value=txtDesprod.value};
+
+                    let txtDesprod3 = document.getElementById('txtDesprod3');
+                    if(txtDesprod3.value==''){txtDesprod3.value=txtDesprod.value};
+
+                    let txtUxc = document.getElementById('txtUxc');
+                    if(txtUxc.value==''){txtUxc.value='1'};
+                    if(txtUxc.value=='0'){txtUxc.value='1'};
+                    
+                    let txtInvminimo = document.getElementById('txtInvminimo');
+                    if(txtInvminimo.value==''){txtInvminimo.value='0'};
+
+                    let cmbTipoProd = document.getElementById('cmbTipoProd');
+                    let cmbColor = document.getElementById('cmbColor');
+                    let cmbMarca = document.getElementById('cmbMarca');
+                    let cmbClaseuno = document.getElementById('cmbClaseuno');
+                    let cmbProveedor = document.getElementById('cmbProveedor');
+                    let cmbClasedos = document.getElementById('cmbClasedos');
+                    let txtCosto = document.getElementById('txtCosto');
+                    let lastupdate = funciones.getFecha();
+                    let exento = 0;
+
+
+                    btnGuardarProductoEditar.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarProductoEditar.disabled = true;
+
+                    
+                        funciones.showToast('Actualizando datos del producto');
+                    
+
+                        edit_producto(txtCodprod.value,txtCodprod2.value,txtDesprod.value,txtDesprod2.value,
+                            txtDesprod3.value,txtUxc.value,txtCosto.value,
+                            cmbMarca.value,cmbClaseuno.value,cmbProveedor.value,cmbClasedos.value,
+                            lastupdate,cmbTipoProd.value,exento,cmbColor.value,txtInvminimo.value)
+                            .then(()=>{
+
+                                funciones.Aviso('Se ha actualizado el producto');
+
+
+                                btnGuardarProductoEditar.innerHTML = `<i class="fal fa-save"></i>`;
+                                btnGuardarProductoEditar.disabled = false;
+                    
+                                document.getElementById('tab-uno').click();
+                                get_tbl_productos();
+
+                            })
+                            .catch(()=>{
+                        
+                                btnGuardarProductoEditar.innerHTML = `<i class="fal fa-save"></i>`;
+                                btnGuardarProductoEditar.disabled = false;
+
+                            })
+
+                        
+
+
+                }
+            })
+
         });
 
 
@@ -990,6 +1094,49 @@ function listeners_menu_productos(){
 
         });
 
+
+        let btnProdMenEditar = document.getElementById('btnProdMenEditar');
+        btnProdMenEditar.addEventListener('click',()=>{
+
+            funciones.Confirmacion('¿Está seguro que desea EDITAR este producto?')
+            .then((value)=>{
+                if(value==true){
+
+                    document.getElementById('btnGuardarProducto').style = "visibility:hidden";
+                    document.getElementById('btnGuardarProductoEditar').style = "visibility:visible";
+                    document.getElementById('txtCodprod').disabled = true;
+
+                    get_detalle_producto_selecionado(GlobalSelected_Codprod)
+                    .then((data)=>{
+                            data.recordset.map((r)=>{
+                                document.getElementById('txtCodprod').value = r.CODPROD;
+                                document.getElementById('txtCodprod2').value = r.CODPROD2;
+                                document.getElementById('txtDesprod').value = r.DESPROD;
+                                document.getElementById('txtDesprod2').value = r.DESPROD2;
+                                document.getElementById('txtDesprod3').value = r.DESPROD3;
+                                document.getElementById('txtUxc').value = r.UXC;
+                                document.getElementById('txtInvminimo').value = r.INVMINIMO;
+                                document.getElementById('cmbTipoProd').value = r.TIPOPROD;
+                                document.getElementById('cmbColor').value = r.NF;
+                                document.getElementById('cmbMarca').value = r.CODMARCA;
+                                document.getElementById('cmbClaseuno').value = r.CODCLAUNO;
+                                document.getElementById('cmbProveedor').value = r.CODCLADOS;
+                                document.getElementById('cmbClasedos').value = r.CODCLATRES;
+                                document.getElementById('txtCosto').value = r.COSTO;
+                            })
+
+                            document.getElementById('tab-dos').click();
+                    })
+                    .catch(()=>{
+                        funciones.AvisoError('No se pudieron cargar los datos del producto');
+                    })
+
+
+                }
+            })
+
+        });
+
 }
 
 function listeners_listado(){
@@ -1004,22 +1151,7 @@ function listeners_listado(){
         document.getElementById('tab-uno').click();
     });
     
-    let btnNuevoProducto = document.getElementById('btnNuevoProducto');
-    btnNuevoProducto.addEventListener('click',()=>{
-
-        document.getElementById('txtCodprod2').value = '';
-        document.getElementById('txtDesprod').value = '';
-        document.getElementById('txtDesprod2').value = '';
-        document.getElementById('txtDesprod3').value = '';
-        document.getElementById('txtUxc').value = '1';
-        document.getElementById('txtInvminimo').value = '0';
-        document.getElementById('cmbTipoProd').value = 'P';
-        document.getElementById('txtCosto').value = '0';
-
-        document.getElementById('tab-dos').click();
-        get_tbl_precios();
-    });
-
+    
     let txtBuscar = document.getElementById('txtBuscar');
     txtBuscar.addEventListener('keyup',(e)=>{
         if(e.keyCode == 13){
@@ -2127,6 +2259,84 @@ function insert_producto(codprod,codprod2,desprod,desprod2,desprod3,
             reject();
         });
     })   
+
+};
+
+function edit_producto(codprod,codprod2,desprod,desprod2,desprod3,
+    uxc,costo,codmarca,codclaseuno,codclasedos,codclasetres,
+    lastupdate,tipoprod,exento,nf,invminimo){
+
+
+return new Promise((resolve,reject)=>{
+
+    axios.post(GlobalUrlCalls + '/productos/edit_producto',
+        {
+            sucursal:cmbEmpresa.value,
+            token:TOKEN,
+            codprod:codprod,
+            codprod2:codprod2,
+            desprod:desprod,
+            desprod2:desprod2,
+            desprod3:desprod3,
+            uxc:uxc,
+            costo:costo,
+            codmarca:codmarca,
+            codclaseuno:codclaseuno,
+            codclasedos:codclasedos,
+            codclasetres:codclasetres,
+            lastupdate:lastupdate,
+            tipoprod:tipoprod,
+            exento:exento,
+            nf:nf,
+            invminimo:invminimo
+        })
+    .then((response) => {
+        if(response.status.toString()=='200'){
+            if(response.data.toString()=='error'){
+                reject();
+            }else{
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }
+            }        
+        }else{
+            reject();
+        }             
+    }, (error) => {
+        reject();
+    });
+})   
+
+};
+
+function get_detalle_producto_selecionado(codprod){
+
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/datos_producto',
+            {
+                sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                codprod:codprod
+            })
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    })
 
 };
 

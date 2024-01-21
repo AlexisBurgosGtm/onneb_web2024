@@ -150,6 +150,20 @@ router.post("/edit_producto", async(req,res)=>{
      
 });
 
+router.post("/datos_producto", async(req,res)=>{
+   
+    const { token, sucursal, codprod } = req.body;
+
+    let qry = `
+        SELECT * FROM PRODUCTOS
+        WHERE (EMPNIT = '${sucursal}')
+            AND (CODPROD='${codprod}')
+        `
+  
+    execute.QueryToken(res,qry,token);
+     
+});
+
 router.post("/verify_codprod_movimientos", async(req,res)=>{
    
     const { token, sucursal, codprod } = req.body;
@@ -231,30 +245,6 @@ router.post("/listado", async(req,res)=>{
      
 });
 
-router.post("/BACKUP_listado", async(req,res)=>{
-   
-    const { token, sucursal, habilitado } = req.body;
-
-    let qry = `
-        SELECT TOP 50 PRODUCTOS.CODPROD, 
-            PRODUCTOS.DESPROD, PRODUCTOS.DESPROD2, PRODUCTOS.DESPROD3, 
-            PRODUCTOS.UXC, PRODUCTOS.COSTO, 
-            PRODUCTOS.CODMARCA, MARCAS.DESMARCA, 
-            PRODUCTOS.TIPOPROD, 
-            ISNULL(PRODUCTOS.LASTUPDATE,'2020-01-01') AS LASTUPDATE, 
-            PRODUCTOS.EXISTENCIA
-        FROM PRODUCTOS LEFT OUTER JOIN
-        MARCAS ON PRODUCTOS.CODMARCA = MARCAS.CODMARCA AND PRODUCTOS.EMPNIT = MARCAS.EMPNIT
-        WHERE (PRODUCTOS.HABILITADO = '${habilitado}') 
-        AND (PRODUCTOS.EMPNIT = '${sucursal}')
-        ORDER BY PRODUCTOS.CODPROD
-    `
-    
-  
-  
-    execute.QueryToken(res,qry,token);
-     
-});
 
 router.post("/lista_precios", async(req,res)=>{
    

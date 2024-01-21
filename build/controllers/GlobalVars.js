@@ -8,6 +8,7 @@ let GlobalUsuario = '';
 let GlobalPass = '';
 let GlobalNivelUsuario = 0;
 
+let GlobalBolEditando = false;
 let GlobalSignoMoneda = 'Q'
 let data_empresas = [];
 

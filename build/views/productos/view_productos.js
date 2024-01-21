@@ -127,9 +127,9 @@ function getView(){
 
                                     <div class="col-6">
                                         
-                                            <button class="btn btn-circle btn-info" id="btnProdMenEditar">
+                                            <button class="btn btn-circle btn-outline-info" id="btnProdMenEditar">
                                                 <i class="fal fa-edit"></i>
-                                            </button>  <b class="text-personal hand">Editar Producto</b>
+                                            </button>  <b class="text-info hand">Editar Producto</b>
                                         <hr class="solid">
                                             <button class="btn btn-circle btn-personal" id="btnProdMenKardex">
                                                 <i class="fal fa-list"></i>
@@ -381,6 +381,10 @@ function getView(){
             </button>
 
             <button class="btn btn-info btn-bottom-r btn-xl btn-circle hand shadow" id="btnGuardarProducto">
+                <i class="fal fa-save"></i>
+            </button>
+
+            <button class="btn btn-info btn-bottom-r btn-xl btn-circle hand shadow" id="btnGuardarProductoEditar">
                 <i class="fal fa-save"></i>
             </button>
 
@@ -828,6 +832,8 @@ function listeners_menu_productos(){
         let btnNuevoProducto = document.getElementById('btnNuevoProducto');
         btnNuevoProducto.addEventListener('click',()=>{
 
+            GlobalBolEditando = false;
+
             document.getElementById('txtCodprod2').value = '';
             document.getElementById('txtDesprod').value = '';
             document.getElementById('txtDesprod2').value = '';
@@ -942,7 +948,7 @@ function listeners_menu_productos(){
         let btnGuardarProductoEditar = document.getElementById('btnGuardarProductoEditar');
         btnGuardarProductoEditar.addEventListener('click',()=>{
 
-            funciones.Confirmacion('¿Está seguro que desea EDITAR este producto?')
+            funciones.Confirmacion('¿Está seguro que desea ACTUALIZAR este producto?')
             .then((value)=>{
                 if(value==true){
 
@@ -1102,12 +1108,23 @@ function listeners_menu_productos(){
             .then((value)=>{
                 if(value==true){
 
+                    GlobalBolEditando = true;
+
+                    btnProdMenEditar.innerHTML = '<i class="fal fa-edit fa-spin"></i>';
+                    btnProdMenEditar.disabled = true;
+
                     document.getElementById('btnGuardarProducto').style = "visibility:hidden";
                     document.getElementById('btnGuardarProductoEditar').style = "visibility:visible";
                     document.getElementById('txtCodprod').disabled = true;
 
                     get_detalle_producto_selecionado(GlobalSelected_Codprod)
                     .then((data)=>{
+
+                        btnProdMenEditar.innerHTML = '<i class="fal fa-edit"></i>';
+                        btnProdMenEditar.disabled = false;
+
+                        $("#modal_menu_producto").modal('hide');
+
                             data.recordset.map((r)=>{
                                 document.getElementById('txtCodprod').value = r.CODPROD;
                                 document.getElementById('txtCodprod2').value = r.CODPROD2;
@@ -1126,9 +1143,13 @@ function listeners_menu_productos(){
                             })
 
                             document.getElementById('tab-dos').click();
+
+                            get_tbl_precios_producto(document.getElementById('txtCodprod').value,'tblDataPrecios');
                     })
                     .catch(()=>{
                         funciones.AvisoError('No se pudieron cargar los datos del producto');
+                        btnProdMenEditar.innerHTML = '<i class="fal fa-edit"></i>';
+                        btnProdMenEditar.disabled = false;
                     })
 
 
@@ -1345,9 +1366,14 @@ function listeners_precios(){
     let btnNuevoPrecio = document.getElementById('btnNuevoPrecio');
     btnNuevoPrecio.addEventListener('click',()=>{
 
+            let codprod = document.getElementById('txtCodprod').value || '0';
+            if(codprod=='0'){funciones.AvisoError('No puede agregar un precio sin un código');return;}
+
             let txtCosto = document.getElementById('txtCosto').value || '0';
             if(txtCosto=='0'){funciones.AvisoError('Indique un costo Unitario válido'); return;};
 
+            document.getElementById('txtPrePublico').value = '';
+            document.getElementById('txtPreMayoreoA').value = '';
 
             $("#modal_nuevo_precio").modal('show');
 
@@ -1376,10 +1402,12 @@ function listeners_precios(){
     let btnPreGuardar = document.getElementById('btnPreGuardar');
     btnPreGuardar.addEventListener('click',()=>{
 
+        
         btnPreGuardar.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
         btnPreGuardar.disabled = true;
 
-        let codprod = document.getElementsByTagName('txtCodprod').value || '0';
+        let codprod = document.getElementById('txtCodprod').value;
+
         let cmbPreMedida = document.getElementById('cmbPreMedida');
         let txtPreEquivale = document.getElementById('txtPreEquivale').value || '0';
         let txtPreTotalCosto = document.getElementById('txtPreTotalCosto').value || '0.01';
@@ -1412,24 +1440,51 @@ function listeners_precios(){
             calcular_utilidad_precios('T');
         }
 
-        insert_temp_precio(codprod,cmbPreMedida.value,txtPreEquivale,'0',txtPreTotalCosto,txtPrePublico,txtPreMayoreoA,txtPreMayoreoA,txtPreMayoreoA)
-        .then(()=>{
-
-            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
-            btnPreGuardar.disabled = false;
+        if(GlobalBolEditando==false){
+            //se está creando un nuevo producto
+            insert_temp_precio(codprod,cmbPreMedida.value,txtPreEquivale,'0',txtPreTotalCosto,txtPrePublico,txtPreMayoreoA,txtPreMayoreoA,txtPreMayoreoA)
+            .then(()=>{
     
-            funciones.Aviso('Precio guardado exitosamente!!')
-            $("#modal_nuevo_precio").modal('hide');
+                btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+                btnPreGuardar.disabled = false;
+        
+                funciones.Aviso('Precio guardado exitosamente!!')
+                $("#modal_nuevo_precio").modal('hide');
+    
+                get_tbl_precios();
+            })
+            .catch((err)=>{
+                console.log(err);
+                btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+                btnPreGuardar.disabled = false;
+    
+                funciones.AvisoError('No se pudo guardar este precio');
+            });
 
-            get_tbl_precios();
-        })
-        .catch((err)=>{
-            console.log(err);
-            btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
-            btnPreGuardar.disabled = false;
+        }else{
+            //se está editando el producto
+            insert_precio(codprod,cmbPreMedida.value,txtPreEquivale,'0',txtPreTotalCosto,txtPrePublico,txtPreMayoreoA,txtPreMayoreoA,txtPreMayoreoA)
+            .then(()=>{
+    
+                btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+                btnPreGuardar.disabled = false;
+        
+                funciones.Aviso('Precio guardado exitosamente!!')
+                $("#modal_nuevo_precio").modal('hide');
+    
+                get_tbl_precios_producto(document.getElementById('txtCodprod').value,'tblDataPrecios');
 
-            funciones.AvisoError('No se pudo guardar este precio');
-        });
+            })
+            .catch((err)=>{
+                console.log(err);
+                btnPreGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+                btnPreGuardar.disabled = false;
+    
+                funciones.AvisoError('No se pudo guardar este precio');
+            });
+
+        }
+        
 
         
 
@@ -2349,6 +2404,7 @@ function get_detalle_producto(codprod,desprod,desprod2,costo,lastupdate,st){
 
         $("#modal_menu_producto").modal('show');
 
+        GlobalBolEditando = false;
 
         GlobalSelected_Codprod = codprod;
         GlobalSelected_Desprod = desprod;
@@ -2414,37 +2470,89 @@ function get_tbl_precios_producto(codprod,idcontainer){
  
 };
 
-function delete_precio(idbtn,id,codprod){
+function insert_precio(codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc){
 
-    let btn = document.getElementById(idbtn);
-    
-    btn.innerHTML = `<i class="fal fa-trash fa-spin"></i>`;
-    btn.disabled = true;
 
-        axios.post(GlobalUrlCalls + '/productos/delete_precio',
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/productos/insert_precio',
             {
                 sucursal:cmbEmpresa.value,
                 token:TOKEN,
-                id:id
+                codprod:codprod,
+                codmedida:codmedida,
+                equivale:equivale,
+                peso:peso,
+                costo:costo,
+                preciop:preciop,
+                precioa:precioa,
+                preciob:preciob,
+                precioc:precioc,
+                lastupdate:funciones.getFecha()
             })
         .then((response) => {
             if(response.status.toString()=='200'){
                 let data = response.data;
                 if(Number(data.rowsAffected[0])>0){
-                    funciones.Aviso('Precio eliminado exitosamente!!');
-                    get_tbl_precios_producto(codprod,'tblDataPreciosProd');           
+                    resolve();             
                 }else{
-                    btn.innerHTML = `<i class="fal fa-trash"></i>`;
-                    btn.disabled = false;
+                    reject();
                 }            
             }else{
-                btn.innerHTML = `<i class="fal fa-trash"></i>`;
-                btn.disabled = false;
+                reject();
             }             
         }, (error) => {
-            btn.innerHTML = `<i class="fal fa-trash"></i>`;
-            btn.disabled = false;
+            reject();
         });
+    }) 
+
+};
+
+function delete_precio(idbtn,id,codprod){
+
+    let btn = document.getElementById(idbtn);
+
+    funciones.Confirmacion('¿Está seguro que desea ELIMINAR este precio?')
+    .then((value)=>{
+        if(value==true){
+
+            btn.innerHTML = `<i class="fal fa-trash fa-spin"></i>`;
+            btn.disabled = true;
+
+                axios.post(GlobalUrlCalls + '/productos/delete_precio',
+                    {
+                        sucursal:cmbEmpresa.value,
+                        token:TOKEN,
+                        id:id
+                    })
+                .then((response) => {
+                    if(response.status.toString()=='200'){
+                        let data = response.data;
+                        if(Number(data.rowsAffected[0])>0){
+                            funciones.Aviso('Precio eliminado exitosamente!!');
+                            if(GlobalBolEditando==false){
+                                get_tbl_precios_producto(codprod,'tblDataPreciosProd');           
+                            }else{
+                                get_tbl_precios_producto(codprod,'tblDataPrecios');           
+                            }
+                            
+                        }else{
+                            btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                            btn.disabled = false;
+                        }            
+                    }else{
+                        btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                        btn.disabled = false;
+                    }             
+                }, (error) => {
+                    btn.innerHTML = `<i class="fal fa-trash"></i>`;
+                    btn.disabled = false;
+                });
+
+        }
+    })
+    
+    
       
 
 };

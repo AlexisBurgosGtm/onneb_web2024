@@ -215,6 +215,25 @@ router.post("/delete_producto", async(req,res)=>{
      
 });
 
+router.post("/insert_precio", async(req,res)=>{
+   
+    const {token,sucursal,codprod,codmedida,equivale,peso,costo,preciop,precioa,preciob,precioc,lastupdate} = req.body;
+
+    let utilidadq = (Number(preciop)-Number(costo))
+    let margen = (utilidadq / Number(preciop))*100;
+    let qry = `
+    INSERT INTO PRECIOS 
+    (EMPNIT,CODPROD,CODMEDIDA,EQUIVALE,COSTO,PRECIO,UTILIDAD,MARGEN,MAYOREOA,MAYOREOB,MAYOREOC,PESO,HABILITADO,LASTUPDATE) 
+    VALUES 
+    ('${sucursal}','${codprod}','${codmedida}',${equivale},${costo},${preciop},${utilidadq},${margen},
+    ${precioa},${preciob},${precioc},${peso},'SI','${lastupdate}');
+    `
+    console.log(qry)
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
 
 router.post("/listado", async(req,res)=>{
    
@@ -276,6 +295,7 @@ router.post("/delete_precio", async(req,res)=>{
     execute.QueryToken(res,qry,token);
      
 });
+
 
 
 

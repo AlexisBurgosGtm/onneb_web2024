@@ -76,7 +76,7 @@ function getView(){
         },
         vista_grafica:()=>{
             return ``
-        },
+        }
     }
 
     root.innerHTML = view.body();

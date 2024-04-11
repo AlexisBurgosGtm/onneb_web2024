@@ -74,12 +74,25 @@ function getView(){
 
 
 function addListeners(){
-  
+    
+    TOKEN = 'LOCAL';
 
-        TOKEN = '';
+        get_data_empresas()
+        .then((data)=>{
+            let str = '';
+            data.recordset.map((r)=>{
+                str += `
+                    <option value="${r.EMPNIT}">${r.EMPNOMBRE}</option>
+                `
+            })
+
+            cmbEmpresa.innerHTML = str;
+        })
+        
+        
         GlobalNivelUsuario = 0;
-        data_empresas = [];
-        cmbEmpresa.innerHTML = `<option value=''>No hay empresas disponibles...</option>`;
+        //data_empresas = [];
+         `<option value=''>No hay empresas disponibles...</option>`;
 
         let btnIniciar = document.getElementById('btnIniciar');
         btnIniciar.addEventListener('click',()=>{
@@ -96,27 +109,30 @@ function addListeners(){
                 btnIniciar.innerHTML = `<i class="fal fa-lock"></i>`;
                 btnIniciar.disabled = false;
 
-                data_empresas = data.recordset;
+                //data_empresas = data.recordset;
 
                 //btnMenu.style = "visibility:visible";
-                //GlobalEmpnit = '';
-                
+                GlobalEmpnit = cmbEmpresa.value;
                 GlobalUsuario = u;
-                let str = '';
-                data_empresas.map((r)=>{
-                    TOKEN = r.TOKEN;
-                    GlobalNivelUsuario = Number(r.NIVEL);
-                    str += `<option value='${r.EMPNIT}'>${r.EMPNOMBRE}</option>`
-                });
-                cmbEmpresa.innerHTML = str;
 
-                
+                let str = '';
+               
+                data.recordset.map((r)=>{
+                    //TOKEN = r.TOKEN;
+                    GlobalNivelUsuario = Number(r.NIVEL);
+                    //str += `<option value='${r.EMPNIT}'>${r.EMPNOMBRE}</option>`
+                });
+               
+                console.log('por aca...');
+
                 Navegar.inicio();
                 
 
             })
-            .catch(()=>{
-                
+            .catch((error)=>{
+                console.log('error en el login:')
+                console.log(error)
+
                 btnIniciar.innerHTML = `<i class="fal fa-lock"></i>`;
                 btnIniciar.disabled = false;
 
@@ -250,15 +266,15 @@ function login(u,p){
     
     return new Promise((resolve,reject)=>{
 
-        let data = [{EMPNIT:'ZPRUEBAS',TOKEN:'ONNE'}]
-
+     
         //resolve(data);
         //return;
 
         axios.post(GlobalUrlCalls + '/general/login',
             {
                 u:u,
-                p:p
+                p:p,
+                TOKEN:TOKEN
             })
         .then((response) => {
             if(response.status.toString()=='200'){
@@ -277,3 +293,24 @@ function login(u,p){
     })   
 
 };
+
+function get_data_empresas(){
+    return new Promise((resolve,reject)=>{
+
+        axios.post(GlobalUrlCalls + '/general/empresas',{TOKEN:TOKEN})
+        .then((response) => {
+            if(response.status.toString()=='200'){
+                let data = response.data;
+                if(Number(data.rowsAffected[0])>0){
+                    resolve(data);             
+                }else{
+                    reject();
+                }            
+            }else{
+                reject();
+            }             
+        }, (error) => {
+            reject();
+        });
+    }) 
+}

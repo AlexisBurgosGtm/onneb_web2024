@@ -44,7 +44,7 @@ function get_conf_token(token){
 			config = {
 				user: 'iEx',
 				password: 'iEx',
-				server: 'ALEXISPC\\SQLDEV',
+				server: 'DESKTOP-E0KG096\\SQL17',
 				database: 'ONNE',
 				pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
 			};
@@ -55,6 +55,23 @@ function get_conf_token(token){
 
 	}
 
+	/*
+	config = {
+		user: 'iEx',
+		password: 'iEx',
+		server: 'DESKTOP-E0KG096\\SQL17',
+		database: 'ONNE',
+		pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+	};
+	*/
+	config = {
+		user: 'db_a6478c_sacor_admin',
+		password: 'razors1805',
+		server: 'sql5052.site4now.net',
+		database: 'db_a6478c_sacor',
+		pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+	};
+	
 	return config;
 	
 }

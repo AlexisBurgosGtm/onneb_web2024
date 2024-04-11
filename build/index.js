@@ -1,6 +1,12 @@
 ﻿
-let versionapp = "Modif: 20.01.2024"
+let versionapp = "Modif: 21.01.2024"
 
+let btnMenu = document.getElementById('btnMenu');
+
+
+btnMenu.addEventListener('click',()=>{
+    $("#modal_menu_principal").modal('show');
+})
 
 
 

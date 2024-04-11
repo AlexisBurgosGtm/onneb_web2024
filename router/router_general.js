@@ -5,26 +5,33 @@ const router = express.Router();
 
 router.post("/login", async(req,res)=>{
    
-    const { u,p } = req.body;
+    const { u,p,TOKEN } = req.body;
 
     let qry = `
         SELECT 
-            TOKEN_USUARIOS.USUARIO, 
-            TOKEN_USUARIOS.TOKEN, 
-            TOKEN_EMPRESAS.EMPNIT, 
-            TOKEN_EMPRESAS.EMPNOMBRE,
-            TOKEN_USUARIOS.NIVEL
-        FROM TOKEN_USUARIOS LEFT OUTER JOIN
-            TOKEN_EMPRESAS ON TOKEN_USUARIOS.TOKEN = TOKEN_EMPRESAS.TOKEN
-        WHERE (TOKEN_USUARIOS.USUARIO = '${u}') 
-            AND (TOKEN_USUARIOS.PASS = '${p}')`
+            USUARIO, 
+            'LOCAL' AS TOKEN, 
+            NIVEL
+        FROM USUARIOS
+        WHERE (USUARIO = '${u}') 
+            AND (WEBPASS = '${p}')`
     
-    execute.QueryLogin(res,qry);
+    execute.QueryToken(res,qry,TOKEN);
      
 });
 
 
+router.post("/empresas", async(req,res)=>{
+   
+    const { TOKEN} = req.body;
 
+    let qry = `
+        SELECT 
+            EMPNIT,EMPNOMBRE, CODTIPOEMPRESA FROM EMPRESAS`
+    
+    execute.QueryToken(res,qry,TOKEN);
+     
+});
 
 
 

@@ -121,6 +121,11 @@
                         </div>
                         
                     </main>
+
+                    <button class="btn btn-circle btn-bottom-middle btn-xl btn-outline-personal hand shadow" id="btnMenu">
+                        <img src="./favicon.png" width="40px" height="40px">
+                    </button>
+
                     <!-- this overlay is activated only when mobile menu is triggered -->
                     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
@@ -141,7 +146,7 @@
         <!-- END Page Wrapper -->
         
 
-        <!-- MENU LATERAL DERECHO -->
+        <!--  -->
         <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-right modal-md">
                 <div class="modal-content">
@@ -329,51 +334,57 @@
             </div>
         </div> <!-- END Page Settings -->
              
-        <!-- LISTA DE PRECIOS -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent  modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modalListaPrecios">
-            <div class="modal-dialog modal-dialog-right modal-lg">
+        <!-- -->
+        <div class="modal fade js-modal-settings modal-backdrop-transparent  modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_menu_principal">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="dropdown-header d-flex justify-content-center align-items-center w-100">
-                        <h4 class="m-0 text-center " id="">
-                            Lista de Precios
-                            <small class="mb-0 opacity-80">Búsqueda rápida de Precios</small>
+                        <h4 class="m-0 text-center negrita text-personal" id="">
+                            Opciones del Usuario
                         </h4>
-                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                        </button>
                     </div>
-                    <div class="modal-body p-0">
-                        
-                            <div class="input-group">
-                                <input id="txtBProducto" type="text" ref="txtBusqueda" class="form-control col-7 shadow border-secondary border-left-0 border-right-0 border-top-0" placeholder="Buscar código o descripción..." aria-label="" aria-describedby="button-addon4" />
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary waves-effect waves-themed shadow" type="button" id="btnBProducto">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
+                    <div class="modal-body p-2">
+                        <div class="card card-rounded shadow p-2">
+                            <div class="card-body">
+                                <table class="table table-responsive table-bordered">
+                                    <thead class="bg-personal text-white negrita">
+                                        <tr>
+                                            <td>Mantenimientos</td>
+                                            <td>Operaciones</td>
+                                            <td>Órdenes</td>
+                                            <td>Archivo</td>
+                                            <td>Inventarios</td>
+                                            <td>Parámetros</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-personal hand border-personal">
+                                        <tr>
+                                            <td>Clientes</td>
+                                            <td onclick="Navegar.pos()">Punto de Venta (POS)</td>
+                                            <td>Orden de Soporte</td>
+                                            <td>Documentos</td>
+                                            <td onclick="Navegar.mantenimientos_productos()">Productos y Precios</td>
+                                            <td>Configuraciones</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                               </table>
                             </div>
-                        
-                        <div class="" id="">
-                            <table class="table table-responsive table-striped table-hover">
-                                <thead class="bg-secondary text-white">
-                                    <tr>
-                                        <td>Producto</td>
-                                        <td>Precio</td>                         
-                                    </tr>
-                                </thead>
-                                <tbody id="tblPre">
-                                
-    
-                                </tbody>
-                            </table>
                         </div>
+                       
+                          
+                        
+                        
                     </div>
-                    <div class="modal-footer">
-
-                        <button class="btn btn-sm btn-danger position-absolute pos-bottom pos-right" data-dismiss="modal">
-                            <<- Regresar
+                    <div class="modal-footer text-center">
+                        <button class="btn btn-circle btn-xl btn-secondary hand shadow" data-dismiss="modal">
+                            <i class="fal fa-arrow-left"></i>
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -426,86 +437,7 @@
             </div>
         </div>
       
-        <!-- PEDIDOS PENDIENTES -->
-        <div class="modal fade modal-with-scroll" id="ModalPendientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-right" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <label class="modal-title text-info h3" id="">Pedidos Pendientes de Enviar</label>
-                        <small class="negrita text-danger">Para poder editar un pedido, primero debe enviarlo</small>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                        </button>
-                    </div>
-                    
-                    <div class="modal-body">
-                        
-                        <div class="table-reponsive">
-                            <div class="row">
-                                <div class="col-6">
-                                    <label class="">Total Pendiente:</label>
-                                    <h3 class="text-danger currSign" id="lbTotalVentaPendiente">--.--</h3>
-                                </div>
-                                <div class="col-6">
-                                    <label class="">Pedidos:</label>
-                                    <h3 class="text-danger" id="lbTotalVentaPendientePeds">0</h3>
-                                </div>
-                                
-                            </div>
-                            
-                             <div class="table-responsive" id="tblPedidosPendientes">
-
-                                
-                             </div>
-
-                        </div>
-                        <button class="btn form-control shadow" data-dismiss="modal">
-                            Cerrar(x)
-                        </button>
-                    </div>
-
-                
-                </div>
-            </div>
-        </div>
-
-        <!-- PEDIDOS PENDIENTES DETALLE -->
-        <div class="modal fade modal-with-scroll" id="ModalPendientesDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-right" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-secondary">
-                        <label class="modal-title text-white h4" id="">Detalle del Pedido</label>
-                      
-                    </div>
-                    
-                    <div class="modal-body">
-                        
-                        <div class="table-reponsive">
-                            <div class="row">
-                                <label class="negrita" id="lbPPenCliente">Consumidor Final</label>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <h3 class="text-danger currSign" id="lbTotalPPend">--.--</h3>
-                            </div>
-                            <table class="table table-responsive table-hover table-striped table-bordered shadow">
-                                <thead class="bg-secondary text-white">
-                                    <td>Producto</td>
-                                    <td>Cantidad</td>
-                                    <td>Importe</td>
-                                </thead>
-                                <tbody id="tblPPenDetalle"></tbody>
-                            </table>
-                        </div>
-                        <button class="btn form-control shadow" data-dismiss="modal">
-                            Cerrar(x)
-                        </button>
-                    </div>
-
-                
-                </div>
-            </div>
-        </div>
+      
 
         <!-- WAIT FORM -->
         <div class="modal fade js-modal-settings modal-backdrop-transparent shadow" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" aria-hidden="true" id="modalWait">
@@ -540,35 +472,6 @@
             </div>
         </div>
      
-        <!-- MENU PRINCIPAL -->
-        <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modalMenuPrincipal">
-            <div class="modal-dialog modal-dialog-right modal-lg">
-                <div class="modal-content">
-                    <div class="dropdown-header d-flex justify-content-center align-items-center w-100">
-                        <h4 class="m-0 text-center " id="">
-                            Menu Principal
-                           
-                        </h4>
-                        <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                        </button>
-                    </div>
-                    <div class="modal-body p-2" id="rootMenuFooter">
-                        
-                        
-
-                    </div>
-                    <div class="modal-footer">
-
-                        <button class="btn btn-xl btn-circle btn-danger hand shadow" data-dismiss="modal">
-                            <i class="fal fa-arrow-left">  </i>
-                        </button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
           <!-- MODAL ERRORES -->
         <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modalErrores">

@@ -108,7 +108,7 @@ function getView(){
 
             </div>
 
-            <button class="btn btn-warning btn-xl btn-bottom-middle btn-circle shadow hand" id="btnListadoDocumentos">
+            <button class="btn btn-warning btn-xl btn-bottom-l btn-circle shadow hand" id="btnListadoDocumentos">
                 <i class="fal fa-folder"></i>
             </button>
             

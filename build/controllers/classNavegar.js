@@ -15,13 +15,15 @@ let Navegar = {
     login:()=>{
         funciones.loadScript('../views/login/view_login.js','root')
         .then(async()=>{
+            btnMenu.style = "visibility:hidden";
             initView();
         })
     },
     inicio:()=>{
+
         switch (Number(GlobalNivelUsuario)) {
             case 1:
-                Navegar.inicio_administrador();
+                Navegar.inicio_gerencia();
                 break;
             case 2:
 
@@ -30,6 +32,14 @@ let Navegar = {
                 Navegar.inicio_ventas();
                 break;
         }
+        //btnMenu.style = "visibility:visible";
+    },
+    inicio_gerencia:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
+        funciones.loadScript('../views/inicio_gerencia.js','root')
+        .then(async()=>{
+            initView();
+        })
     },
     inicio_administrador:()=>{
         if(Number(GlobalNivelUsuario)==0){return;}

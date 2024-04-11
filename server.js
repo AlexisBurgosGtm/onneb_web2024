@@ -15,6 +15,7 @@ var router_general = require('./router/router_general');
 var router_empleados = require('./router/router_empleados');
 var router_productos = require('./router/router_productos');
 var router_pos = require('./router/router_pos');
+var router_reportes = require('./router/router_reportes');
 
 
 
@@ -28,7 +29,8 @@ app.use(cors({
     origin: '*'
 }));
 
-const PORT = process.env.PORT || 2000;
+
+const PORT = process.env.PORT || 2001;
 
 //app.use(bodyParser.json());
 app.use(express.json({limit: '25mb'}));
@@ -116,8 +118,33 @@ app.get("/login",function(req,res){
   res.redirect('/');
 }); 
 
+// DESPACHO //
+
+app.get("/despacho",function(req,res){
+
+    const {empnit,coddoc,correlativo} = req.query;
 
 
+    console.log(req.query);
+
+    io.emit('nuevo_despacho', empnit,coddoc,correlativo);
+
+    res.send('ok')
+
+}); 
+
+app.get("/despacho_finalizado",function(req,res){
+
+  const {empnit,coddoc,correlativo} = req.query;
+
+  io.emit('fin_despacho', empnit,coddoc,correlativo);
+
+  res.send('ok')
+
+}); 
+
+
+// -------- //
 
 
 
@@ -126,7 +153,7 @@ app.use('/general', router_general);
 app.use('/empleados', router_empleados);
 app.use('/productos', router_productos);
 app.use('/pos', router_pos);
-
+app.use('/reportes',router_reportes);
 
 
 

@@ -27,7 +27,8 @@ router.post("/empresas", async(req,res)=>{
 
     let qry = `
         SELECT 
-            EMPNIT,EMPNOMBRE, CODTIPOEMPRESA FROM EMPRESAS`
+            EMPNIT,EMPNOMBRE, CODTIPOEMPRESA FROM EMPRESAS
+            WHERE NOSOCURSAL='SI';`
     
     execute.QueryToken(res,qry,TOKEN);
      

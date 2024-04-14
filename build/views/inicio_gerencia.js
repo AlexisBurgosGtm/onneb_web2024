@@ -8,7 +8,7 @@ function getView(){
                             
                             <div class="row">
                                 <div class="col-4">
-                                    ${view.vista_grafica_uno()}
+                                    ${view.parametros()}
                                 </div>
                                 <div class="col-4">
                                     ${view.vista_grafica_dos()}
@@ -18,13 +18,13 @@ function getView(){
                                 </div>
                             </div>
                             <br>
-                            ${view.parametros()}
+                            
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                     ${view.vista_lista_fechas()}
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                    ${view.vista_lista_productos()}
+                                    ${view.vista_lista_fechas_compras()}
                                 </div>
                                
                             </div>
@@ -57,20 +57,6 @@ function getView(){
                
             `
         },
-        parametros:()=>{
-            return `
-            <div class="row">
-                <div class="form-group">
-                    <label>Seleccione mes y año</label>
-                    <div class="input-group">
-                        <select class="form-control negrita border-personal text-personal" id="cmbMes"></select>
-                        <select class="form-control negrita border-personal text-personal" id="cmbAnio"></select>
-                    </div>
-                </div>
-            </div>
-            <br>
-            `
-        },
         vista_lista_fechas:()=>{
             return `
             <div class="table-responsive col-12">
@@ -84,6 +70,24 @@ function getView(){
                         </tr>
                     </thead>
                     <tbody id="tblDataFechas">
+                    </tbody>
+                </table>
+            </div>
+            `
+        },
+        vista_lista_fechas_compras:()=>{
+            return `
+            <div class="table-responsive col-12">
+                <table class="table table-responsive col-12" id="tblFechasC">
+                    <thead class="bg-info text-white negrita">
+                        <tr>
+                            <td>FECHA</td>
+                            <td>TOTAL COSTO</td>
+                            <td>TOTAL VENTA</td>
+                            <td>UTILIDAD</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tblDataFechasC">
                     </tbody>
                 </table>
             </div>
@@ -108,12 +112,17 @@ function getView(){
             </div>
             `
         },
-        vista_grafica_uno:()=>{
+        parametros:()=>{
             return `
             <div class="card card-rounded shadow hand col-12 border-personal">
                 <div class="card-body">
-                    <label class="negrita">Total Costo:</label>
-                    <h4 id="lbTotalCosto" class="text-secondary negrita"></h4>
+                    <div class="form-group">
+                        <label>Seleccione mes y año</label>
+                        <div class="input-group">
+                            <select class="form-control negrita border-personal text-personal" id="cmbMes"></select>
+                            <select class="form-control negrita border-personal text-personal" id="cmbAnio"></select>
+                        </div>
+                    </div>
                 </div>
             </div>
             `
@@ -122,18 +131,32 @@ function getView(){
             return `
             <div class="card card-rounded shadow hand col-12 border-personal">
                 <div class="card-body">
-                    <label class="negrita">Total Venta:</label>
-                    <h4 id="lbTotalVenta" class="text-success negrita"></h4>
+                    <h5 class="text-personal negrita">VENTAS</h5>
+                    <small class="negrita">Total Costo:</small>
+                    <label id="lbTotalCosto" class="text-secondary negrita"></label>
+                    <br>
+                    <small class="negrita">Total Venta:</small>
+                    <label id="lbTotalVenta" class="text-success negrita"></label>
+                    <br>
+                    <small class="negrita">Utilidad:</small>
+                    <label id="lbTotalUtilidad" class="text-danger negrita"></label>
                 </div>
             </div>
             `
         },
         vista_grafica_tres:()=>{
             return `
-            <div class="card card-rounded shadow hand col-12 border-personal">
+            <div class="card card-rounded shadow hand col-12 border-info">
                 <div class="card-body">
-                    <label class="negrita">Utilidad:</label>
-                    <h5 id="lbTotalUtilidad" class="text-danger negrita"></h5>
+                    <h5 class="text-info negrita">COMPRAS</h5>
+                    <small class="negrita">Total Costo:</small>
+                    <label id="lbTotalCostoC" class="text-secondary negrita"></label>
+                    <br>
+                    <small class="negrita">Total Venta:</small>
+                    <label id="lbTotalVentaC" class="text-success negrita"></label>
+                    <br>
+                    <small class="negrita">Utilidad:</small>
+                    <label id="lbTotalUtilidadC" class="text-danger negrita"></label>
                 </div>
             </div>
             `
@@ -165,7 +188,8 @@ function addListeners(){
     mes.addEventListener('change',()=>{
         try {
             get_rpt_fechas();
-            get_rpt_productos();
+            get_rpt_fechas_compras();
+            //get_rpt_productos();
         } catch (error) {
             
         }
@@ -174,14 +198,16 @@ function addListeners(){
     anio.addEventListener('change',()=>{
         try {
             get_rpt_fechas();
-            get_rpt_productos();
+            get_rpt_fechas_compras();
+            //get_rpt_productos();
         } catch (error) {
             
         }
     })
  
     get_rpt_fechas();
-    get_rpt_productos();
+    get_rpt_fechas_compras();
+    //get_rpt_productos();
 
 };
 
@@ -194,7 +220,8 @@ function initView(){
 
 function handle_empresa_change(){
     get_rpt_fechas();
-    get_rpt_productos();
+    get_rpt_fechas_compras();
+    //get_rpt_productos();
 };
 
 function get_rpt_fechas(){
@@ -243,6 +270,58 @@ function get_rpt_fechas(){
         document.getElementById('lbTotalCosto').innerText = '---';
         document.getElementById('lbTotalVenta').innerText = '---';
         document.getElementById('lbTotalUtilidad').innerText = '---';
+        container.innerHTML = 'No hay datos para mostrar...';
+    })
+
+
+};
+
+function get_rpt_fechas_compras(){
+    
+    let varTotalCosto = 0;
+    let varTotalVenta = 0;
+    let varTotalUtilidad = 0;
+
+    let anio = document.getElementById('cmbAnio').value;
+    let mes = document.getElementById('cmbMes').value;
+    let container = document.getElementById('tblDataFechasC')
+    container.innerHTML = GlobalLoader;
+
+    let data = {sucursal:cmbEmpresa.value,
+                token:TOKEN,
+                anio:anio,
+                mes:mes}
+
+    GF.get_data_qry('/reportes/rpt_ventas_fechas_compras',data)
+    .then((datos)=>{
+        let str = '';
+        datos.recordset.map((r)=>{
+            
+            varTotalCosto += Number(r.COSTO);
+            varTotalVenta += Number(r.VENTA);
+            varTotalUtilidad += Number(r.UTILIDAD);
+
+            let margen = funciones.setMoneda((Number(r.UTILIDAD)/Number(r.VENTA))*100,'')
+            str += `
+            <tr>
+                <td>${funciones.convertDateNormal(r.FECHA)}</td>
+                <td>${funciones.setMoneda(r.COSTO,'Q')}</td>
+                <td>${funciones.setMoneda(r.VENTA,'Q')}</td>
+                <td>${funciones.setMoneda(r.UTILIDAD,'Q')} <small class="text-danger">(${margen})%</small></td>
+            </tr>
+            `
+        })
+        container.innerHTML = str;
+        document.getElementById('lbTotalCostoC').innerText = funciones.setMoneda(varTotalCosto,'Q');
+        document.getElementById('lbTotalVentaC').innerText = funciones.setMoneda(varTotalVenta,'Q');
+        let margen = funciones.setMoneda((Number(varTotalUtilidad)/Number(varTotalVenta))*100,'')
+        document.getElementById('lbTotalUtilidadC').innerText = `${funciones.setMoneda(varTotalUtilidad,'Q')} (${margen}%)`;
+    })
+    .catch((error)=>{
+        console.log(error);
+        document.getElementById('lbTotalCostoC').innerText = '---';
+        document.getElementById('lbTotalVentaC').innerText = '---';
+        document.getElementById('lbTotalUtilidadC').innerText = '---';
         container.innerHTML = 'No hay datos para mostrar...';
     })
 

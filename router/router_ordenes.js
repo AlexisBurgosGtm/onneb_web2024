@@ -38,9 +38,36 @@ router.post("/ordenes_pendientes", async(req,res)=>{
 });
 
 
+router.post("/insert_orden", async(req,res)=>{
+   
+    const { token, sucursal, fecha, codcliente, contacto, codequipo, estado, falla, accesorios, clave, patron, fecha_entrega } = req.body;
+
+    let qry = `
+    INSERT INTO ORDENES_SOPORTE
+        (EMPNIT,FECHA,CODCLIENTE,CONTACTO,CODEQUIPO,ESTADO_EQUIPO,DESCRIPCION_FALLA,
+            ACCESORIOS,CLAVE,PATRON,FECHA_ENTREGA,STATUS,COBRO_INSUMOS,
+            COBRO_MANO_OBRA)
+    SELECT '${sucursal}' AS EMPNIT,'${fecha}' AS FECHA,${codcliente} AS CODCLIENTE,
+        '${contacto}' AS CONTACTO,${codequipo} AS CODEQUIPO,
+        '${estado}' AS ESTADO_EQUIPO,'${falla}' AS DESCRIPCION_FALLA,
+        '${accesorios}' AS ACCESORIOS,
+        '${clave}' AS CLAVE,'${patron}' AS PATRON,
+        '${fecha_entrega}' AS FECHA_ENTREGA,
+        'PENDIENTE' AS STATUS,
+        0 AS COBRO_INSUMOS,0 AS COBRO_MANO_OBRA
+    `;
+    
+
+    
+    execute.QueryToken(res,qry,token);
+     
+});
+
+
+
 router.post("/detalle_orden", async(req,res)=>{
    
-    const { token, sucursal, coddoc, correlativo } = req.body;
+    const { token, sucursal,  } = req.body;
 
     let qry = `  `;
     
@@ -49,7 +76,6 @@ router.post("/detalle_orden", async(req,res)=>{
     execute.QueryToken(res,qry,token);
      
 });
-
 
 
 

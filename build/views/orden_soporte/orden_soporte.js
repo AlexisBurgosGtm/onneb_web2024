@@ -76,17 +76,29 @@ function getView(){
 
                 <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
                     <div class="card card-rounded shadow">
-                        <div class="card-body p-4">
+                        <div class="card-body p-4" style="font-size:90%">
 
                             <h5 class="text-danger negrita">Datos de la orden</h5>
-                            <div class="form-group">
-                                <label class="">Fecha</label>
-                                <input id="txtFecha" class="form-control negrita" type="date">
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="">Fecha</label>
+                                        <input id="txtFecha" class="form-control negrita" type="date">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class="">Fecha Entrega</label>
+                                        <input id="txtFechaEntrega" class="form-control negrita" type="date">
+                                    </div>
+                                </div>
                             </div>
+                           
                             <div class="form-group">
                                 <label class="">Cliente</label>
                                 <div class="input-group">
-                                    <input id="txtNomclie" class="form-control negrita" type="text" placeholder="">
+                                    <input id="txtNomclie" class="form-control negrita" type="text" placeholder="" disabled>
                                     <button class="btn btn-info hand" id="btnBuscarCliente">
                                         <i class="fal fa-search"></i>
                                     </button>
@@ -135,8 +147,20 @@ function getView(){
             <div class="card card-rounded shadow col-12 h-full">
                 <div class="card-body p-4" style="font-size:90%">
                     
-                    <h5 class="text-danger negrita">Detalles de la Orden</h5>
-                            
+                    <div class="row">
+                        <div class="col-6 text-left">
+                            <h5 class="text-danger negrita">Detalles de la Orden</h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Contraseña / PIN</label>
+                                <input type="text" class="form-control negrita text-danger" id="txtClave">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+
                     <div class="row">
                         <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
                             <div class="form-group">
@@ -229,25 +253,31 @@ function getView(){
                 <div class="modal-dialog modal-dialog-right modal-lg">
                     <div class="modal-content">
                         <div class="modal-body p-4" style="font-size:80%">
+                        
+                            <div class="card card-rounded shadow col-12">
+                                <div class="card-body">
 
-                            <h5 class="negrita text-danger">Datos del Equipo</h5>
-                            <div class="">
-                                <label>Descripción del Equipo</label>
-                                <input type="text" class="form-control" id="txtEDescripcion">
-                            </div>
-                            <div class="">
-                                <label>Marca</label>
-                                <input type="text" class="form-control" id="txtEMarca">
-                            </div>
-                            <div class="">
-                                <label>Modelo/serie</label>
-                                <input type="text" class="form-control" id="txtEModelo">
+                                    <h5 class="negrita text-danger">Datos del Equipo</h5>
+                                    <div class="">
+                                        <label>Descripción del Equipo</label>
+                                        <input type="text" class="form-control" id="txtEDescripcion">
+                                    </div>
+                                    <div class="">
+                                        <label>Marca</label>
+                                        <input type="text" class="form-control" id="txtEMarca">
+                                    </div>
+                                    <div class="">
+                                        <label>Modelo/serie</label>
+                                        <input type="text" class="form-control" id="txtEModelo">
+                                    </div>
+
+                                    <button class="btn btn-info hand shadow" id="btnEGuardar">
+                                        <i class="fal fa-save"></i> Guardar Equipo
+                                    </button>
+
+                                </div>
                             </div>
 
-                            <button class="btn btn-info hand shadow" id="btnEGuardar">
-                                <i class="fal fa-save"></i> Guardar Equipo
-                            </button>
-                                    
                            <hr class="solid">
 
                            <div class="table-responsive col-12">
@@ -301,10 +331,9 @@ function addListeners(){
     cmbEmpresa.removeEventListener('change', handle_empresa_change)
     cmbEmpresa.addEventListener('change', handle_empresa_change)
 
-
+   
     document.getElementById('btnNuevo').addEventListener('click',()=>{
         document.getElementById('tab-dos').click();
-        document.getElementById('txtFecha').value = funciones.getFecha();
         clean_nuevo();
     });
 
@@ -325,6 +354,70 @@ function addListeners(){
 
     get_listado_ordenes();
 
+    let btnGuardarOrden = document.getElementById('btnGuardarOrden');
+    btnGuardarOrden.addEventListener('click',()=>{
+
+        funciones.Confirmacion('¿Está seguro que desea GENERAR esta NUEVA ORDEN?')
+        .then((value)=>{
+            if(value==true){
+
+
+
+                let contacto = document.getElementById('txtContacto').value || 'SN';
+                let estado = document.getElementById('txtEstado').value || 'SN';
+                let falla = document.getElementById('txtFalla').value || 'SN';
+                let accesorios = document.getElementById('txtAccesorios').value || 'SN';
+                let clave = document.getElementById('txtClave').value || 'SN';
+                
+                if(GlobalSelectedCodclie==0){funciones.AvisoError('Seleccione un cliente');return;}
+                if(GlobalSelectedCodEquipo==0){funciones.AvisoError('Seleccione un equipo');return;}
+                if(contacto=='SN'){funciones.AvisoError('Debes agregar el contacto');return;}
+                if(estado=='SN'){funciones.AvisoError('Debes indicar el Estado del Equipo');return;}
+                if(falla=='SN'){funciones.AvisoError('Debes indicar la Falla del Equipo');return;}
+                
+
+                let data = {
+                    token:TOKEN, 
+                    sucursal:cmbEmpresa.value, 
+                    fecha:funciones.devuelveFecha('txtFecha'), 
+                    codcliente:GlobalSelectedCodclie, 
+                    contacto:contacto, 
+                    codequipo:GlobalSelectedCodEquipo, 
+                    estado:funciones.limpiarTexto(estado), 
+                    falla:funciones.limpiarTexto(falla), 
+                    accesorios:funciones.limpiarTexto(accesorios), 
+                    clave:clave, 
+                    patron:'', 
+                    fecha_entrega:funciones.devuelveFecha('txtFechaEntrega')
+                }
+
+                
+                btnGuardarOrden.disabled = true;
+                btnGuardarOrden.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insert_orden(data)
+                .then((data)=>{
+                    funciones.Aviso('Orden ingresada exitosamente !!');
+                    document.getElementById('tab-uno').click();
+
+                    get_listado_ordenes();
+
+                    btnGuardarOrden.disabled = false;
+                    btnGuardarOrden.innerHTML = `<i class="fal fa-save"></i>`;
+    
+                })
+                .catch(()=>{
+                    btnGuardarOrden.disabled = false;
+                    btnGuardarOrden.innerHTML = `<i class="fal fa-save"></i>`;
+    
+                })
+
+
+
+            }
+        })
+
+    });
 
     //------------------------------------------------
     //equipos
@@ -343,9 +436,9 @@ function addListeners(){
                 let marca = document.getElementById('txtEMarca').value || 'SN';
                 let modelo = document.getElementById('txtEModelo').value || 'SN';
                 
-                if(descripcion=='SN'){funciones.AvisoError('Escriba una descripción')};
-                if(marca=='SN'){funciones.AvisoError('Escriba una marca')};
-                if(modelo=='SN'){funciones.AvisoError('Escriba una modelo/serie')};
+                if(descripcion=='SN'){funciones.AvisoError('Escriba una descripción');return;};
+                if(marca=='SN'){funciones.AvisoError('Escriba una marca');return;};
+                if(modelo=='SN'){funciones.AvisoError('Escriba una modelo/serie');return;};
                 
                 classEquipos.insert(descripcion,marca,modelo)
                 .then(()=>{
@@ -384,8 +477,8 @@ function addListeners(){
                 let nombre = document.getElementById('txtCNomclie').value || 'SN';
                 let contacto = document.getElementById('txtCContacto').value || 'SN';
                 
-                if(nombre=='SN'){funciones.AvisoError('Escriba un nombre de cliente')};
-                if(contacto=='SN'){funciones.AvisoError('Escriba un contacto')};
+                if(nombre=='SN'){funciones.AvisoError('Escriba un nombre de cliente');return;};
+                if(contacto=='SN'){funciones.AvisoError('Escriba un contacto');return;};
 
                 classClientes.insert(nombre,contacto)
                 .then(()=>{
@@ -465,7 +558,39 @@ function get_listado_ordenes(){
 
 };
 
+function insert_orden(data){
+    return new Promise((resolve,reject)=>{
+           
+        GF.get_data_qry('/ordenes/insert_orden',data)
+        .then((datos)=>{
+            if(Number(datos.rowsAffected[0])==1){
+                resolve(datos);
+            }else{
+                reject();
+            }
+            
+        })
+        .catch(()=>{
+            reject();
+        })
+
+    })
+}
+
 function clean_nuevo(){
+
+            //la fecha se vuelve a calcular con el botón nueva orden
+            document.getElementById('txtFecha').value = funciones.getFecha();
+            document.getElementById('txtFechaEntrega').value = funciones.getFecha();
+    
+            document.getElementById('txtContacto').value='';
+            document.getElementById('txtEstado').value='';
+            document.getElementById('txtFalla').value='';
+            document.getElementById('txtAccesorios').value='';
+            document.getElementById('txtClave').value='';
+                
+            GlobalSelectedCodEquipo = 0;
+            GlobalSelectedCodclie = 0;
 
 };
 
@@ -553,6 +678,7 @@ function fcn_eliminar_cliente(codcliente,idbtn){
     })
     
 };
+
 
 
 let classEquipos = {

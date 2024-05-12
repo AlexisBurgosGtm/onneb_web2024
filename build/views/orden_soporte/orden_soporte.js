@@ -5,16 +5,16 @@ function getView(){
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                            ${view.vista_listado()}
+                            ${view.vista_listado() + view.modal_detalle_orden()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_nuevo() + view.modal_buscar_cliente() + view.modal_buscar_equipo()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_finalizar()}
+                            ${view.vista_listado_finalizas()}
                         </div>
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
-                            
+                           
                         </div>    
                     </div>
 
@@ -44,7 +44,17 @@ function getView(){
             return `
             <div class="card card-rounded shadow">
                 <div class="card-body p-2">
-                    <h5 class="negrita text-personal">Órdenes de Trabajo</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="negrita text-personal">Órdenes de Trabajo Pendientes</h5>
+                            <button class="btn btn-outline-danger hand shadow" id="btnListaFinalizadas">
+                                <i class="fal fa-list"></i> Órdenes Finalizadas
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="negrita text-danger" id="lbTotalOrdenes">--</h5>
+                        </div>
+                    </div>
                     <hr class="solid">
                     <div class="table-responsive col-12">
                         <table class="table table-responsive table-hover col-12">
@@ -55,8 +65,6 @@ function getView(){
                                     <td>CLIENTE</td>
                                     <td>FECHA ENTREGA</td>
                                     <td>STATUS</td>
-                                    <td></td>
-                                    <td></td>
                                 </tr>
                             </thead>
                             <tbody id="tblDataOrdenes">
@@ -94,7 +102,9 @@ function getView(){
                                     </div>
                                 </div>
                             </div>
-                           
+                            
+                            <br>
+
                             <div class="form-group">
                                 <label class="">Cliente</label>
                                 <div class="input-group">
@@ -104,6 +114,7 @@ function getView(){
                                     </button>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="">Contacto</label>
                                 <input id="txtContacto" class="form-control negrita" type="text">
@@ -112,6 +123,7 @@ function getView(){
                         </div>
                     </div>
                 </div>
+
                 <div class="col-sm-12 col-md-6 col-xl-6 col-lg-6">
                     <div class="card card-rounded shadow">
                         <div class="card-body p-4" style="font-size:90%">
@@ -141,6 +153,7 @@ function getView(){
                 </div>
 
             </div>
+        </div>
             
             <hr class="solid">
 
@@ -252,6 +265,7 @@ function getView(){
             <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_equipos">
                 <div class="modal-dialog modal-dialog-right modal-lg">
                     <div class="modal-content">
+
                         <div class="modal-body p-4" style="font-size:80%">
                         
                             <div class="card card-rounded shadow col-12">
@@ -301,7 +315,8 @@ function getView(){
                             <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
                             </button>
-                        </div>      
+                        </div>  
+
                     </div>
                 </div>
             </div>
@@ -319,6 +334,137 @@ function getView(){
                     <i class="fal fa-arrow-left"></i>
                 </button>
             `
+        },
+        modal_detalle_orden:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_detalle">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-4" style="font-size:80%">
+                        
+                            <div class="card card-rounded shadow col-12">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="negrita text-personal">No. Orden: </label><label class="negrita text-danger" id="lbDetNoorden"></label>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="negrita text-personal">Fecha:</label>
+                                            <input type="date" class="form-control" id="txtDetFecha">
+                                        </div>
+                                    </div>
+                                  
+
+                                    <div class="form-group col-12">
+                                        <label class="negrita text-personal">Equipo</label>
+                                        <input type="text" class="form-control" id="txtDetDesesquipo">
+                                        <label class="negrita text-personal">Contraseña / PIN</label>
+                                        <input type="text" class="form-control" id="txtDetClave">
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label class="negrita text-personal">Estado del Equipo</label>
+                                        <textarea class="form-control" id="txtDetEstado"></textarea>
+                                    
+                                        <label class="negrita text-personal">Descripción de la Falla</label>
+                                        <textarea class="form-control" id="txtDetFalla"></textarea>
+                                    
+                                        <label class="negrita text-personal">Accesorios del Equipo</label>
+                                        <textarea class="form-control" id="txtDetAccesorios"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <button class="btn btn-warning hand shadow" id="btnDetIniciar">
+                                                <i class="fal fa-sync"></i> Iniciar
+                                            </button> 
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-success hand shadow" id="btnDetFinalizar">
+                                                <i class="fal fa-check"></i> Finalizar
+                                            </button> 
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-danger hand shadow" id="btnDetEliminar">
+                                                <i class="fal fa-trash"></i> Eliminar
+                                            </button> 
+                                        </div>
+                                    </div>
+
+
+                         
+                                </div>
+                            </div>
+
+                            
+
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                        <i class="fal fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>    
+
+                    </div>
+                </div>
+            </div>
+            `
+        },
+        vista_listado_finalizas:()=>{
+        return `
+            <div class="card card-rounded shadow">
+                <div class="card-body p-2">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="negrita text-danger">Órdenes de Trabajo Finalizadas</h5>
+                            <div class="form-group">
+                                <label>Seleccione mes y año</label>
+
+                                <div class="input-group">
+                                    <select class="negrita form-control" id="cmbMes"></select>
+                                    <select class="negrita form-control" id="cmbAnio"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="negrita text-danger" id="lbTotalOrdenesF">--</h5>
+                        </div>
+                    </div>
+
+                    <hr class="solid">
+
+                    <div class="table-responsive col-12">
+                        <table class="table table-responsive table-hover col-12">
+                            <thead class="bg-personal text-white" id="tblOrdenesF">
+                                <tr>
+                                    <td>FECHA / ORDEN NO.</td>
+                                    <td>CLIENTE / EQUIPO</td>
+                                    <td>FALLA DEL EQUIPO</td>
+                                    <td>DIAGNOSTICO</td>
+                                    <td>FINALIZADO</td>
+                                    <td>COBRO</td>
+                                    <td>INSUMOS</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tblDataOrdenesF">
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            
+            <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="document.getElementById('tab-uno').click()">
+                <i class="fal fa-arrow-left"></i>
+            </button>
+            `
         }
     }
 
@@ -331,6 +477,12 @@ function addListeners(){
     cmbEmpresa.removeEventListener('change', handle_empresa_change)
     cmbEmpresa.addEventListener('change', handle_empresa_change)
 
+    
+    document.getElementById('cmbMes').innerHTML = funciones.ComboMeses();
+    document.getElementById('cmbAnio').innerHTML = funciones.ComboAnio();
+    let f = new Date();
+    document.getElementById('cmbMes').value = f.getMonth()+1;
+    document.getElementById('cmbAnio').value = f.getFullYear();
    
     document.getElementById('btnNuevo').addEventListener('click',()=>{
         document.getElementById('tab-dos').click();
@@ -351,6 +503,9 @@ function addListeners(){
 
     });
 
+
+    // ORDENES
+    //--------------------------------
 
     get_listado_ordenes();
 
@@ -418,6 +573,61 @@ function addListeners(){
         })
 
     });
+
+    let btnDetIniciar = document.getElementById('btnDetIniciar');
+    btnDetIniciar.addEventListener('click',()=>{
+
+        funciones.Confirmacion('¿Está seguro que desea marcar esta orden como iniciada?')
+        .then((value)=>{
+            if(value==true){
+
+                btnDetIniciar.disabled = true;
+
+                iniciar_orden(GlobalSelectedNoOrden)
+                .then(()=>{
+                    funciones.Aviso('Orden iniciada exitosamente!!');
+                    btnDetIniciar.disabled = false;
+                    $("#modal_detalle").modal('hide');
+                    get_listado_ordenes();
+                })
+                .catch(()=>{
+                    btnDetIniciar.disabled = false;
+                    funciones.AvisoError('No se pudo iniciar esta orden');
+                })
+
+            }
+        })
+    });
+
+    let btnDetEliminar = document.getElementById('btnDetEliminar');
+    btnDetEliminar.addEventListener('click',()=>{
+
+        funciones.Confirmacion('¿Está seguro que desea ELIMINAR esta orden?')
+        .then((value)=>{
+            if(value==true){
+                
+                btnDetEliminar.disabled = true;
+
+                eliminar_orden(GlobalSelectedNoOrden)
+                .then(()=>{
+                    funciones.Aviso('Orden ELIMINADA exitosamente!!');
+                    btnDetEliminar.disabled = false;
+                    $("#modal_detalle").modal('hide');
+                    get_listado_ordenes();
+                })
+                .catch(()=>{
+                    btnDetEliminar.disabled = false;
+                    funciones.AvisoError('No se pudo ELIMINAR esta orden');
+                })
+
+            }
+        })
+    });
+
+
+    //--------------------------------
+    // ORDENES
+    
 
     //------------------------------------------------
     //equipos
@@ -502,6 +712,15 @@ function addListeners(){
     // CLIENTES
 
 
+    let btnListaFinalizadas = document.getElementById('btnListaFinalizadas');
+    btnListaFinalizadas.addEventListener('click',()=>{
+        document.getElementById('tab-tres').click();
+
+    })
+
+
+
+
 
     funciones.slideAnimationTabs();
 
@@ -519,10 +738,30 @@ function handle_empresa_change(){
     get_listado_ordenes();
 };
 
+function get_color_status(status){
+    let str = '';
+    switch (status) {
+        case 'PENDIENTE':
+            str = 'negrita bg-danger text-white'
+            break;
+        case 'PROCESO':
+            str = 'negrita bg-warning text-secondary'
+            break;
+        case 'FINALIZADA':
+            str = 'negrita bg-info text-white'
+            break;
+    }
+    
+    return str;
+
+};
+
 function get_listado_ordenes(){
 
     let container = document.getElementById('tblDataOrdenes');
     container.innerHTML = GlobalLoader;
+
+    let contador = 0;
 
     let data = {
         sucursal:cmbEmpresa.value,
@@ -531,10 +770,12 @@ function get_listado_ordenes(){
 
     GF.get_data_qry('/ordenes/ordenes_pendientes',data)
     .then((datos)=>{
+        
         let str = '';
         datos.recordset.map((r)=>{
+            contador += 1;
             str += `
-                    <tr class="hand" onclick="get_detalle_orden('${r.CODDOC}','${r.CORRELATIVO}')">
+                    <tr class="hand" onclick="get_detalle_orden('${r.NOORDEN}','${r.FECHA}','${r.NOMCLIE}','${r.CONTACTO}','${r.DESCRIPCION}','${r.CLAVE}','${r.ESTADO}','${r.FALLA}','${r.ACCESORIOS}')">
                         <td><b class="text-danger">No. ${r.NOORDEN}</b>
                             <br>
                             <small class="negrita text-danger">${funciones.convertDateNormal(r.FECHA)}</small>
@@ -545,14 +786,16 @@ function get_listado_ordenes(){
                             <small>Contacto: ${r.CONTACTO}</small>
                         </td>
                         <td>${funciones.convertDateNormal(r.FECHA_ENTREGA)}</td>
-                        <td>${r.STATUS}</td>
+                        <td class="${get_color_status(r.STATUS)}">${r.STATUS}</td>
                     </tr>
             `
         })
         container.innerHTML = str;
+        document.getElementById('lbTotalOrdenes').innerText =`Ordenes: ${contador.toString()}`; 
     })
     .catch(()=>{
         container.innerHTML = 'No hay datos para mostrar...';
+        document.getElementById('lbTotalOrdenes').innerText = '---';
     })
 
 
@@ -565,6 +808,70 @@ function insert_orden(data){
         .then((datos)=>{
             if(Number(datos.rowsAffected[0])==1){
                 resolve(datos);
+            }else{
+                reject();
+            }
+            
+        })
+        .catch(()=>{
+            reject();
+        })
+
+    })
+}
+
+function get_detalle_orden(noorden,fecha,nomclie,contacto,desequipo,clave,estado,falla,accesorios){
+
+    GlobalSelectedNoOrden = Number(noorden);
+
+    document.getElementById('lbDetNoorden').innerText = noorden.toString();
+    document.getElementById('txtDetFecha').value = fecha.replace('T00:00:00.000Z','');
+    //document.getElementById('txtDetNomclie').value = nomclie;
+    //document.getElementById('txtDetContacto').value = contacto;
+    document.getElementById('txtDetDesesquipo').value = desequipo;
+    document.getElementById('txtDetClave').value = clave;
+    document.getElementById('txtDetEstado').value = estado;
+    document.getElementById('txtDetFalla').value = falla;
+    document.getElementById('txtDetAccesorios').value = accesorios;
+    //document.getElementById('')
+    
+    $("#modal_detalle").modal('show');
+};
+
+function iniciar_orden(noorden){
+    return new Promise((resolve,reject)=>{
+           let data ={
+                token:TOKEN,
+                sucursal:cmbEmpresa.value,
+                noorden:noorden
+           }
+        GF.get_data_qry('/ordenes/start_orden',data)
+        .then((datos)=>{
+            if(Number(datos.rowsAffected[0])==1){
+                resolve();
+            }else{
+                reject();
+            }
+            
+        })
+        .catch(()=>{
+            reject();
+        })
+
+    })
+}
+
+function eliminar_orden(noorden){
+    return new Promise((resolve,reject)=>{
+           let data ={
+                token:TOKEN,
+                sucursal:cmbEmpresa.value,
+                noorden:noorden
+           }
+        GF.get_data_qry('/ordenes/delete_orden',data)
+        .then((datos)=>{
+            if(Number(datos.rowsAffected[0])==1){
+                resolve();
             }else{
                 reject();
             }
@@ -679,6 +986,58 @@ function fcn_eliminar_cliente(codcliente,idbtn){
     
 };
 
+
+function get_listado_ordenes_finalizadas(){
+
+    let container = document.getElementById('tblDataOrdenesF');
+    container.innerHTML = GlobalLoader;
+
+    let mes = document.getElementById('cmbMes').value;
+    let anio = document.getElementById('cmbAnio').value;
+
+    let contador = 0;
+
+    let data = {
+        sucursal:cmbEmpresa.value,
+        token:TOKEN,
+        mes:mes,
+        anio:anio
+    };
+
+    GF.get_data_qry('/ordenes/ordenes_finalizadas',data)
+    .then((datos)=>{
+        
+        let str = '';
+        datos.recordset.map((r)=>{
+            contador += 1;
+            str += `
+                    <tr class="hand">
+                        <td><b class="text-danger">No. ${r.NOORDEN}</b>
+                            <br>
+                            <small class="negrita text-danger">${funciones.convertDateNormal(r.FECHA)}</small>
+                        </td>
+                        <td>${r.DESCRIPCION}
+                            <br>
+                            <small>${r.NOMCLIE}</small>
+                        </td>
+                        <td>${r.FALLA}</td>
+                        <td>${r.DIAGNOSTICO}</td>
+                        <td>${funciones.convertDateNormal(r.FECHA_FINALIZADO)}</td>
+                        <td>${funciones.setMoneda(r.COBRO,'Q')}</td>
+                        <td>${funciones.setMoneda(r.INSUMOS,'Q')}</td>
+                    </tr>
+            `
+        })
+        container.innerHTML = str;
+        document.getElementById('lbTotalOrdenes').innerText =`Ordenes: ${contador.toString()}`; 
+    })
+    .catch(()=>{
+        container.innerHTML = 'No hay datos para mostrar...';
+        document.getElementById('lbTotalOrdenes').innerText = '---';
+    })
+
+
+};
 
 
 let classEquipos = {

@@ -37,7 +37,7 @@ let GlobalSelected_Status = '';
 
 
 let GlobalSelectedCodclie = 0;
-
+let GlobalSelectedNoOrden = 0;
 let GlobalSelectedCodEquipo = 0;
 
 

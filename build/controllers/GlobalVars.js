@@ -18,10 +18,6 @@ let cmbEmpresa = document.getElementById('cmbEmpresa');
 
 let navmenu = document.getElementById('js-nav-menu');
 
-//let btnMenu = document.getElementById('btnMenu');
-//btnMenu.style = "visibility:hidden";
-
-
 
 let GlobalLoader = `
 
@@ -31,12 +27,7 @@ let GlobalLoader = `
                     <div class="spinner-border text-warning" role="status"><span class="sr-only">Loading...</span></div>
                 </div>
                 `
-                /*
-                <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                    <div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>
-                */
-
+               
 
 // VARIABLES
 let GlobalSelected_Codprod = '';
@@ -44,6 +35,10 @@ let GlobalSelected_Desprod = '';
 let GlobalSelected_Costo = 0;
 let GlobalSelected_Status = '';
 
+
+let GlobalSelectedCodclie = 0;
+
+let GlobalSelectedCodEquipo = 0;
 
 
 

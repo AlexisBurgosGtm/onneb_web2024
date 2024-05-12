@@ -64,7 +64,16 @@ function get_conf_token(token){
 		pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
 	};
 	*/
+	
 	config = {
+		user: 'db_a6478c_onneweb_admin',
+		password: 'razors1805',
+		server: 'sql5092.site4now.net',
+		database: 'db_a6478c_onneweb',
+		pool: {	max: 100,	min: 0,	idleTimeoutMillis: 30000}
+	};
+	
+	let configxx = {
 		user: 'db_a6478c_sacor_admin',
 		password: 'razors1805',
 		server: 'sql5052.site4now.net',

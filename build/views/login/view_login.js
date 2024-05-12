@@ -77,6 +77,12 @@ function addListeners(){
     
     TOKEN = 'LOCAL';
 
+    document.getElementById('btnIniciar').style="visibility:hidden";
+
+    cmbEmpresa.innerHTML = get_empresas();
+    document.getElementById('btnIniciar').style="visibility:visible";
+
+    /*
         get_data_empresas()
         .then((data)=>{
             let str = '';
@@ -87,9 +93,12 @@ function addListeners(){
             })
 
             cmbEmpresa.innerHTML = str;
+            document.getElementById('btnIniciar').style="visibility:visible";
+    
         })
         
-        
+      */
+
         GlobalNivelUsuario = 0;
         //data_empresas = [];
          `<option value=''>No hay empresas disponibles...</option>`;

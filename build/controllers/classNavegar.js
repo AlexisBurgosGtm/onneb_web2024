@@ -26,10 +26,13 @@ let Navegar = {
                 Navegar.inicio_gerencia();
                 break;
             case 2:
-
+                Navegar.inicio_despacho();
                 break;
             case 3:
                 Navegar.inicio_ventas();
+                break;
+            case 4:
+                Navegar.inicio_soporte();
                 break;
         }
         //btnMenu.style = "visibility:visible";
@@ -51,6 +54,20 @@ let Navegar = {
     inicio_ventas:()=>{
         if(Number(GlobalNivelUsuario)==0){return;}
         funciones.loadScript('../views/inicio_ventas.js','root')
+        .then(async()=>{
+            initView();
+        })
+    },
+    inicio_despacho:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
+        funciones.loadScript('../views/inicio_despacho.js','root')
+        .then(async()=>{
+            initView();
+        })
+    },
+    inicio_soporte:()=>{
+        if(Number(GlobalNivelUsuario)==0){return;}
+        funciones.loadScript('../views/orden_soporte/orden_soporte.js','root')
         .then(async()=>{
             initView();
         })

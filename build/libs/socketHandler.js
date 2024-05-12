@@ -34,7 +34,12 @@ socket.on('nuevo_despacho', (empnit,coddoc,correlativo)=>{
   
     console.log(`Nuevo despacho ${empnit} - ${coddoc} - ${correlativo}`);
     try {
-      document.getElementById('lbResult').innerText = `Nuevo despacho ${empnit} - ${coddoc} - ${correlativo}`
+      //document.getElementById('lbResult').innerText = `Nuevo despacho ${empnit} - ${coddoc} - ${correlativo}`
+      //recarga la lista en despachos pendientes
+      funciones.hablar('Nuevo despacho');
+      funciones.showToast(`Nuevo despacho ${coddoc}-${correlativo}`)
+      get_listado();
+      
     } catch (error) {
       
     }
@@ -44,7 +49,15 @@ socket.on('nuevo_despacho', (empnit,coddoc,correlativo)=>{
 socket.on('fin_despacho', (empnit,coddoc,correlativo)=>{
 
   
-  console.log(`Fin despacho ${empnit} - ${coddoc} - ${correlativo}`);
+    console.log(`Fin despacho ${empnit} - ${coddoc} - ${correlativo}`);
+    try {
+      //document.getElementById('lbResult').innerText = `Nuevo despacho ${empnit} - ${coddoc} - ${correlativo}`
+      //recarga la lista en despachos pendientes
+      //get_listado();
+      
+    } catch (error) {
+      
+    }
 
 
 });

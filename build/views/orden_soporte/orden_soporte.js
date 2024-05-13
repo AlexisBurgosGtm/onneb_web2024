@@ -5,13 +5,13 @@ function getView(){
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
-                            ${view.vista_listado() + view.modal_detalle_orden()}
+                            ${view.vista_listado() + view.modal_detalle_orden() + view.modal_finalizar_orden()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_nuevo() + view.modal_buscar_cliente() + view.modal_buscar_equipo()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_listado_finalizas()}
+                            ${view.vista_listado_finalizadas()}
                         </div>
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
                            
@@ -416,7 +416,82 @@ function getView(){
             </div>
             `
         },
-        vista_listado_finalizas:()=>{
+        modal_finalizar_orden:()=>{
+            return `
+            <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_finalizar">
+                <div class="modal-dialog modal-dialog-right modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body p-4" style="font-size:100%">
+
+                            <div class="card card-rounded shadow col-12 border-personal">
+                                <div class="card-body">
+
+                                    <h5 class="negrita text-danger">Finalizar Orden</h5>
+                                    <h5 class="text-inf">Detalle del cobro</h5>
+                                    
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="negrita text-personal">Fecha Finalizado</label>
+                                        <input type="date" class="form-control" id="txtFFecha">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="negrita text-personal">Diagnóstico</label>
+                                        <textarea class="form-control" rows="4" id="txtFDiagnostico"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="negrita text-personal">Mano de Obra</label>
+                                                <input type="number" oninput="calcular_total()" class="form-control" id="txtFCobro">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label class="negrita text-personal">Insumos/Productos</label>
+                                                <input type="number" oninput="calcular_total()" class="form-control" id="txtFInsumos">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    
+                                    <label class="negrita text-secondary">Total: </label>
+                                    <h1 class="negrita text-danger" id="lbTotal">Q 0.00</h1>
+                                    
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn btn-secondary btn-circle btn-xl hand shadow" data-dismiss="modal">
+                                                <i class="fal fa-arrow-left"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-info btn-circle btn-xl hand shadow" id="btnFGuardar">
+                                                <i class="fal fa-save"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                 
+
+                                </div>
+                            </div>
+                                    
+                            
+                           
+                        </div>
+                        <div class="modal-footer text-left">
+                          
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            `
+        },
+        vista_listado_finalizadas:()=>{
         return `
             <div class="card card-rounded shadow">
                 <div class="card-body p-2">
@@ -435,22 +510,23 @@ function getView(){
                         </div>
                         <div class="col-6">
                             <h5 class="negrita text-danger" id="lbTotalOrdenesF">--</h5>
+                            <h5 class="negrita text-info" id="lbTotalOrdenesFQ">--</h5>
                         </div>
                     </div>
 
                     <hr class="solid">
 
                     <div class="table-responsive col-12">
-                        <table class="table table-responsive table-hover col-12">
+                        <table class="table table-responsive table-hover table-bordered col-12">
                             <thead class="bg-personal text-white" id="tblOrdenesF">
                                 <tr>
                                     <td>FECHA / ORDEN NO.</td>
                                     <td>CLIENTE / EQUIPO</td>
                                     <td>FALLA DEL EQUIPO</td>
                                     <td>DIAGNOSTICO</td>
-                                    <td>FINALIZADO</td>
                                     <td>COBRO</td>
                                     <td>INSUMOS</td>
+                                    <td>FINALIZADO</td>
                                 </tr>
                             </thead>
                             <tbody id="tblDataOrdenesF">
@@ -483,6 +559,14 @@ function addListeners(){
     let f = new Date();
     document.getElementById('cmbMes').value = f.getMonth()+1;
     document.getElementById('cmbAnio').value = f.getFullYear();
+
+    document.getElementById('cmbMes').addEventListener('change',()=>{
+        get_listado_ordenes_finalizadas();
+    });
+    document.getElementById('cmbAnio').addEventListener('change',()=>{
+        get_listado_ordenes_finalizadas();
+    });
+    
    
     document.getElementById('btnNuevo').addEventListener('click',()=>{
         document.getElementById('tab-dos').click();
@@ -624,6 +708,84 @@ function addListeners(){
         })
     });
 
+    let btnDetFinalizar = document.getElementById('btnDetFinalizar');
+    btnDetFinalizar.addEventListener('click',()=>{
+        
+        document.getElementById('txtFFecha').value = funciones.getFecha();
+
+        document.getElementById('txtFCobro').value = 0;
+        document.getElementById('txtFInsumos').value = 0;
+        calcular_total();
+        
+        $("#modal_finalizar").modal('show');
+
+    });
+
+    let btnFGuardar = document.getElementById('btnFGuardar');
+    btnFGuardar.addEventListener('click',()=>{
+
+        let diagnostico = document.getElementById('txtFDiagnostico').value || 'SN';
+        if(diagnostico=='SN'){funciones.AvisoError('Indique el diagnóstico final');return;}
+
+        let cobro = Number(document.getElementById('txtFCobro').value) || 0;
+        let insumos = Number(document.getElementById('txtFInsumos').value) || 0;
+
+        if(cobro==0){funciones.AvisoError('Indique el monto cobrado en mano de obra');return;}
+
+        let fechafin = funciones.devuelveFecha('txtFFecha');
+
+        funciones.Confirmacion('¿Está seguro que desea FINALIZAR esta Orden?')
+        .then((value)=>{
+            if(value==true){
+
+                
+                btnFGuardar.disabled = true;
+                btnFGuardar.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                let data = {
+                    token:TOKEN,
+                    sucursal:cmbEmpresa.value,
+                    noorden:GlobalSelectedNoOrden,
+                    cobro:cobro,
+                    insumos:insumos,
+                    fechafin:fechafin,
+                    diagnostico:funciones.limpiarTexto(diagnostico)
+                }
+
+                finalizar_orden(data)
+                .then(()=>{
+
+                    funciones.Aviso('Orden Finalizada Exitosamente!!');
+                    btnFGuardar.disabled = false;
+                    btnFGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+
+                    $("#modal_finalizar").modal('hide');
+                    
+                    $("#modal_detalle").modal('hide');
+                    
+                    get_listado_ordenes();
+
+                })
+                .catch(()=>{
+
+                    funciones.AvisoError('No se pudo finalizar');
+                    btnFGuardar.disabled = false;
+                    btnFGuardar.innerHTML = `<i class="fal fa-save"></i>`;
+
+                })
+
+
+            }
+        })
+
+
+
+        
+
+
+
+    });
+
 
     //--------------------------------
     // ORDENES
@@ -715,7 +877,7 @@ function addListeners(){
     let btnListaFinalizadas = document.getElementById('btnListaFinalizadas');
     btnListaFinalizadas.addEventListener('click',()=>{
         document.getElementById('tab-tres').click();
-
+        get_listado_ordenes_finalizadas();
     })
 
 
@@ -745,7 +907,7 @@ function get_color_status(status){
             str = 'negrita bg-danger text-white'
             break;
         case 'PROCESO':
-            str = 'negrita bg-warning text-secondary'
+            str = 'negrita bg-warning text-white'
             break;
         case 'FINALIZADA':
             str = 'negrita bg-info text-white'
@@ -820,6 +982,25 @@ function insert_orden(data){
     })
 }
 
+function finalizar_orden(data){
+    return new Promise((resolve,reject)=>{
+           
+        GF.get_data_qry('/ordenes/finalizar_orden',data)
+        .then((datos)=>{
+            if(Number(datos.rowsAffected[0])==1){
+                resolve();
+            }else{
+                reject();
+            }
+            
+        })
+        .catch(()=>{
+            reject();
+        })
+
+    })
+}
+
 function get_detalle_orden(noorden,fecha,nomclie,contacto,desequipo,clave,estado,falla,accesorios){
 
     GlobalSelectedNoOrden = Number(noorden);
@@ -861,6 +1042,31 @@ function iniciar_orden(noorden){
     })
 }
 
+function reactivar_orden(noorden,idbtn){
+
+    let btn = document.getElementById(idbtn);
+
+    funciones.Confirmacion('¿Está seguro que desea REACTIVAR esta Orden?')
+    .then((value)=>{
+        if(value==true){
+
+            btn.disabled = true;
+
+            iniciar_orden(noorden)
+            .then(()=>{
+                funciones.Aviso('Orden reactivada exitosamente!!');
+                get_listado_ordenes();
+                document.getElementById('tab-uno').click();
+            })
+            .catch(()=>{
+                btn.disabled = false;
+                funciones.AvisoError('No se puede reactivar');
+            })
+
+        }
+    })
+}
+
 function eliminar_orden(noorden){
     return new Promise((resolve,reject)=>{
            let data ={
@@ -882,6 +1088,25 @@ function eliminar_orden(noorden){
         })
 
     })
+}
+
+function calcular_total(){
+    
+    let total = 0;
+    
+    try {
+        let cobro = Number(document.getElementById('txtFCobro').value) || 0;
+        let insumos = Number(document.getElementById('txtFInsumos').value) || 0;
+    
+        total = cobro + insumos;
+      
+    } catch (error) {
+        total = 0;
+    }
+    
+    
+    document.getElementById('lbTotal').innerText = funciones.setMoneda(total,'Q');
+
 }
 
 function clean_nuevo(){
@@ -996,6 +1221,8 @@ function get_listado_ordenes_finalizadas(){
     let anio = document.getElementById('cmbAnio').value;
 
     let contador = 0;
+    let cobro = 0;
+    let insumos = 0;
 
     let data = {
         sucursal:cmbEmpresa.value,
@@ -1009,12 +1236,19 @@ function get_listado_ordenes_finalizadas(){
         
         let str = '';
         datos.recordset.map((r)=>{
+            let idbtnR = `btnR${r.NOORDEN}`;
             contador += 1;
+            cobro += Number(r.COBRO);
+            insumos += Number(r.INSUMOS); 
             str += `
                     <tr class="hand">
                         <td><b class="text-danger">No. ${r.NOORDEN}</b>
                             <br>
                             <small class="negrita text-danger">${funciones.convertDateNormal(r.FECHA)}</small>
+                            <br>
+                            <button id="${idbtnR}" class="btn btn-sm btn-success hand shadow col-12" onclick="reactivar_orden('${r.NOORDEN}','${idbtnR}')">
+                                <i class="fal fa-sync"></i> Reactivar Orden
+                            </button>
                         </td>
                         <td>${r.DESCRIPCION}
                             <br>
@@ -1022,18 +1256,21 @@ function get_listado_ordenes_finalizadas(){
                         </td>
                         <td>${r.FALLA}</td>
                         <td>${r.DIAGNOSTICO}</td>
-                        <td>${funciones.convertDateNormal(r.FECHA_FINALIZADO)}</td>
                         <td>${funciones.setMoneda(r.COBRO,'Q')}</td>
                         <td>${funciones.setMoneda(r.INSUMOS,'Q')}</td>
+                        <td>${funciones.convertDateNormal(r.FECHA_FINALIZADO)}</td>
                     </tr>
             `
         })
         container.innerHTML = str;
-        document.getElementById('lbTotalOrdenes').innerText =`Ordenes: ${contador.toString()}`; 
+        document.getElementById('lbTotalOrdenesF').innerText =`Ordenes: ${contador.toString()}`;
+        document.getElementById('lbTotalOrdenesFQ').innerText =`Mano de Obra: ${funciones.setMoneda(cobro,'Q')}, Insumos: ${funciones.setMoneda(insumos,'Q')}, Total: ${funciones.setMoneda((cobro+insumos),'Q')}`; 
     })
     .catch(()=>{
         container.innerHTML = 'No hay datos para mostrar...';
-        document.getElementById('lbTotalOrdenes').innerText = '---';
+        document.getElementById('lbTotalOrdenesF').innerText = '---';
+        document.getElementById('lbTotalOrdenesFQ').innerText = '---';
+        
     })
 
 

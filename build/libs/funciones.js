@@ -537,7 +537,8 @@ let funciones = {
         const [yy, mm, dd] = date.split(/-/g);
         return `${dd}/${mm}/${yy}`
       } catch (error) {
-        return date;
+        //return date;
+        return ''
       }
         
     },

@@ -70,10 +70,13 @@ router.post("/start_orden", async(req,res)=>{
    
     const { token, sucursal, noorden } = req.body;
 
-    let qry = `UPDATE ORDENES_SOPORTE SET STATUS='PROCESO' 
+    let qry = `UPDATE ORDENES_SOPORTE 
+                    SET STATUS='PROCESO',
+                    NOTAS_FINALES='',
+                    COBRO_INSUMOS=0,
+                    COBRO_MANO_OBRA=0
                 WHERE EMPNIT='${sucursal}' AND NOORDEN=${noorden}`;
     
-
     
     execute.QueryToken(res,qry,token);
      
@@ -90,6 +93,25 @@ router.post("/delete_orden", async(req,res)=>{
     execute.QueryToken(res,qry,token);
      
 });
+
+router.post("/finalizar_orden", async(req,res)=>{
+   
+    const { token, sucursal, noorden, cobro, insumos, diagnostico, fechafin } = req.body;
+
+    let qry = `UPDATE ORDENES_SOPORTE 
+                    SET NOTAS_FINALES='${diagnostico}',
+                        STATUS='FINALIZADO',
+                        COBRO_INSUMOS=${cobro},
+                        COBRO_MANO_OBRA=${insumos},
+                        FECHA_FINALIZADO='${fechafin}' 
+                WHERE EMPNIT='${sucursal}' AND NOORDEN=${noorden}`;
+    
+
+    
+    execute.QueryToken(res,qry,token);
+     
+});
+
 
 
 router.post("/ordenes_finalizadas", async(req,res)=>{
@@ -111,7 +133,8 @@ router.post("/ordenes_finalizadas", async(req,res)=>{
                 ORDENES_SOPORTE.ACCESORIOS, 
                 ORDENES_SOPORTE.CLAVE, 
                 ORDENES_SOPORTE.PATRON, 
-                ORDENES_SOPORTE.FECHA_ENTREGA, 
+                ORDENES_SOPORTE.FECHA_ENTREGA,
+                ORDENES_SOPORTE.FECHA_FINALIZADO, 
                 ORDENES_SOPORTE.STATUS, 
                 ORDENES_SOPORTE.NOTAS_FINALES AS DIAGNOSTICO, 
                 ORDENES_SOPORTE.COBRO_INSUMOS AS INSUMOS, 

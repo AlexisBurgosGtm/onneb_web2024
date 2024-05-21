@@ -2,7 +2,7 @@ let GF = {
     print_orden_soporte:(noorden)=>{
         return new Promise((resolve,reject)=>{
 
-            axios.get(GlobalUrlPrinter + `/ticket_soporte?sucursal=${cmbEmpresa.value}&id=${noorden}`)
+            axios.get(GlobalUrlPrinter + `/ticket_soporte?sucursal=${cmbEmpresa.value}&correlativo=${noorden}`)
             .then((response) => {
                 if(response.status.toString()=='200'){
                     let data = response.data;

@@ -376,6 +376,13 @@ function getView(){
 
                                     <div class="row">
                                         <div class="col-4">
+                                            <button class="btn btn-outline-info hand shadow" id="btnImprimirOrden">
+                                                <i class="fal fa-print"></i> Imprimir
+                                            </button> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
                                             <button class="btn btn-warning hand shadow" id="btnDetIniciar">
                                                 <i class="fal fa-sync"></i> Iniciar
                                             </button> 
@@ -639,6 +646,7 @@ function addListeners(){
                     funciones.Aviso('Orden ingresada exitosamente !!');
                     document.getElementById('tab-uno').click();
 
+                   
                     get_listado_ordenes();
 
                     btnGuardarOrden.disabled = false;
@@ -655,6 +663,13 @@ function addListeners(){
 
             }
         })
+
+    });
+
+    let btnImprimirOrden = document.getElementById('btnImprimirOrden');
+    btnImprimirOrden.addEventListener('click',()=>{
+
+        GF.print_orden_soporte(GlobalSelectedNoOrden)
 
     });
 

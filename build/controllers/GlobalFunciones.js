@@ -1,4 +1,25 @@
 let GF = {
+    print_orden_soporte:(noorden)=>{
+        return new Promise((resolve,reject)=>{
+
+            axios.get(GlobalUrlPrinter + `/ticket_soporte?sucursal=${cmbEmpresa.value}&id=${noorden}`)
+            .then((response) => {
+                if(response.status.toString()=='200'){
+                    let data = response.data;
+                    if(Number(data.rowsAffected[0])>0){
+                        resolve(data);             
+                    }else{
+                        reject();
+                    }            
+                }else{
+                    reject();
+                }             
+            }, (error) => {
+                reject();
+            });
+        }) 
+    
+    },
     get_data_qry:(url,data)=>{
         return new Promise((resolve,reject)=>{
 

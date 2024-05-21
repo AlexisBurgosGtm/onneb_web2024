@@ -106,6 +106,7 @@ app.get("/",function(req,res){
 }); 
 
 
+
 app.post("/activate_config_count_rows",function(req,res){
   let qry = `
   EXEC sys.sp_configure N'user options', N'0';

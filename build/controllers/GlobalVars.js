@@ -2,6 +2,7 @@
 
 let GlobalUrlCalls = '';
 let GlobalUrlServicioLocal = 'http://192.168.1.16:8080'
+let GlobalUrlPrinter = 'http://192.168.0.250:8080'
 let TOKEN = '';
 
 let GlobalUsuario = '';

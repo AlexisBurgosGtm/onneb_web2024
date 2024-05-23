@@ -1260,9 +1260,16 @@ let funciones = {
   
       document.body.innerHTML = contenido;
   
+      /*
+      setTimeout(() => {
+        window.print();
+        document.body.innerHTML = contenidoOriginal;    
+      }, 3000);
+      */
+
       window.print();
-  
       document.body.innerHTML = contenidoOriginal;
+      
     },
     converFileBase64:(file)=>{
       return new Promise((resolve, reject)=>{

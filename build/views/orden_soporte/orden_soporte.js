@@ -418,23 +418,28 @@ function getView(){
                         </div>
 
                         <div id="root_ticket">
-                            <b><label>PROXY SERVICIO TECNICO</label></b>
                             <br>
-                            <label>Tel. 3344-6696</label>
+                            <b><h3>SERVICIO TECNICO PROXY</h3></b>
+                            <h5>Tel. 3344-6696</h5>
                             <br>
-                            <label>---------------</label>
+                            <label>-----------------------------------</label>
                             <br>
-                            <label>No. ORDEN</label>
-                            <b><label id="P_noorden">0</label></b>
+                            <b><h3 id="P_noorden"></h3></b>
                             <br>
                             <label>EQUIPO - MODELO</label>
                             <br>
-                            <b><label id="P_modelo">0</label></b>
+                            <b><label id="P_modelo"></label></b>
                             <br>
                             <label>FECHA</label>
                             <br>
-                            <b><label id="P_fecha">00/00/0000</label></b>
+                            <b><label id="P_fecha"></label></b>
                             <br>
+                            <br>
+                            <br>
+                            <br>
+                            <label>-----------------------------------</label>
+                            <br>
+                            <label>F. Proxy</label>
                         </div>    
 
                     </div>
@@ -688,12 +693,15 @@ function addListeners(){
     let btnImprimirOrden = document.getElementById('btnImprimirOrden');
     btnImprimirOrden.addEventListener('click',()=>{
 
+        $("#modal_detalle").modal('hide');
 
-        document.getElementById('P_noorden').innerText = GlobalSelectedNoOrden;
+        document.getElementById('P_noorden').innerText = `No. ORDEN ${GlobalSelectedNoOrden}`;
         document.getElementById('P_modelo').innerText = document.getElementById('txtDetDesesquipo').value;
         document.getElementById('P_fecha').innerText = funciones.devuelveFecha('txtDetFecha');
 
-        funciones.imprimirSelec('root_ticket')
+        setTimeout(() => {
+            funciones.imprimirSelec('root_ticket');        
+        }, 1000);
 
         //GF.print_orden_soporte(GlobalSelectedNoOrden)
 

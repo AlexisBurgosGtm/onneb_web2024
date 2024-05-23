@@ -55,7 +55,8 @@ router.post("/insert_orden", async(req,res)=>{
         '${clave}' AS CLAVE,'${patron}' AS PATRON,
         '${fecha_entrega}' AS FECHA_ENTREGA,
         'PENDIENTE' AS STATUS,
-        0 AS COBRO_INSUMOS,0 AS COBRO_MANO_OBRA
+        0 AS COBRO_INSUMOS,0 AS COBRO_MANO_OBRA;
+    SELECT IDENT_CURRENT('ORDENES_SOPORTE');     
     `;
     
 

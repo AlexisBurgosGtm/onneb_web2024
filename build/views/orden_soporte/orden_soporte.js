@@ -375,14 +375,12 @@ function getView(){
                                     </div>
 
                                     <div class="row">
+
                                         <div class="col-3">
                                             <button class="btn btn-outline-info hand shadow" id="btnImprimirOrden">
                                                 <i class="fal fa-print"></i> Imprimir
                                             </button> 
                                         </div>
-                                    </div>
-                                    
-                                    <div class="row">
                                         <div class="col-3">
                                             <button class="btn btn-warning hand shadow" id="btnDetIniciar">
                                                 <i class="fal fa-sync"></i> Iniciar
@@ -398,6 +396,7 @@ function getView(){
                                                 <i class="fal fa-trash"></i> Eliminar
                                             </button> 
                                         </div>
+
                                     </div>
 
                          
@@ -416,6 +415,26 @@ function getView(){
                                     </button>
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="root_ticket">
+                            <b><label>PROXY SERVICIO TECNICO</label></b>
+                            <br>
+                            <label>Tel. 3344-6696</label>
+                            <br>
+                            <label>---------------</label>
+                            <br>
+                            <label>No. ORDEN</label>
+                            <b><label id="P_noorden">0</label></b>
+                            <br>
+                            <label>EQUIPO - MODELO</label>
+                            <br>
+                            <b><label id="P_modelo">0</label></b>
+                            <br>
+                            <label>FECHA</label>
+                            <br>
+                            <b><label id="P_fecha">00/00/0000</label></b>
+                            <br>
                         </div>    
 
                     </div>
@@ -669,7 +688,14 @@ function addListeners(){
     let btnImprimirOrden = document.getElementById('btnImprimirOrden');
     btnImprimirOrden.addEventListener('click',()=>{
 
-        GF.print_orden_soporte(GlobalSelectedNoOrden)
+
+        document.getElementById('P_noorden').innerText = GlobalSelectedNoOrden;
+        document.getElementById('P_modelo').innerText = document.getElementById('txtDetDesesquipo').value;
+        document.getElementById('P_fecha').innerText = funciones.devuelveFecha('txtDetFecha');
+
+        funciones.imprimirSelec('root_ticket')
+
+        //GF.print_orden_soporte(GlobalSelectedNoOrden)
 
     });
 

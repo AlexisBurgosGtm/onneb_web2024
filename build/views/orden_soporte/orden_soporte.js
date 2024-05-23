@@ -420,12 +420,10 @@ function getView(){
                         <div id="root_ticket">
                             <br>
                             <b><h3>SERVICIO TECNICO PROXY</h3></b>
-                            <h5>Tel. 3344-6696</h5>
-                            <br>
+                            <label>Tel. 3344-6696</label>
                             <label>-----------------------------------</label>
                             <br>
                             <b><h3 id="P_noorden"></h3></b>
-                            <br>
                             <label>EQUIPO - MODELO</label>
                             <br>
                             <b><label id="P_modelo"></label></b>
@@ -433,7 +431,6 @@ function getView(){
                             <label>FECHA</label>
                             <br>
                             <b><label id="P_fecha"></label></b>
-                            <br>
                             <br>
                             <br>
                             <br>

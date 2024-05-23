@@ -435,6 +435,8 @@ function getView(){
                             <br>
                             <br>
                             <br>
+                            <br>
+                            <br>
                             <label>-----------------------------------</label>
                             <br>
                             <label>F. Proxy</label>

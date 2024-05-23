@@ -375,30 +375,30 @@ function getView(){
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <button class="btn btn-outline-info hand shadow" id="btnImprimirOrden">
                                                 <i class="fal fa-print"></i> Imprimir
                                             </button> 
                                         </div>
                                     </div>
+                                    
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <button class="btn btn-warning hand shadow" id="btnDetIniciar">
                                                 <i class="fal fa-sync"></i> Iniciar
                                             </button> 
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <button class="btn btn-success hand shadow" id="btnDetFinalizar">
                                                 <i class="fal fa-check"></i> Finalizar
                                             </button> 
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-3">
                                             <button class="btn btn-danger hand shadow" id="btnDetEliminar">
                                                 <i class="fal fa-trash"></i> Eliminar
                                             </button> 
                                         </div>
                                     </div>
-
 
                          
                                 </div>

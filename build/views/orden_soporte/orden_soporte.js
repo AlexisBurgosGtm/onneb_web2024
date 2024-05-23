@@ -421,6 +421,7 @@ function getView(){
                             <br>
                             <b><h3>SERVICIO TECNICO PROXY</h3></b>
                             <label>Tel. 3344-6696</label>
+                            <br>
                             <label>-----------------------------------</label>
                             <br>
                             <b><h3 id="P_noorden"></h3></b>

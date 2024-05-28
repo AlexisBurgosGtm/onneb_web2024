@@ -521,13 +521,21 @@ function getView(){
                             <label style="font-size:80%">
                             condiciones del servicio.
                             </label>
-
+                            <br>
+                            <br>
+                            <br>
                             <br>
                             <br>
                             <br>
                             <label>-----------------------------------</label>
                             <br>
                             <label>F. Proxy</label>
+                            <br>
+                            <br>
+                            <br>
+                            <label>-----------------------------------</label>
+                            <br>
+                            <label>F. Cliente</label>
                         </div>    
 
                     </div>

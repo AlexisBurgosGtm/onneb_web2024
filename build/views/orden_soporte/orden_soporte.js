@@ -436,64 +436,90 @@ function getView(){
                             <label>TÉRMINOS Y CONDICIONES</label>
                             <br>
                             <label>CENTRO DE SERVICIO TÉCNICO PROXY</label>
+                            
                             <br>
-                            <font size=1>
-                            no se responsabiliza por la procedencia del equipo registrado en la presente orden, únicamente nos limitamos al proceso de diagnóstico y reparación de lo descrito en este documento: A) Para retirar el equipo debe presentar este documento y pagar el servicio. B) Pasado 30 días de la notificación no nos hacemos responsables por perdida o extravió. Los equipos no se pueden retirar sin antes haber finalizado el diagnóstico. C) El cliente brinda un plazo de 30 días para finalizar diagnóstico. D) El costo del diagnóstico es de Q50. El Cliente firma la presente ORDEN declarando que conoce y acepta las condiciones del servicio.
-                            </font>
-                            <br>
-                            <label>fin---------------------/label>
-                            <br>
-
                             <label style="font-size:80%">
-                            no se responsabiliza por la procedencia
+                            no se responsabiliza por la
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            del equipo registrado en la presente orden,
+                            procedencia del equipo registrado
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            únicamente nos limitamos al proceso de
+                            en la presente orden, únicamente
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            diagnóstico y reparación de lo descrito
+                            nos limitamos al proceso de
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            en este documento: A) Para retirar el equipo
+                            diagnóstico y reparación de lo
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            debe presentar este documento y pagar el servicio.
+                            descrito en este documento:
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            B) Pasado 30 días de la notificación no nos hacemos
+                            A) para retirar el equipo debe
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            responsables por perdida o extravió. Los equipos
+                            presentar este documento y pagar
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            no se pueden retirar sin antes haber finalizado
+                            el servicio.
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            el diagnóstico. C) El cliente brinda un plazo de
+                            B) Pasado 30 días de la notificación
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            30 días para finalizar diagnóstico. D) El costo
+                            no nos hacemos responsables
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            del diagnóstico es de Q50. El Cliente firma la
+                            por perdida o extravió. Los equipos
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            presente ORDEN declarando que conoce y acepta las condiciones del servicio
+                            no se pueden retirar sin antes 
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            haber finalizado el diagnóstico.
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            C) El cliente brinda un plazo de 30
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            días para finalizar diagnóstico.
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            D) El costo del diagnóstico es 
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            de Q50. El Cliente firma la
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            presente ORDEN declarando
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            que conoce y acepta las 
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            condiciones del servicio.
                             </label>
 
                             <br>

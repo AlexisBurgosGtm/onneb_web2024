@@ -418,124 +418,7 @@ function getView(){
                         </div>
 
                         <div id="root_ticket">
-                            <br>
-                            <b><h3>SERVICIO TECNICO PROXY</h3></b>
-                            <label>Tel. 3344-6696</label>
-                            <br>
-                            <label>-----------------------------------</label>
-                            <br>
-                            <b><h3 id="P_noorden"></h3></b>
-                            <label>EQUIPO - MODELO</label>
-                            <br>
-                            <b><label id="P_modelo"></label></b>
-                            <br>
-                            <label>FECHA</label>
-                            <br>
-                            <b><label id="P_fecha"></label></b>
-                            <br>
-                            <label>TÉRMINOS Y CONDICIONES</label>
-                            <br>
-                            <label>CENTRO DE SERVICIO TÉCNICO PROXY</label>
-                            
-                            <br>
-                            <label style="font-size:80%">
-                            no se responsabiliza por la
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            procedencia del equipo registrado
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            en la presente orden, únicamente
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            nos limitamos al proceso de
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            diagnóstico y reparación de lo
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            descrito en este documento:
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            A) para retirar el equipo debe
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            presentar este documento y pagar
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            el servicio.
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            B) Pasado 30 días de la notificación
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            no nos hacemos responsables
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            por perdida o extravió. Los equipos
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            no se pueden retirar sin antes 
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            haber finalizado el diagnóstico.
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            C) El cliente brinda un plazo de 30
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            días para finalizar diagnóstico.
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            D) El costo del diagnóstico es 
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            de Q50. El Cliente firma la
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            presente ORDEN declarando
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            que conoce y acepta las 
-                            </label>
-                            <br>
-                            <label style="font-size:80%">
-                            condiciones del servicio.
-                            </label>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <label>-----------------------------------</label>
-                            <br>
-                            <label>F. Proxy</label>
-                            <br>
-                            <br>
-                            <br>
-                            <label>-----------------------------------</label>
-                            <br>
-                            <label>F. Cliente</label>
+                            ${view.ticket()}
                         </div>    
 
                     </div>
@@ -667,6 +550,63 @@ function getView(){
             <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="document.getElementById('tab-uno').click()">
                 <i class="fal fa-arrow-left"></i>
             </button>
+            `
+        },
+        ticket:()=>{
+            return `
+            <br>
+                            <b><h3>SERVICIO TECNICO PROXY</h3></b>
+                            <label>Tel. 3344-6696</label>
+                            <br>
+                            <label>-----------------------------------</label>
+                            <br>
+                            <b><h3 id="P_noorden"></h3></b>
+                            <label>EQUIPO - MODELO</label>
+                            <br>
+                            <b><label id="P_modelo"></label></b>
+                            <br>
+                            <label>FECHA</label>
+                            <br>
+                            <b><label id="P_fecha"></label></b>
+                            <br>
+                            <label>TÉRMINOS Y CONDICIONES</label>
+                            <br>
+                            <label>CENTRO DE SERVICIO TÉCNICO PROXY</label>
+                            <br>
+                            <label style="font-size:80%">
+                            Acepto los términos y condiciones de servicio;
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            y exonero de responsabilidad
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            al Centro de Servicio Técnico Proxy
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            por la procedencia del equipo
+                            </label>
+                            <br>
+                            <label style="font-size:80%">
+                            registrado en la presente orden
+                            </label>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <label>-----------------------------------</label>
+                            <br>
+                            <label>F. Proxy</label>
+                            <br>
+                            <br>
+                            <br>
+                            <label>-----------------------------------</label>
+                            <br>
+                            <label>F. Cliente</label>
             `
         }
     }

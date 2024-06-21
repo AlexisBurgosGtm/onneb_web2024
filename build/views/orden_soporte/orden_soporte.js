@@ -569,26 +569,20 @@ function getView(){
                             <br>
                             <b><label id="P_fecha"></label></b>
                             <br>
-                            <label>TÉRMINOS Y CONDICIONES</label>
-                            <br>
-                            <label>CENTRO DE SERVICIO</label>
-                            <br>
-                            <label>TÉCNICO PROXY</label>
-                            <br>
                             <label style="font-size:80%">
                             Acepto los términos y 
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            condiciones de servicio;
+                            condiciones de servicio; y
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            y exonero de responsabilidad
+                            exonero de responsabilidad al
                             </label>
                             <br>
                             <label style="font-size:80%">
-                            al Centro de Servicio Técnico Proxy
+                            Centro de Servicio Técnico Proxy
                             </label>
                             <br>
                             <label style="font-size:80%">

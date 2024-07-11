@@ -34,6 +34,9 @@ let Navegar = {
             case 4:
                 Navegar.inicio_soporte();
                 break;
+            case 5:
+                Navegar.inicio_administrador();
+                break;
         }
         //btnMenu.style = "visibility:visible";
     },

@@ -53,7 +53,7 @@ function getView(){
                                     </button>
                                 </div>
                             </div>
-                            <small>Rev.11/07/2024</small>
+                           
                         </div>
                     </div>
                 </div>
